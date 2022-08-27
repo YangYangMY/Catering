@@ -14,11 +14,13 @@ public class Catering {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         
-        OrderQueue OrderEvaluation = new OrderQueue(20);
+
+        //Queue Test run
+        // OrderQueue OrderEvaluation = new OrderQueue(20);
         
-                OrderEvaluation.isEmpty();
+        //         OrderEvaluation.isEmpty();
         
-        OrderEvaluation.Enqueue("Patrick", "123");
+        // OrderEvaluation.Enqueue("Patrick", "123");
 
 
         int choice = 0;
@@ -30,37 +32,49 @@ public class Catering {
                 choice = input.nextInt();
                 if (choice < 1 || choice > 2) {
                     Screen.clear();
-                    Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+                    Font.print(Font.ANSI_RED, "                            Only (1-3) is allowed, please try again!\n");
                 }
 
             } catch (Exception e) {
                 Screen.clear();
-                Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+                Font.print(Font.ANSI_RED, "                            Only (1-3) is allowed, please try again!\n");
                 input.next();
                 }
+
+                switch(choice){
+                    case 1:
+                        Screen.clear();
+                        
+                        break;
+                        case 2:
+                        Screen.clear();
+                        
+                        break;
+                    case 3:
+                        Screen.clear();
+                        displayEndScreen();
+                        break;
+                }
+
             }while(choice != 3);
         
-        switch(choice){
-            case 1:
-                Screen.clear();
-                break;
-            case 2:
-                Screen.clear();
-                break;
-            case 3:
-                Screen.clear();
-                break;
-        }
+
         
     }
         
      public static void displayMenu(){
         System.out.println("Catering System");
         System.out.println("1. Order\n2. Admin\n3. Exit");
-        System.out.println("\nSelect your Choice: ");
+        System.out.print("\nSelect your Choice: ");
     }  
     
-     
+     public static void displayEndScreen(){
+        Font.print(Font.ANSI_YELLOW,"                                                          __ __ ");
+        Font.print(Font.ANSI_YELLOW,"                _____ _           _      __ __           |  |  |");
+        Font.print(Font.ANSI_YELLOW,"               |_   _| |_ ___ ___| |_   |  |  |___ _ _   |  |  |");
+        Font.print(Font.ANSI_YELLOW,"                 | | |   | .'|   | '_|  |_   _| . | | |  |__|__|");
+        Font.print(Font.ANSI_YELLOW,"                 |_| |_|_|__,|_|_|_,_|    |_| |___|___|  |__|__|");
+     }
 
 }
 
