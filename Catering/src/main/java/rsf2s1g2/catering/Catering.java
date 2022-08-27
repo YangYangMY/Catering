@@ -1,6 +1,7 @@
 package rsf2s1g2.catering;
 
 import java.util.Scanner;
+import rsf2s1g2.adt.OrderQueue;
 
 /**
  *
@@ -8,9 +9,17 @@ import java.util.Scanner;
  */
 public class Catering {
 
+
+    
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         
+        OrderQueue OrderEvaluation = new OrderQueue(20);
+        
+                OrderEvaluation.isEmpty();
+        
+        OrderEvaluation.Enqueue("Patrick", "123");
+
 
         int choice = 0;
         
@@ -30,12 +39,29 @@ public class Catering {
                 input.next();
                 }
             }while(choice != 3);
+        
+        switch(choice){
+            case 1:
+                Screen.clear();
+                break;
+            case 2:
+                Screen.clear();
+                break;
+            case 3:
+                Screen.clear();
+                break;
         }
         
-    public static void displayMenu(){
+    }
+        
+     public static void displayMenu(){
         System.out.println("Catering System");
         System.out.println("1. Order\n2. Admin\n3. Exit");
         System.out.println("\nSelect your Choice: ");
-    }
+    }  
     
+     
+
 }
+
+    
