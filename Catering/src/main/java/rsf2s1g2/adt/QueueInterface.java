@@ -1,4 +1,7 @@
 package rsf2s1g2.adt;
+
+import java.util.Date;
+
 /**
  *
  * @author Wee Yan
@@ -6,7 +9,7 @@ package rsf2s1g2.adt;
  */
 public interface QueueInterface<T extends Comparable <? super T>> {
     
-    public boolean add(T newEntry);
+    public boolean Enqueue(String name, Date date);
     
     public void remove(T anEntry);
     
