@@ -12,7 +12,7 @@ public interface OrderQueueInterface<T extends Comparable <? super T>>{
     
     public boolean add(T newEntry);
   
-    public void remove(T anEntry);
+    public void remove(T EntryData);
     
     public boolean dequeue();
 	

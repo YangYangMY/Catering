@@ -7,113 +7,112 @@ package rsf2s1g2.adt;
  */
 public class OrderQueue <T extends Comparable<? super T>> implements OrderQueueInterface<T>{
     
-	private Node firstNode;
-	private Node lastNode;
+	private Node FirstNode;
+	private Node LastNode;
 	private int length;
 
-	
-	public OrderQueue() {
-		firstNode=null;
-		lastNode=null;
-		length=0;
-		
-	}
-	public T last() {
-		return lastNode.data;}
-	
-        @Override
-	public boolean add(T newEntry) {
-	Node newNode = new Node(newEntry);
-        Node previous = null;
-        Node current = firstNode;
-        if(newEntry != null) {
-        while (current != null && newEntry.compareTo(current.data)<0) {
-            previous = current;
-            current = current.next;
-        }
-
-        if (previous == null) {
-            newNode.next = firstNode;
-            firstNode = newNode;
-        }
-
-        else {
-            previous.next = newNode;
-            newNode.next = current;
-        }
-      length++;
-      return true;
+	public OrderQueue(){
+            FirstNode = null;
+            LastNode = null;
+            length = 0;
         }
         
-        else 
-        	
-            return false;
-	}			
-
-	
-        @Override
-	public boolean isEmpty() {
-		return length == 0;
-	}
-	
-        @Override
-	public void clear() {
-		firstNode=null;
-		lastNode=null;
-		length=0;
-	}
-        @Override
-	public int getSize() {
-		return length;
-	}
-
-        @Override
-        public void remove(T anEntry) {
-         if(anEntry==null){return;}
-        Node temp = firstNode, prev = null;
-        
-        if (temp != null && temp.data == anEntry) {
-            firstNode = temp.next; 
-            length--;
-            return;
+        public T last(){
+            return LastNode.data;
         }
- 
-     
-        while (temp != null && temp.data != anEntry) {
-            prev = temp;
-            temp = temp.next;
+        
+        @Override
+        public boolean add(T newEntry){
+            Node newNode = new Node(newEntry);
+            Node previous = null;
+            Node current = FirstNode;
             
-            if(temp.data==anEntry){
-            length--;
+            if(newEntry != null){
+                while(current != null && newEntry.compareTo(current.data)<0){
+                    previous = current;
+                    current = current.next;
+                }
+                
+                if(previous == null){
+                    newNode.next = FirstNode;
+                    FirstNode = newNode;
+                }
+                else{
+                    previous.next = newNode;
+                    newNode.next = current;
+                }
+                length++;
+                return true;
             }
-           
+            else{
+                return false;
+            }
         }
- 
-        //not found
-        if (temp == null)
         
-            return ;
-        prev.next = temp.next;
-    }
+        @Override
+        public boolean isEmpty(){
+            return (length == 0);
+        }
+        
+        @Override
+        public void clear(){
+            FirstNode = null;
+            LastNode = null;
+            length = 0;
+        }
+        
+        @Override
+        public int getSize(){
+            return length;
+        }
+        
+        @Override
+        public void remove(T EntryData){
+            if (EntryData == null){
+                return;
+            }
+            Node temp = FirstNode;
+            Node previous = null;
+            
+            if(temp != null && temp.data == EntryData){
+                FirstNode = temp.next;
+                length --;
+                return;
+            }
+            
+            while(temp != null && temp.data != EntryData){
+                previous = temp;
+                temp = temp.next;
+                
+                if(temp.data == EntryData){
+                    length--;
+                }
+            }
+            
+            //IF data is not found in queue
+            if (temp == null)
+                return;
+            previous.next = temp.next;
+        }
         
         @Override
         public T getEntry(int position){
-        
-        Node current = firstNode;
-        int count = 0; 
-        while (current != null)
-        {
-            if (count == position)
-                return current.data;
-            count++;
-            current = current.next;
+            Node current = FirstNode;
+            int count = 0;
+            
+            while(current != null){
+                if(count == position){
+                    return current.data;
+                }
+                else{
+                    count++;
+                    current = current.next;
+                }
+            }
+            
+            return null;
         }
         
-        
-        return null;
-    
-        };
-	
         private class Node {
 		
 		private T data;
@@ -140,37 +139,37 @@ public class OrderQueue <T extends Comparable<? super T>> implements OrderQueueI
 		}
 	}
 
+ 
         @Override
-        public boolean dequeue() {
-	
-        T front = null;
+        public boolean dequeue(){
+            
+           T front = null;
+           
+           if(!isEmpty()){
+               front = FirstNode.data;
+               FirstNode = FirstNode.next;
+           
+               if(FirstNode == null){
+                   LastNode = null;
+               }
+               length--;
+               return true;
+           }
+           else{
+               return false;
+           }
+        }
         
+       @Override
+       public T peek(){
+           if(isEmpty()){
+               return null;
+           }
+           else{
+               return FirstNode.getData();
+           }
+       }
 
-        if (!isEmpty()) {
-        front = firstNode.data;
-        firstNode = firstNode.next;
-
-        if (firstNode == null) {
-        lastNode = null;
-         }
-        length--;
-        return true;
-        
-     } else return false;
-
-}
-
-
-
-        @Override
-	public T peek() {
-	if(isEmpty()) 
-		return null;
-	return firstNode.getData();
-	}
-	
-        
-        
+      
        
-
 }
