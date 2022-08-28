@@ -9,19 +9,15 @@ package rsf2s1g2.adt;
  */
 public interface OrderQueueInterface {
     
-    public boolean Enqueue(String name, String date);
+    public void Enqueue(String name, String date);
+
+    public String[] Dequeue();
     
-//    public void remove(T anEntry);
-//    
-//    public boolean dequeue();
-//    
-//    public T peek();
-//    
+    public String[] peek();
+    
     public boolean isEmpty();
-//    
-//    public T getEntry(int position);
-//    
-//    public int getSize();
-//    
-//    public void clear();
+   
+    public int getSize();
+    
+    public void clear();
 }

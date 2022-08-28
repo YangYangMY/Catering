@@ -1,8 +1,4 @@
 package rsf2s1g2.adt;
-
-import rsf2s1g2.catering.Font;
-
-
 /**
  *
  * @author Wee Yan
@@ -39,36 +35,83 @@ int cap;
     // Utility function to check if the queue is empty or not
     @Override
     public boolean isEmpty() {
-        if (size() == 0){
-                    System.out.println(" EMPTY!");
-        }
-        else{
-            System.out.println(count);
-        }
-
         return (size() == 0);
     }
     
     //Add new data into Queue
     @Override
-    public boolean Enqueue(String name, String date){
+    public void Enqueue(String name, String date){
         //Check Overflow
         if (isFull()){
             System.out.println("Array is Full!! Cannot add more values.");
-            return false;
         }
         else{
+            backIndex = (backIndex + 1) % this.cap;
             nameArray[count] = name;
             dateArray[count] = date;
             System.out.println("Data has been succesfully enqueued!" + nameArray[count] + dateArray[count]);
             count++;
-            return true;
         }
     }
 
+    //Remove first data in Queue and return data
+    @Override
+    public String[] Dequeue(){
+        if(isEmpty()){
+            System.out.println("Queue is Empty!! Cannot Dequeue values.");
+            return null;
+        }
+        else{
+            String[] temp = new String[]{nameArray[frontIndex], dateArray[frontIndex]};
+            frontIndex = (frontIndex + 1 )& this.cap;
+            count--;
+            return temp;
+        }
+    }
+    
+       //Peek the front element of the queue
+    @Override
+    public String[] peek(){
+        if(isEmpty()){
+            System.out.println("Queue is Empty!! Cannot Dequeue values.");
+            return null;
+        }
+        String[] temp = new String[]{nameArray[frontIndex], dateArray[frontIndex]};
+        return temp;
+    }
 
+    //Print all Queue
+    @Override
+    public String toString() {
+        if (isEmpty()) {
+        return "Queue is Empty!";
+        }
+        else{
+            for (int i = frontIndex; i <= backIndex; i++){
+                System.out.println("Queue "+ (i+1) + ":");
+                System.out.println("========================");
+                System.out.println("Name: "+ nameArray[i] + "\nDate: " + dateArray[i]);
+            }
+        return "";
+        }
+    }
     
     
     
+    @Override
+    public int getSize(){
+        return count;
+    }
     
+    
+    //Delete everything
+    @Override
+    public void clear(){
+        count = 0;
+        cap = 0;
+        frontIndex = 0;
+        backIndex = 0;
+        nameArray = null;
+        dateArray = null;
+    }
 }
