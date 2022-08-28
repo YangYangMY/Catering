@@ -14,15 +14,8 @@ public class Catering {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         
-
-        //Queue Test run
-        // OrderQueue OrderEvaluation = new OrderQueue(20);
         
-        //         OrderEvaluation.isEmpty();
-        
-        // OrderEvaluation.Enqueue("Patrick", "123");
-
-
+        //Start Of Program
         int choice = 0;
         
         do {
@@ -48,7 +41,7 @@ public class Catering {
                         break;
                         case 2:
                         Screen.clear();
-                        
+
                         break;
                     case 3:
                         Screen.clear();
@@ -75,6 +68,9 @@ public class Catering {
         Font.print(Font.ANSI_YELLOW,"                 | | |   | .'|   | '_|  |_   _| . | | |  |__|__|");
         Font.print(Font.ANSI_YELLOW,"                 |_| |_|_|__,|_|_|_,_|    |_| |___|___|  |__|__|");
      }
+
+
+
 
 }
 
