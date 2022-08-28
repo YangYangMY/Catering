@@ -12,7 +12,7 @@ public class OrderQueue <T extends Comparable<? super T>> implements OrderQueueI
 	private int length;
 
 	
-	public PriorityQueue() {
+	public OrderQueue() {
 		firstNode=null;
 		lastNode=null;
 		length=0;
@@ -157,19 +157,9 @@ public class OrderQueue <T extends Comparable<? super T>> implements OrderQueueI
         return true;
         
      } else return false;
-   // end dequeue
-        /*int endnumber=length;
-        
-        if(firstNode != null) {
-		result = firstNode.getData();
-		firstNode = firstNode.next;
-		length--;}
-        
 
-    return result;*/
 }
 
-        
 
 
         @Override
@@ -179,20 +169,6 @@ public class OrderQueue <T extends Comparable<? super T>> implements OrderQueueI
 	return firstNode.getData();
 	}
 	
-	
-	
-	/*public String[] toArray(){
-		int index = 0;
-		String[] array = new String[10];
-		Node temp = firstNode;
-		
-		while(temp != null) {
-			array[index]= temp.data.toString();
-			index++;
-			temp = temp.next;
-		}
-		return array;
-	}*/
         
         
        
