@@ -5,19 +5,24 @@ package rsf2s1g2.adt;
 /**
  *
  * @author Wee Yan
+ * @param <T>
  * 
  */
-public interface OrderQueueInterface {
+public interface OrderQueueInterface<T extends Comparable <? super T>>{
     
-    public void Enqueue(String name, String date);
-
-    public String[] Dequeue();
+    public boolean add(T newEntry);
+  
+    public void remove(T anEntry);
     
-    public String[] peek();
-    
+    public boolean dequeue();
+	
+    public T peek();
+	
     public boolean isEmpty();
-   
-    public int getSize();
     
+    public T getEntry(int position);
+	
+    public int getSize();
+	
     public void clear();
 }

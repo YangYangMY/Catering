@@ -2,116 +2,199 @@ package rsf2s1g2.adt;
 /**
  *
  * @author Wee Yan
+ * @param <T>
  * 
  */
-public class OrderQueue implements OrderQueueInterface {
-   
-String[] nameArray; // array of name entries
-String[] dateArray;   //array of date
-int frontIndex; // index of the front entry
-int backIndex; // index of the back entry
-int count;
-int cap;
+public class OrderQueue <T extends Comparable<? super T>> implements OrderQueueInterface<T>{
     
-    public OrderQueue(int n){
-        count = 0;
-        cap = n;
-        frontIndex = 0;
-        backIndex = -1;
-        nameArray = new String[cap];
-        dateArray = new String[cap];
-    }
-    
-    // returns the size of the queue
-    public int size(){
-	return count;
-    }
-    
-    //return true if array is full
-    public boolean isFull(){
-        return (size() == cap);
-    }
-    
-    // Utility function to check if the queue is empty or not
-    @Override
-    public boolean isEmpty() {
-        return (size() == 0);
-    }
-    
-    //Add new data into Queue
-    @Override
-    public void Enqueue(String name, String date){
-        //Check Overflow
-        if (isFull()){
-            System.out.println("Array is Full!! Cannot add more values.");
-        }
-        else{
-            backIndex = (backIndex + 1) % this.cap;
-            nameArray[count] = name;
-            dateArray[count] = date;
-            System.out.println("Data has been succesfully enqueued!" + nameArray[count] + dateArray[count]);
-            count++;
-        }
-    }
+	private Node firstNode;
+	private Node lastNode;
+	private int length;
 
-    //Remove first data in Queue and return data
-    @Override
-    public String[] Dequeue(){
-        if(isEmpty()){
-            System.out.println("Queue is Empty!! Cannot Dequeue values.");
-            return null;
+	
+	public PriorityQueue() {
+		firstNode=null;
+		lastNode=null;
+		length=0;
+		
+	}
+	public T last() {
+		return lastNode.data;}
+	
+        @Override
+	public boolean add(T newEntry) {
+	Node newNode = new Node(newEntry);
+        Node previous = null;
+        Node current = firstNode;
+        if(newEntry != null) {
+        while (current != null && newEntry.compareTo(current.data)<0) {
+            previous = current;
+            current = current.next;
         }
-        else{
-            String[] temp = new String[]{nameArray[frontIndex], dateArray[frontIndex]};
-            frontIndex = (frontIndex + 1 )& this.cap;
-            count--;
-            return temp;
-        }
-    }
-    
-       //Peek the front element of the queue
-    @Override
-    public String[] peek(){
-        if(isEmpty()){
-            System.out.println("Queue is Empty!! Cannot Dequeue values.");
-            return null;
-        }
-        String[] temp = new String[]{nameArray[frontIndex], dateArray[frontIndex]};
-        return temp;
-    }
 
-    //Print all Queue
-    @Override
-    public String toString() {
-        if (isEmpty()) {
-        return "Queue is Empty!";
+        if (previous == null) {
+            newNode.next = firstNode;
+            firstNode = newNode;
         }
-        else{
-            for (int i = frontIndex; i <= backIndex; i++){
-                System.out.println("Queue "+ (i+1) + ":");
-                System.out.println("========================");
-                System.out.println("Name: "+ nameArray[i] + "\nDate: " + dateArray[i]);
+
+        else {
+            previous.next = newNode;
+            newNode.next = current;
+        }
+      length++;
+      return true;
+        }
+        
+        else 
+        	
+            return false;
+	}			
+
+	
+        @Override
+	public boolean isEmpty() {
+		return length == 0;
+	}
+	
+        @Override
+	public void clear() {
+		firstNode=null;
+		lastNode=null;
+		length=0;
+	}
+        @Override
+	public int getSize() {
+		return length;
+	}
+
+        @Override
+        public void remove(T anEntry) {
+         if(anEntry==null){return;}
+        Node temp = firstNode, prev = null;
+        
+        if (temp != null && temp.data == anEntry) {
+            firstNode = temp.next; 
+            length--;
+            return;
+        }
+ 
+     
+        while (temp != null && temp.data != anEntry) {
+            prev = temp;
+            temp = temp.next;
+            
+            if(temp.data==anEntry){
+            length--;
             }
-        return "";
+           
         }
+ 
+        //not found
+        if (temp == null)
+        
+            return ;
+        prev.next = temp.next;
     }
+        
+        @Override
+        public T getEntry(int position){
+        
+        Node current = firstNode;
+        int count = 0; 
+        while (current != null)
+        {
+            if (count == position)
+                return current.data;
+            count++;
+            current = current.next;
+        }
+        
+        
+        return null;
     
-    
-    
-    @Override
-    public int getSize(){
-        return count;
-    }
-    
-    
-    //Delete everything
-    @Override
-    public void clear(){
-        count = 0;
-        cap = 0;
-        frontIndex = 0;
-        backIndex = 0;
-        nameArray = null;
-        dateArray = null;
-    }
+        };
+	
+        private class Node {
+		
+		private T data;
+		private Node next;
+		
+		private Node(T dataPortion) {
+			this(dataPortion,null);
+		}
+		private Node(T dataPortion, Node nextNode) {
+			this.data = dataPortion;
+			this.next = nextNode;
+		}
+		public T getData() {
+			return data;
+		}
+		public void setData(T data) {
+			this.data = data;
+		}
+		public Node getNextNode() {
+			return next;
+		}
+		public void setNextNode(Node next) {
+			this.next = next;
+		}
+	}
+
+        @Override
+        public boolean dequeue() {
+	
+        T front = null;
+        
+
+        if (!isEmpty()) {
+        front = firstNode.data;
+        firstNode = firstNode.next;
+
+        if (firstNode == null) {
+        lastNode = null;
+         }
+        length--;
+        return true;
+        
+     } else return false;
+   // end dequeue
+        /*int endnumber=length;
+        
+        if(firstNode != null) {
+		result = firstNode.getData();
+		firstNode = firstNode.next;
+		length--;}
+        
+
+    return result;*/
+}
+
+        
+
+
+        @Override
+	public T peek() {
+	if(isEmpty()) 
+		return null;
+	return firstNode.getData();
+	}
+	
+	
+	
+	/*public String[] toArray(){
+		int index = 0;
+		String[] array = new String[10];
+		Node temp = firstNode;
+		
+		while(temp != null) {
+			array[index]= temp.data.toString();
+			index++;
+			temp = temp.next;
+		}
+		return array;
+	}*/
+        
+        
+       
+
 }
