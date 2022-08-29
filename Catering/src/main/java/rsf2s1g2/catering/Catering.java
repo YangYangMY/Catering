@@ -1,7 +1,6 @@
 package rsf2s1g2.catering;
 
 import java.util.Scanner;
-import rsf2s1g2.adt.OrderQueue;
 
 /**
  *
