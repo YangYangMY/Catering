@@ -10,7 +10,7 @@ import java.util.Arrays;
  * @param <T>
  * 
  */
-public class CircularQueue <T extends Comparable<? super T>> implements CircularQueueInterface<T>{
+public class CircularQueue <T> implements CircularQueueInterface<T>{
     
     private int count;        //Current Queue size
     private T[] array;           // Data stored

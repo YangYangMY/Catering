@@ -8,7 +8,7 @@ package rsf2s1g2.adt;
  * @param <T>
  * 
  */
-public interface CircularQueueInterface<T extends Comparable <? super T>>{
+public interface CircularQueueInterface<T>{
     
     public boolean enqueue(T newEntry);
     
