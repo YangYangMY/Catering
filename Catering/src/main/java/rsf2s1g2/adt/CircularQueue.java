@@ -89,15 +89,10 @@ public class CircularQueue <T extends Comparable<? super T>> implements Circular
     
     @Override
     public void clear(){
-//        if(!isEmpty()){
-//            for (int index = front; index <= rear; index++){
-//                array[index] = null;
-//            }
             array = null;
             count = 0;
             front = -1;
             rear = -1;
-//        }
     }
     
     @Override
