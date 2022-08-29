@@ -64,7 +64,13 @@ public class CircularQueue <T extends Comparable<? super T>> implements Circular
     
     @Override
     public T peek(){
-        return array[front];
+        if(isEmpty()){
+            System.out.println("Queue is Empty.");
+            return null;
+        }
+        else{
+           return array[front]; 
+        }
     }
     
     @Override
@@ -83,14 +89,15 @@ public class CircularQueue <T extends Comparable<? super T>> implements Circular
     
     @Override
     public void clear(){
-        if(!isEmpty()){
-            for (int index = front; index <= rear; index++){
-                array[index] = null;
-            }
+//        if(!isEmpty()){
+//            for (int index = front; index <= rear; index++){
+//                array[index] = null;
+//            }
+            array = null;
             count = 0;
             front = -1;
             rear = -1;
-        }
+//        }
     }
     
     @Override
