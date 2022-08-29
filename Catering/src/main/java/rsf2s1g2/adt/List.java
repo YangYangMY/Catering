@@ -1,4 +1,3 @@
-package rsf2s1g2.adt;
 import java.io.Serializable;
 
 public class List<T> implements ListInterface<T>, Serializable {
