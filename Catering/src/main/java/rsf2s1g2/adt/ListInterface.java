@@ -1,3 +1,5 @@
+package rsf2s1g2.adt;
+
 public interface ListInterface<T> {
 
   public boolean add(T newObj);
