@@ -6,17 +6,19 @@ public interface ListInterface<T> {
 
   public T remove(int posOfObj);
 
-  public T getObj(int posOfObj);
+  public T get(int posOfObj);
 
-  public int getQuantity();
+  public int size();
 
   public boolean isEmpty();
 
   public boolean isFull();
 
   public void clear();
+
+  public boolean set(int givenPos, T newObj);
+
+  public void undo();
 }
 
-  //public boolean contains(T anObj);
-
-  //public boolean replace(int givenPos, T newObj);
+  
