@@ -22,6 +22,10 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
   @Override
   public boolean insert(T newData){
       int i = 0;
+      if(newData == null){
+          System.out.println("Data cannot be empty");
+          return false;
+      }
       while(i < count && newData.compareTo(data[i]) > 0){
           if(newData.compareTo(data[i]) == 0){
               System.out.println("Duplicated data");
@@ -48,6 +52,17 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
       return true;
   }
   
+  public T getEntry(int position){
+        int n = 0;
+        
+        while(data[n] != null){
+            if(n == position){
+                return data[position];
+            }
+            n++;
+        }
+       return null; 
+  }
 
   
     @Override
