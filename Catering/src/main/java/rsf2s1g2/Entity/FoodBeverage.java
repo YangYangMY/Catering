@@ -1,4 +1,4 @@
-package rsf2s1g2.Entity;
+package rsf2s1g2.entity;
 
 import java.text.DecimalFormat;
 

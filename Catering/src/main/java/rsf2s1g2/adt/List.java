@@ -1,7 +1,8 @@
 package rsf2s1g2.adt;
 
 import java.io.Serializable;
-import rsf2s1g2.Entity.FoodBeverage;
+
+import rsf2s1g2.entity.FoodBeverage;
 
 public class List<T> implements ListInterface<T>, Serializable {
 

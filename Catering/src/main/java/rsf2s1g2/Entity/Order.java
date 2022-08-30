@@ -1,4 +1,4 @@
-package rsf2s1g2.Entity;
+package rsf2s1g2.entity;
 
 import rsf2s1g2.adt.CircularQueue;
 import rsf2s1g2.adt.CircularQueueInterface;
