@@ -1,4 +1,4 @@
-package rsf2s1g2.adt.utility;
+package rsf2s1g2.utility;
 
 /**
  *
