@@ -6,7 +6,7 @@ import rsf2s1g2.utility.*;
 
 /**
  *
- * @author Wee Yan
+ * 
  */
 public class Catering {
 
