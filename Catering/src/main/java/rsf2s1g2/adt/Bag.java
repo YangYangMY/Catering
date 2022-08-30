@@ -1,265 +1,231 @@
 package rsf2s1g2.adt;
 
-public class Bag<E>
-{
-    private Node<E> head;
+public final class Bag<T> implements BagInterface<T> {
 
-    public Bag()
-    {
-        head = null;
+    private final T[] bag;
+    private int numberOfEntries;
+    private static final int DEFAULT_CAPACITY = 25;
+    
+    private boolean initialized = false;
+    private static final int MAX_CAPACITY = 10000;
+
+    /** Creates an empty bag whose initial capacity is 25. */
+    public Bag() {
+        this(DEFAULT_CAPACITY);
     }
 
-    public void add(E key)
-    {
+    //Creates an empty bag having a given initial capacity
+    public Bag(int desiredCapacity) {
+        if (desiredCapacity <= MAX_CAPACITY) {
 
-        if (isEmpty())
-        {
-            Node<E> newNode = new Node<E>(key);
-            head = newNode;
-        } else
-        {
-            Node<E> current = head;
-            Node<E> last = head; 
-            boolean found = false;
-            while (current != null)
-            {
-                if (current.getKey().equals(key) )
-                {
-                    current.incrementValue();
-                    found = true;
-                    break;
-                }
-                last = current;
-                current = current.getNext();
-            }
-
-            if (!found)
-            {
-                Node<E> newNode = new Node<E>(key);
-                last.setNext(newNode);
-            }
-
-        }
-
-    }
-
-    public boolean remove(E key) 
-    {
-
-        if (!contains(key))
-        {
-            System.out.println("The item '" + key + "' is not located in the Bag");
-        } else
-        {
-            Node<E> current = head;
-            Node<E> previous = head;
-            while (current != null)
-            {
-                if (current.getKey().equals(key) )
-                {
-                    if (current == head) 
-                    {
-                        current.decreaseValue();
-                        if (current.getValue() < 1) 
-                        {
-                            head = head.getNext();
-                            return false;
-                        }
-                        return true;
-                    } else
-                    {
-                        current.decreaseValue();
-                        if (current.getValue() < 1)
-                        {
-                            previous.setNext(current.getNext());
-                            current.setNext(null);
-                            return false;
-                        }
-
-                        return true;
-
-                    }
-                }
-                previous = current;
-                current = current.getNext();
-            }
-        }
-        return false;
-    }
-
-    public int size() 
-    {
-        Node<E> current = head;
-        int size = 0;
-        while (current != null)
-        {
-            size = size + current.getValue();
-            current = current.getNext();
-
-        }
-        return size;
-    }
-
-    public int distinctSize()
-    {
-        Node<E> current = head;
-        int counter = 0;
-        while (current != null) 
-        {
-            counter++;
-            current = current.getNext();
-        }
-        
-        return counter;
-    }
-
-    public int elementSize(E key) 
-    {
-        Node<E> current = head;
-        int elementsize = 0;
-        while (current != null) 
-        {
-            if (current.getKey() == key) 
-            {
-                elementsize = current.getValue();
-                break;
-            }
-
-            current = current.getNext();
-        }
-        
-        return elementsize;
-    }
-
-    public void clear() {
-        head = null;
-    }
-
-    public boolean contains(E key)
-    {
-        Node<E> current = head;
-        while (current != null)
-        {
-            if (current.getKey().equals(key) )
-            {
-
-                return true;
-            }
-            current = current.getNext();
-        }
-
-        return false;
-    }
-
-    public boolean isEmpty()
-    {
-        if (head == null) 
-        {
-
-            return true;
-        } else
-        {
-            return false;
-        }
-    }
-
-    public void display()
-    {
-        if (head == null)
-        {
-            System.out.println("The Bag is empty");
-
+            // The cast is safe because the new array contains null entries.
+            @SuppressWarnings("unchecked")
+            T[] tempBag = (T[]) new Object[desiredCapacity];
+            bag = tempBag;
+            numberOfEntries = 0;
+            initialized = true;
         }
         else
-        {
-            Node<E> current = head;
-        String displayList="List Representation = ";
-        while (current != null)
-        {
-            displayList+="[" + current.getKey() + " , " + current.getValue() + "]" + "--> ";
-            
-            current = current.getNext();
-
-        }
-        System.out.println(displayList + "null" );
-    }
+            throw new IllegalStateException("Attempt to create a bag " +
+                                            "whose capacity exceeds " +
+                                            "allowed maximum.");
     }
 
-    public String toString()
+    // Adds a new entry to this bag.
+    public boolean add(T newEntry) {
+        checkInitialization();
+        boolean result = true;
+        if (isArrayFull()) {
+            result = false;
+        } else {
+            bag[numberOfEntries] = newEntry;
+            numberOfEntries++;
+        } 
+        return result;
+ 
+    }
+
+    // Throws an exception if this object is not initialized.
+    private void checkInitialization()
     {
-        if(isEmpty())
-        {
-            return "Bag is empty";
-        }
-        Node<E> current = head;
+        if (!initialized)
+             throw new SecurityException("Bag object is not initialized " +
+                                        "properly.");
+   }
+    
+    // Retrieves all entries that are in this bag.
+    public T[] toArray() {
         
-        String string = "Bag = ";
-        while (current != null)
-        {
-            for (int i = 0; i < current.getValue(); i++) 
-            {
-
-                string += "{" + current.getKey() + "}";
-            }
-
-            current = current.getNext();
+        // the cast is safe because the new array contains null entries
+        @SuppressWarnings("unchecked")
+        T[] result = (T[]) new Object[numberOfEntries]; 
+        for (int index = 0; index < numberOfEntries; index++) {
+            result[index] = bag[index];
         }
-        return string;
+        return result;
     }
-    public class Node<E> {
 
-        private int value;
-        private E key;
-        private Node<E> next;
-    
-        public Node(E k) {
-            value = 1;
-            key = k;
-            next = null;
-    
+    // Sees whether this bag is full.
+    private boolean isArrayFull() {
+        return numberOfEntries >= bag.length;
+    }
+
+    // Sees whether this bag is empty.
+    public boolean isEmpty() {
+        return numberOfEntries == 0;
+    }
+
+    // Gets the current number of entries in this bag.
+    public int getCurrentSize() {
+        return numberOfEntries;
+    }
+
+    // Counts the number of times a given entry appears in this bag.
+    public int getFrequencyOf(T anEntry) {
+        checkInitialization();
+        int counter = 0;
+        for (int index = 0; index < numberOfEntries; index++) {
+            if (anEntry.equals(bag[index])) {
+                counter++;
+            } 
+        } // end for
+        return counter;
+    } 
+
+    // Tests whether this bag contains a given entry.
+    public boolean contains(T anEntry) {
+        checkInitialization();
+        return getIndexOf(anEntry) > -1;
+    }
+
+    // Removes all entries from this bag.
+    public void clear() {
+        while (!isEmpty()) {
+            remove();
         }
-    
-        public void setValue(int newValue)
-        {
-            value = newValue;
-        }
-    
-        public void setNext(Node<E> newNext)
-        {
-            next = newNext;
-        }
-    
-        public void setKey(E newKey)
-        {
-            key = newKey;
-        }
-    
-        public int getValue()
-        {
-            return value;
-        }
-    
-        public Node<E> getNext() 
-        {
-            return next;
-        }
-    
-        public E getKey() 
-        {
-            return key;
-        }
-    
-        public void incrementValue() 
-        {
-            value++;
-        }
-    
-        public void decreaseValue() 
-        {
-            value--;
-        }
-    
+    } 
+
+    // Removes one unspecified entry from this bag, if possible.
+    public T remove() {
+        checkInitialization();
         
+    // MODIFY THIS METHOD TO REMOVE A RANDOM ITEM FROM THE BAG
+        T result = removeEntry(numberOfEntries - 1);
+
+        return result;
+    } 
+
+    // Removes one occurrence of a given entry from this bag.
+    public boolean remove(T anEntry) {
+        checkInitialization();
+        int index = getIndexOf(anEntry);
+        T result = removeEntry(index);
+        return anEntry.equals(result);
+    }
+
+// Removes and returns the entry at a given array index within the array bag.
+    private T removeEntry(int givenIndex) {
+        T result = null;
+        if (!isEmpty() && (givenIndex >= 0)) {
+            result = bag[givenIndex];                   // entry to remove
+            bag[givenIndex] = bag[numberOfEntries - 1]; // Replace entry with last entry
+            bag[numberOfEntries - 1] = null;            // remove last entry
+           numberOfEntries--;
+         }
+        return result;
+    } 
+
+// Locates a given entry within the array bag.
+    private int getIndexOf(T anEntry) {
+        int where = -1;
+        boolean stillLooking = true;
+        int index = 0;
+        while ( stillLooking && (index < numberOfEntries)) {
+            if (anEntry.equals(bag[index])) {
+                stillLooking = false;
+                where = index;
+            } 
+            index++;
+        } // end for
+// Assertion: If where > -1, anEntry is in the array bag, and it
+// equals bag[where]; otherwise, anEntry is not in the array
+        return where;
+    } 
+    
+    
+    // Override the equals method so that we can tell if two bags contain the same items
+    public String toString() {
+
+        String result = "Bag{Size:" + numberOfEntries + " ";
+        
+
+        for (int index = 0; index < numberOfEntries; index++) {
+            result += "[" + bag[index] + "] ";
+        } // end for
+
+        result += "}";
+        return result;
+    }
+    
+    // Check to see if two bags are equals.  
+    public boolean equals(Bag<T> aBag) {
+        boolean result = true; 
+
+        T[] t = toArray();
+        T[] s = aBag.toArray();
+        
+        for(int i = 0; i < t.length; i++){
+        	for(int j = 0; j < s.length; j++){
+        		if(s[j] != null && s[j].equals(t[i])){
+        			t[i] = null;
+        			s[j] = null;
+        		}
+        	}
+        }
+        
+        for(int i = 0; i < numberOfEntries; i++)
+        	if(t[i] != null)
+        		result = false;
+        
+        for(int i = 0; i < aBag.numberOfEntries; i++)
+        	if(s[i] != null)
+        		result = false;
+
+        return result;
+    }  // end equals
+
+    // Duplicate all the items in a bag.
+    public boolean duplicateAll() {
+        checkInitialization();
+        boolean success = false; 
+
+        if(numberOfEntries * 2 > bag.length)
+        	return success;
+        
+        for(int i = 0; i < numberOfEntries; i++)
+        	bag[i + numberOfEntries] = bag[i];
+        success = true;
+
+        return success;
+    }
+    
+    // Remove all duplicate items from a bag
+    public void removeDuplicates() {
+        checkInitialization();
+ 
+        if(numberOfEntries <= 1)
+        	return;
+        
+        for(int i = 0; i < numberOfEntries - 1; i++){
+        	for(int j = i + 1; j < numberOfEntries; j++){
+        		if(bag[i].equals(bag[j])){
+        			remove(bag[j]);
+        			j--;
+        		}
+        	}
+        }
+
+        return;
     }
 
 }
