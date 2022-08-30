@@ -90,10 +90,6 @@ public class Map<K, V> implements MapInterface <K, V> {
             return value;
         }
 
-        private void setValue(V newValue){
-            value = newValue;
-        }
-
         private boolean isExist(){
             return inTable;
         }
