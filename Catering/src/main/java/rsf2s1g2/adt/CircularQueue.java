@@ -95,13 +95,19 @@ public class CircularQueue <T> implements CircularQueueInterface<T>{
             rear = -1;
     }
     
-    @Override
-    public String toString(){
-        return "Circular Queue [" + Arrays.toString(array) + "]";
-    }
 
     @Override
     public T getEntry(int position) {
-        return array[position];
+        int current = front;
+        int n = 0;
+        
+        while(array[current] != null){
+            if(current == position){
+                return array[position];
+            }
+            n++;
+            current++;
+        }
+       return null; 
     }
 }
