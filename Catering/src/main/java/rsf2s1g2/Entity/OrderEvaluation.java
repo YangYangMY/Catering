@@ -40,9 +40,23 @@ public class OrderEvaluation implements Comparable<OrderEvaluation> {
         orderQueue.enqueue(new OrderEvaluation(customerName, date, phoneNum, orderAmount));
     }
     
+    public void addOrder(int OrderID, String customerName, String phoneNum, String date, double orderAmount){
+        orderQueue.enqueue(new OrderEvaluation(OrderID, customerName, phoneNum, date, orderAmount));
+    }
+    
+    public void setOrderQueue(CircularQueueInterface<OrderEvaluation> orderQueue){
+        this.orderQueue = orderQueue;
+    }
+    
+    public CircularQueueInterface<OrderEvaluation> getOrderQueue(){
+        return orderQueue;
+    }
+    
+    
+    
     @Override
     public int compareTo(OrderEvaluation o) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
    
    
