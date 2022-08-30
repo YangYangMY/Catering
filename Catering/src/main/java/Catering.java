@@ -1,8 +1,9 @@
-package rsf2s1g2.catering;
-
 import java.util.Scanner;
 
 import rsf2s1g2.utility.*;
+import rsf2s1g2.adt.*;
+import rsf2s1g2.Entity.*;
+import rsf2s1g2.client.*;
 
 /**
  *
