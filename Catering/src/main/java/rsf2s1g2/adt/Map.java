@@ -16,9 +16,11 @@ public class Map<K, V> implements MapInterface <K, V> {
     }
 
     @Override
-    public void add(K key, V value) {
+    public boolean add(K key, V value) {
         hashTable[numOfEntries] = new MapTable<K, V>(key, value);
         numOfEntries++;
+
+        return true;
     }
 
     @Override
