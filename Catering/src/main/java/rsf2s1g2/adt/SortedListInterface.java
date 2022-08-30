@@ -7,11 +7,11 @@ package rsf2s1g2.adt;
  */
 public interface SortedListInterface<T extends Comparable<T>> {
 
-  public boolean add(T newEntry);
+  public boolean insert(T newData);
 
-  public boolean remove(T anEntry);
+  public boolean delete(T anData);
 
-  public boolean contains(T anEntry);
+  public boolean check(T anData);
 
   public void clear();
 

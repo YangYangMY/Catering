@@ -6,7 +6,7 @@ package rsf2s1g2.adt;
  */
 public class SortedList <T extends Comparable<T>> implements SortedListInterface<T>{
   
-  private T[] array;
+  private T[] data;
   private int count;
   private static final int DEFAULT_CAPACITY = 30;
   
@@ -16,31 +16,31 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
   
     public SortedList(int initialCapacity) {
     count = 0;
-    array = (T[]) new Comparable[initialCapacity];
+    data = (T[]) new Comparable[initialCapacity];
   }
     
   @Override
-  public boolean add(T newEntry){
+  public boolean insert(T newData){
       int i = 0;
-      while(i < count && newEntry.compareTo(array[i]) > 0){
-          if(newEntry.compareTo(array[i]) == 0){
+      while(i < count && newData.compareTo(data[i]) > 0){
+          if(newData.compareTo(data[i]) == 0){
               System.out.println("Duplicated data");
               return false;
           }
           i++;
       }
       makeSpace(i+1);
-      array[i] = newEntry;
+      data[i] = newData;
       count++;
       
       return true;
   }
   
     @Override
-  public boolean remove(T anEntry){
+  public boolean delete(T anData){
       
       int i = 0;
-      while(i < count && !anEntry.equals(array[i])){
+      while(i < count && !anData.equals(data[i])){
           i++;
       }
       removeGap(i);
@@ -56,10 +56,10 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
   }
   
     @Override
-  public boolean contains(T anEntry) {
+  public boolean check(T anData) {
     boolean found = false;
     for (int index = 0; !found && (index < count); index++) {
-      if (anEntry.equals(array[index])) {
+      if (anData.equals(data[index])) {
         found = true;
       }
     }
@@ -80,24 +80,24 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
   public String toString(){
       String output = "";
       for (int i = 0; i < count; ++i){
-          output += array[i] + "\n";
+          output += data[i] + "\n";
       }
       return output;
   }
   
-  public boolean isArrayFull(){
-      return count == array.length; 
+  public boolean isdataFull(){
+      return count == data.length; 
   }
   
 
-    private void doubleArray() {
-    T[] oldList = array;
+    private void Expanddata() {
+    T[] oldList = data;
     int oldSize = oldList.length;
 
-    array = (T[]) new Object[2 * oldSize];
+    data = (T[]) new Object[2 * oldSize];
 
     for (int index = 0; index < oldSize; index++) {
-      array[index] = oldList[index];
+      data[index] = oldList[index];
     }
   }
   
@@ -106,7 +106,7 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
     int lastIndex = count - 1;      
 
     for (int index = lastIndex; index >= newIndex; index--) {
-      array[index + 1] = array[index];
+      data[index + 1] = data[index];
     }
   }
 
@@ -116,7 +116,7 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
 
     
     for (int index = removedIndex; index < lastIndex; index++) {
-      array[index] = array[index + 1];
+      data[index] = data[index + 1];
     }
   }
 
