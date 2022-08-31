@@ -62,6 +62,11 @@ public class Map<K, V> implements MapInterface <K, V> {
     }
 
     @Override
+    public int size() {
+        return numOfEntries;
+    }
+
+    @Override
     public boolean isEmpty() {
         return numOfEntries == 0;
     }
