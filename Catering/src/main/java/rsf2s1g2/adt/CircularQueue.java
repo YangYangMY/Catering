@@ -83,7 +83,7 @@ public class CircularQueue <T> implements CircularQueueInterface<T>{
     }
     
     @Override
-    public int getSize(){
+    public int getCount(){
         return count;
     }
     
@@ -110,4 +110,19 @@ public class CircularQueue <T> implements CircularQueueInterface<T>{
         }
        return null; 
     }
+
+    @Override
+    public int getRear() {
+        return rear;
+    }
+
+    @Override
+    public int getFront() {
+        return front;
+    }
+
+
+    
+
+
 }

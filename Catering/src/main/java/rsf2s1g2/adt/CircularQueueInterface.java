@@ -22,7 +22,11 @@ public interface CircularQueueInterface<T>{
     
     public T getEntry(int position);
 	
-    public int getSize();
+    public int getCount();
 	
     public void clear();
+
+    public int getFront();
+
+    public int getRear();
 }
