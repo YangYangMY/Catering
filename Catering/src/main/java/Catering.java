@@ -19,15 +19,14 @@ public class Catering {
         //test for array
         Order O = new Order();
         O.addOrder("Patrick", "2021-7-12", "0177255766", 15.12);
-        O.addOrder("Patrick", "2021-5-1", "0177255766", 3.12);
+        O.addOrder("John", "2021-5-1", "0177255766", 3.12);
         O.addOrder("Jason", "2020-1-1", "0177255766", 20.12);
         O.addOrder("BC", "2019-4-1", "0177255766", 20.12);
         
-        O.RejectOrder(O.getOrderQueue().getEntry(0));
-        O.RejectOrder(O.getOrderQueue().getEntry(1));
-        O.RejectOrder(O.getOrderQueue().getEntry(2));
-        O.RejectOrder(O.getOrderQueue().getEntry(3));
-        System.out.println(O.getRejectedList());
+        // O.RejectOrder(O.getOrderQueue().getEntry(0));
+        // O.RejectOrder(O.getOrderQueue().getEntry(1));
+        // O.RejectOrder(O.getOrderQueue().getEntry(2));
+        // System.out.println(O.getRejectedList());
 
         //Start Of Program
         int choice = 0;
@@ -56,7 +55,7 @@ public class Catering {
                         break;
                         case 2:
                         Screen.clear();
-                        Admin();
+                        Admin(O);
                         break;
                     case 3:
                         Screen.clear();
@@ -86,7 +85,11 @@ public class Catering {
         Font.print(Font.ANSI_YELLOW,"                 |_| |_|_|__,|_|_|_,_|    |_| |___|___|  |__|__|");
      }
 
-     public static void displayAdminMenu(){
+
+
+    //START OF ADMIN SECTION 
+
+    public static void displayAdminMenu(){
         System.out.println("\t\t\t\t\tAdmin Panel");
         System.out.println("==================================================================================================");
         System.out.println("1. Order Evaluation\n2. Accepted Orders\n3. Rejected Orders\n4. Back");
@@ -94,8 +97,7 @@ public class Catering {
         System.out.print("\nSelect your Choice: ");
     }  
 
-
-     public static void Admin(){
+     public static void Admin(Order O){
         Scanner input1 = new Scanner(System.in);
         String username = "admin";
         String password = "123123";
@@ -166,7 +168,10 @@ public class Catering {
                 switch(choice1){
                     case 1:
                         Screen.clear();
-                        
+                        for (int i = O.getOrderQueue().getFront(); i <= O.getOrderQueue().getRear(); i++){
+                            System.out.println(O.getOrderQueue().getEntry(i));
+                        } 
+
                         break;
                         case 2:
                         Screen.clear();
@@ -184,6 +189,12 @@ public class Catering {
             }while(choice1 != 4);
             Screen.clear();
      }
+
+
+
+
+     //END OF ADMIN SECTION
+
 
     // Exception for handling invalid username or password
     private static class InvalidException extends Exception {
