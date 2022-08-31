@@ -26,6 +26,9 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
           System.out.println("Data cannot be empty");
           return false;
       }
+      if(isdataFull()){
+        ExpandData();
+      }
       while(i < count && newData.compareTo(data[i]) > 0){
           if(newData.compareTo(data[i]) == 0){
               System.out.println("Duplicated data");
@@ -105,7 +108,7 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
   }
   
 
-    private void Expanddata() {
+    private void ExpandData() {
     T[] oldList = data;
     int oldSize = oldList.length;
 
