@@ -70,16 +70,16 @@ public class Catering {
     }
         
      public static void displayMenu(){
-        System.out.println("\t\t  ██████╗ █████╗ ████████╗███████╗██████╗ ██╗███╗   ██╗ ██████╗ ");
-        System.out.println("\t\t ██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔══██╗██║████╗  ██║██╔════╝ ");
-        System.out.println("\t\t ██║     ███████║   ██║   █████╗  ██████╔╝██║██╔██╗ ██║██║  ███╗        ");
-        System.out.println("\t\t ██║     ██╔══██║   ██║   ██╔══╝  ██╔══██╗██║██║╚██╗██║██║   ██║");
-        System.out.println("\t\t ╚██████╗██║  ██║   ██║   ███████╗██║  ██║██║██║ ╚████║╚██████╔╝");
-        System.out.println("\t\t  ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ");
+        Font.print(Font.ANSI_PURPLE,"\t\t  ██████╗ █████╗ ████████╗███████╗██████╗ ██╗███╗   ██╗ ██████╗ ");
+        Font.print(Font.ANSI_PURPLE,"\t\t ██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔══██╗██║████╗  ██║██╔════╝ ");
+        Font.print(Font.ANSI_CYAN,"\t\t ██║     ███████║   ██║   █████╗  ██████╔╝██║██╔██╗ ██║██║  ███╗        ");
+        Font.print(Font.ANSI_CYAN,"\t\t ██║     ██╔══██║   ██║   ██╔══╝  ██╔══██╗██║██║╚██╗██║██║   ██║");
+        Font.print(Font.ANSI_YELLOW,"\t\t ╚██████╗██║  ██║   ██║   ███████╗██║  ██║██║██║ ╚████║╚██████╔╝");
+        Font.print(Font.ANSI_YELLOW,"\t\t  ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ");
         System.out.println("==================================================================================================");
-        System.out.println("1. Order\n2. Admin\n3. Exit");
+        System.out.println("\t\t\t\t\t1. Order\n\t\t\t\t\t2. Admin\n\t\t\t\t\t3. Exit");
         System.out.println("==================================================================================================");
-        System.out.print("\nSelect your Choice: ");
+        System.out.print("\n\t\t\t       Select your Choice: ");
     }  
     
      public static void displayEndScreen(){
@@ -95,67 +95,20 @@ public class Catering {
 
     //START OF ADMIN SECTION 
 
-    public static void displayAdminMenu(){
-        System.out.println("\t\t\t\t\tAdmin Panel");
-        System.out.println("==================================================================================================");
-        System.out.println("1. Order Evaluation\n2. Accepted Orders\n3. Rejected Orders\n4. Back");
-        System.out.println("==================================================================================================");
-        System.out.print("\nSelect your Choice: ");
-    }  
+
 
      public static void Admin(Order O){
      
-        admin.Login();
-
-
-        Scanner input1 = new Scanner(System.in);
-        int choice1 = 0;
-        Screen.clear();
-        do {
-            try {
-                choice1 = 0;
-                displayAdminMenu();
-                choice1 = input1.nextInt();
-                if (choice1 < 1 || choice1 > 4) {
-                    Screen.clear();
-                    Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
-                }
-
-            } catch (Exception e) {
-                Screen.clear();
-                Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
-                input1.next();
-                }
-
-                switch(choice1){
-                    case 1:
-                        Screen.clear();
-                        for (int i = O.getOrderQueue().getFront(); i <= O.getOrderQueue().getRear(); i++){
-                            System.out.println(O.getOrderQueue().getEntry(i));
-                        } 
-
-                        break;
-                        case 2:
-                        Screen.clear();
-                        ;
-                        break;
-                    case 3:
-                        Screen.clear();
-                        
-                        break;
-                    case 4:
-                        Screen.clear();
-                        break;
-                    }
-
-            }while(choice1 != 4);
-            Screen.clear();
+        boolean check = admin.Login();
+        if (check == true){
+            admin.Menu(O);
+        }
      }
 
 
 
 
-     //END OF ADMIN SECTION
+    
 
 
         // Exception for handling invalid username or password
