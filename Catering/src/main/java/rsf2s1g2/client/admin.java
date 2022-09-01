@@ -16,7 +16,7 @@ public class admin {
         int times = 3;
         boolean contactManagement = true;
         //Login 
-        Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tAdmin");
+        System.out.println("\t\t\t\t\tAdmin");
         System.out.println("==================================================================================================");
         Font.print(Font.ANSI_BLUE,"                                     Login Page");
         do {
