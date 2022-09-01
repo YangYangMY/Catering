@@ -86,7 +86,7 @@ public class admin {
     }  
 
     public static void QueueMenu(Order O){
-        
+        int i = 0;
         Scanner input1 = new Scanner(System.in);
         int choice1 = 0;
         Screen.clear();
@@ -112,10 +112,23 @@ public class admin {
                     case 1:
                         Screen.clear();
                         
+                        if(O.getOrderQueue().getEntry(i) == null){
+                            i++;
+                        }
+                        O.AcceptOrder(O.getOrderQueue().getEntry(i));
                         break;
                     case 2:
                         Screen.clear();
-                        ;
+                        i
+                        while(O.getOrderQueue().getEntry(i) != null){
+                            O.AcceptOrder(O.getOrderQueue().getEntry(i));
+                            i++;
+                            if(O.getOrderQueue().getEntry(i) != null){
+                                Font.print(Font.ANSI_RED,"Data cannot be empty.");
+                            }
+                        }
+
+                        
                         break;
                     case 3:
                         Screen.clear();
