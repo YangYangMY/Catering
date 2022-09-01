@@ -68,8 +68,10 @@ public class Order implements Comparable<Order> {
     }
     
     public void AcceptOrder(Order newEntry){
-        AcceptedOrder.insert(newEntry);
-        orderQueue.dequeue();
+        boolean check = AcceptedOrder.insert(newEntry);
+        if(check == true){
+            orderQueue.dequeue();
+        }
     }
     
     public void RejectOrder(Order newEntry){
@@ -85,7 +87,7 @@ public class Order implements Comparable<Order> {
         @Override
     public String toString() {
         
-        return date + "\t"+ orderId + "\t   "+"\t\t" + String.format("%.2f",orderAmount) + "\t\t" + customerName+"\t\t" + phoneNum +  "\t\t" + count++;
+        return  count++ + "\t\t" + orderId + "\t\t"+ date  +"\t" + String.format("%.2f",orderAmount) + "\t\t" + String.format("%-25s",customerName) + phoneNum ;
                 
               
     }
