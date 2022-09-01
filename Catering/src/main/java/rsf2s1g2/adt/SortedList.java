@@ -1,4 +1,7 @@
 package rsf2s1g2.adt;
+
+import rsf2s1g2.utility.Font;
+
 /**
  *
  * @author Wee Yan
@@ -23,7 +26,7 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
   public boolean insert(T newData){
       int i = 0;
       if(newData == null){
-          System.out.println("Data cannot be empty");
+        Font.print(Font.ANSI_RED,"Data cannot be empty.");
           return false;
       }
       if(isdataFull()){
@@ -31,7 +34,7 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
       }
       while(i < count && newData.compareTo(data[i]) > 0){
           if(newData.compareTo(data[i]) == 0){
-              System.out.println("Duplicated data");
+            Font.print(Font.ANSI_RED,"Duplicated data");
               return false;
           }
           i++;

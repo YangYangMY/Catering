@@ -2,6 +2,8 @@ package rsf2s1g2.adt;
 
 import java.util.Arrays;
 
+import rsf2s1g2.utility.Font;
+
 
 
 /**
@@ -33,7 +35,7 @@ public class CircularQueue <T> implements CircularQueueInterface<T>{
     @Override
     public boolean enqueue(T newEntry){
         if(isFull()){
-            System.out.println("Queue is Full. Cannot add more data!");
+            Font.print(Font.ANSI_RED,"Queue is Full. Cannot add more data!");
             return false;
         }
         else{
@@ -65,7 +67,7 @@ public class CircularQueue <T> implements CircularQueueInterface<T>{
     @Override
     public T peek(){
         if(isEmpty()){
-            System.out.println("Queue is Empty.");
+            Font.print(Font.ANSI_RED,"Queue is Empty.");
             return null;
         }
         else{
