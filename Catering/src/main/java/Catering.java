@@ -70,7 +70,12 @@ public class Catering {
     }
         
      public static void displayMenu(){
-        System.out.println("\t\t\t\t\tCatering System");
+        System.out.println("\t\t  ██████╗ █████╗ ████████╗███████╗██████╗ ██╗███╗   ██╗ ██████╗ ");
+        System.out.println("\t\t ██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔══██╗██║████╗  ██║██╔════╝ ");
+        System.out.println("\t\t ██║     ███████║   ██║   █████╗  ██████╔╝██║██╔██╗ ██║██║  ███╗        ");
+        System.out.println("\t\t ██║     ██╔══██║   ██║   ██╔══╝  ██╔══██╗██║██║╚██╗██║██║   ██║");
+        System.out.println("\t\t ╚██████╗██║  ██║   ██║   ███████╗██║  ██║██║██║ ╚████║╚██████╔╝");
+        System.out.println("\t\t  ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ");
         System.out.println("==================================================================================================");
         System.out.println("1. Order\n2. Admin\n3. Exit");
         System.out.println("==================================================================================================");
@@ -78,11 +83,12 @@ public class Catering {
     }  
     
      public static void displayEndScreen(){
-        Font.print(Font.ANSI_YELLOW,"                                                          __ __ ");
-        Font.print(Font.ANSI_YELLOW,"                _____ _           _      __ __           |  |  |");
-        Font.print(Font.ANSI_YELLOW,"               |_   _| |_ ___ ___| |_   |  |  |___ _ _   |  |  |");
-        Font.print(Font.ANSI_YELLOW,"                 | | |   | .'|   | '_|  |_   _| . | | |  |__|__|");
-        Font.print(Font.ANSI_YELLOW,"                 |_| |_|_|__,|_|_|_,_|    |_| |___|___|  |__|__|");
+        Font.print(Font.ANSI_YELLOW,"████████╗██╗  ██╗ █████╗ ███╗   ██╗██╗  ██╗    ██╗   ██╗ ██████╗ ██╗   ██╗    ██╗██╗");
+        Font.print(Font.ANSI_YELLOW,"╚══██╔══╝██║  ██║██╔══██╗████╗  ██║██║ ██╔╝    ╚██╗ ██╔╝██╔═══██╗██║   ██║    ██║██║");
+        Font.print(Font.ANSI_YELLOW,"   ██║   ███████║███████║██╔██╗ ██║█████╔╝      ╚████╔╝ ██║   ██║██║   ██║    ██║██║");
+        Font.print(Font.ANSI_YELLOW,"   ██║   ██╔══██║██╔══██║██║╚██╗██║██╔═██╗       ╚██╔╝  ██║   ██║██║   ██║    ╚═╝╚═╝");
+        Font.print(Font.ANSI_YELLOW,"   ██║   ██║  ██║██║  ██║██║ ╚████║██║  ██╗       ██║   ╚██████╔╝╚██████╔╝    ██╗██╗");
+        Font.print(Font.ANSI_YELLOW,"   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝       ╚═╝    ╚═════╝  ╚═════╝     ╚═╝╚═╝");
      }
 
 
@@ -98,55 +104,11 @@ public class Catering {
     }  
 
      public static void Admin(Order O){
+     
+        admin.Login();
+
+
         Scanner input1 = new Scanner(System.in);
-        String username = "admin";
-        String password = "123123";
-        int times = 3;
-        boolean contactManagement = true;
-        //Login 
-        System.out.println("\t\t\t\t\tAdmin");
-        System.out.println("==================================================================================================");
-        Font.print(Font.ANSI_BLUE,"                                     Login Page");
-        do {
-            try {
-                System.out.print("                                   Username: ");
-                String enteredUsername = input1.nextLine();
-                System.out.print("                                   Password: ");
-                String enteredPassword = input1.nextLine();
-                if (!enteredUsername.equals(username) || !enteredPassword.equals(password)) {
-                    throw new InvalidException();
-                } else {
-                    //Stop Loop when correct username and password
-                    times = 0;
-                    contactManagement = false;
-
-                    //Enter menu with all objects made
-                    Screen.clear();
-                }
-
-            } catch (InvalidException e) {
-                Screen.clear();
-                System.out.println("\t\t\t\t\tAdmin");
-                System.out.println("==================================================================================================");
-                Font.print(Font.ANSI_BLUE,"                                     Login Page");
-                Font.print(Font.ANSI_RED, e.getErrorMsg());
-                times--;
-                contactManagement = true;
-            }
-        } while (times > 0);
-
-        if (contactManagement) {
-            Screen.clear();
-            System.out.println("\n");
-            Font.print(Font.ANSI_RED, "   Sorry, you have reached the maximum times of login. Please contact the management for the username and password\n");
-            Font.print(Font.ANSI_RED, "   Bringing you back to Home screen in 5 Seconds.\n");
-            Screen.pause(5);
-            Screen.clear();
-            return;
-        }
-    
-
-        
         int choice1 = 0;
         Screen.clear();
         do {
@@ -196,19 +158,19 @@ public class Catering {
      //END OF ADMIN SECTION
 
 
-    // Exception for handling invalid username or password
-    private static class InvalidException extends Exception {
+        // Exception for handling invalid username or password
+        private static class InvalidException extends Exception {
 
-        private final String errorMsg;
-
-        InvalidException() {
-            this.errorMsg = "                     Invalid Password or Username, please try again!\n";
+            private final String errorMsg;
+    
+            InvalidException() {
+                this.errorMsg = "                     Invalid Password or Username, please try again!\n";
+            }
+    
+            public String getErrorMsg() {
+                return errorMsg;
+            }
         }
-
-        public String getErrorMsg() {
-            return errorMsg;
-        }
-    }
 }
 
     
