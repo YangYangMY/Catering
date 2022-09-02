@@ -87,7 +87,7 @@ public class Order implements Comparable<Order> {
         @Override
     public String toString() {
         
-        return  count++ + "\t\t" + orderId + "\t\t"+ date  +"\t" + String.format("%.2f",orderAmount) + "\t\t" + String.format("%-25s",customerName) + phoneNum ;
+        return  String.format("%-10s",count++)  + String.format("%-12s", orderId) + String.format("%-15s", date) + String.format("%-15s", String.format("%.2f",orderAmount)) + String.format("%-25s",customerName) + String.format("%-16s", phoneNum) ;
                 
               
     }
