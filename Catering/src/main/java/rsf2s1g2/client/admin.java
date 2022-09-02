@@ -366,7 +366,7 @@ public static void QueueRejectAllConfirmation(Order O){
             System.out.println(O.getAcceptedList());
         
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        System.out.println("\t\t\t\t[1] Complete First Order\n\t\t\t\t[2] Complete All Orders\n\t\t\t\t[3] View Details\n\t\t\t\t[4] Back");
+        System.out.println("\t\t\t\t[1] Complete First Order\n\t\t\t\t[2] Complete All Orders\n\t\t\t\t[3] Back");
         System.out.println("=======================================================================================================");
         System.out.print("\n\t\t\t       Select your Choice: ");
 
@@ -387,14 +387,14 @@ public static void QueueRejectAllConfirmation(Order O){
                 displayAcceptedList(O);
                 O.setCount(1);
                 choice1 = input1.nextInt();
-                if (choice1 < 1 || choice1 > 4) {
+                if (choice1 < 1 || choice1 > 3) {
                     Screen.clear();
-                    Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                    Font.print(Font.ANSI_RED, "                            Only (1-3) is allowed, please try again!\n");
                 }
 
             } catch (Exception e) {
                 Screen.clear();
-                Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                Font.print(Font.ANSI_RED, "                            Only (1-3) is allowed, please try again!\n");
                 input1.next();
                 }
 
@@ -427,21 +427,16 @@ public static void QueueRejectAllConfirmation(Order O){
                             index2++;
                         }
 
-                        
 
-                        
                         break;
                     case 3:
                         Screen.clear();
 
                         break;
-                    case 4:
-                        Screen.clear();
 
-                        break;
                     }
 
-            }while(choice1 != 4);
+            }while(choice1 != 3);
             Screen.clear();
     }
 
