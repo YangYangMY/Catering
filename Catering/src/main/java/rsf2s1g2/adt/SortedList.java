@@ -138,6 +138,9 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
 
     
     for (int index = removedIndex; index < lastIndex; index++) {
+      if (index == -1){
+        return;
+      }
       data[index] = data[index + 1];
     }
   }

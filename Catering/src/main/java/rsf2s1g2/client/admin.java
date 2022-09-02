@@ -188,11 +188,21 @@ public class admin {
                 switch(choice1){
                     case 1:
                         Screen.clear();
+                        int index1 = O.getAcceptedList().getCount() - 1;
+
+                        O.getAcceptedList().delete(O.getAcceptedList().getEntry(index1));
                         
 
                         break;
                     case 2:
                         Screen.clear();
+                        int index2 = 0;
+                        while(O.getAcceptedList().getEntry(index2) != null){
+                            
+                            O.getAcceptedList().delete(O.getAcceptedList().getEntry(index2));
+                            index2++;
+                        }
+
                         
 
                         
@@ -266,7 +276,7 @@ public class admin {
             System.out.println(O.getRejectedList());
         
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        System.out.println("\t\t\t\t[1] Complete First Order\n\t\t\t\t[2] Complete All Orders\n\t\t\t\t[3] Reject Specific Order\n\t\t\t\t[4] Back");
+        System.out.println("\t\t\t\t[1] Refunded First Order\n\t\t\t\t[2] Refunded All Orders\n\t\t\t\t[3] Undo Specific Order\n\t\t\t\t[4] Back");
         System.out.println("=======================================================================================================");
         System.out.print("\n\t\t\t       Select your Choice: ");
 

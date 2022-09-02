@@ -86,6 +86,10 @@ public class Order implements Comparable<Order> {
         orderQueue.dequeue();
     }
 
+    public void CompleteOrder(Order newEntry){
+        AcceptedOrder.delete(newEntry);
+    }
+
         @Override
     public String toString() {
         
