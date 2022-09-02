@@ -70,18 +70,16 @@ public class admin {
     }  
 
     public static void displayQueue(Order O){
-       
-
         Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Evaluation");
         System.out.println("=======================================================================================================");
-        System.out.println("No.\t\tOrder ID\tDate\t\tPrice(RM)\tCustomer Name\t\tPhone Number");
+        System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-18s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
         System.out.println("-------------------------------------------------------------------------------------------------------");
         for (int i = O.getOrderQueue().getFront(); i <= O.getOrderQueue().getRear(); i++){
             System.out.println(O.getOrderQueue().getEntry(i));
         } 
         System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.println("\t\t\t\t[1] Accept First Order\n\t\t\t\t[2] Accept All Orders\n\t\t\t\t[3] Reject First Order\n\t\t\t\t[4] Reject All Orders\n\t\t\t\t[5] Back");
-        System.out.println("==================================================================================================");
+        System.out.println("=======================================================================================================");
         System.out.print("\n\t\t\t       Select your Choice: ");
     }  
 
@@ -95,6 +93,78 @@ public class admin {
                 choice1 = 0;
                 
                 displayQueue(O);
+                O.setCount(1);
+                choice1 = input1.nextInt();
+                if (choice1 < 1 || choice1 > 4) {
+                    Screen.clear();
+                    Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                }
+
+            } catch (Exception e) {
+                Screen.clear();
+                Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                input1.next();
+                }
+
+                switch(choice1){
+                    case 1:
+                        Screen.clear();
+                        
+                        if(O.getOrderQueue().getEntry(i) == null){
+                            i++;
+                        }
+                        O.AcceptOrder(O.getOrderQueue().getEntry(i));
+                        break;
+                    case 2:
+                        Screen.clear();
+                        
+                        for(int i2 = O.getOrderQueue().getFront(); i2 <= O.getOrderQueue().getRear(); i2++){
+                            O.AcceptOrder(O.getOrderQueue().getEntry(i2));
+                            if(O.getOrderQueue().getEntry(i2) != null){
+                                Font.print(Font.ANSI_RED,"Data cannot be empty.");
+                            }
+                        }
+
+                        
+                        break;
+                    case 3:
+                        Screen.clear();
+                        
+                        break;
+                    case 4:
+                        Screen.clear();
+                        break;
+                    }
+
+            }while(choice1 != 5);
+            Screen.clear();
+    }
+
+    public static void displayAcceptedList(Order O){
+        Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Evaluation");
+        System.out.println("=======================================================================================================");
+        System.out.println("No.\t\tOrder ID\tDate\t\tPrice(RM)\tCustomer Name\t\tPhone Number");
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+            System.out.println(O.getAcceptedList());
+        
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("\t\t\t\t[1] Complete First Order\n\t\t\t\t[2] Complete All Orders\n\t\t\t\t[3] Reject Specific Order\n\t\t\t\t[4] Back");
+        System.out.println("=======================================================================================================");
+        System.out.print("\n\t\t\t       Select your Choice: ");
+
+        
+    }
+
+    public static void AcceptedListMenu(Order O){
+        int i = 0;
+        Scanner input1 = new Scanner(System.in);
+        int choice1 = 0;
+        Screen.clear();
+        do {
+            try {
+                choice1 = 0;
+                
+                displayAcceptedList(O);
                 O.setCount(1);
                 choice1 = input1.nextInt();
                 if (choice1 < 1 || choice1 > 5) {
@@ -119,11 +189,10 @@ public class admin {
                         break;
                     case 2:
                         Screen.clear();
-                        i
-                        while(O.getOrderQueue().getEntry(i) != null){
-                            O.AcceptOrder(O.getOrderQueue().getEntry(i));
-                            i++;
-                            if(O.getOrderQueue().getEntry(i) != null){
+                        
+                        for(int i2 = O.getOrderQueue().getFront(); i2 <= O.getOrderQueue().getRear(); i2++){
+                            O.AcceptOrder(O.getOrderQueue().getEntry(i2));
+                            if(O.getOrderQueue().getEntry(i2) != null){
                                 Font.print(Font.ANSI_RED,"Data cannot be empty.");
                             }
                         }
@@ -145,6 +214,7 @@ public class admin {
             }while(choice1 != 5);
             Screen.clear();
     }
+
 
     public static void Menu(Order O){
         Scanner input1 = new Scanner(System.in);
@@ -169,17 +239,15 @@ public class admin {
                 switch(choice1){
                     case 1:
                         Screen.clear();
-
                         QueueMenu(O);
-
                         break;
-                        case 2:
+                    case 2:
                         Screen.clear();
-                        ;
+                        AcceptedListMenu(O);
                         break;
                     case 3:
                         Screen.clear();
-                        
+                        System.out.println(O.getRejectedList());
                         break;
                     case 4:
                         Screen.clear();
