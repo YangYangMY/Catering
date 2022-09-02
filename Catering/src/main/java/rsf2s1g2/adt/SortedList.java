@@ -58,6 +58,7 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
       return true;
   }
   
+  
   public T getEntry(int position){
         int n = 0;
         
