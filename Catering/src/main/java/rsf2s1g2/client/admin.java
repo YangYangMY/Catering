@@ -61,6 +61,48 @@ public class admin {
         return check;
     }
 
+    public static void Menu(Order O){
+        Scanner input1 = new Scanner(System.in);
+        int choice1 = 0;
+        Screen.clear();
+        do {
+            try {
+                choice1 = 0;
+                displayAdminMenu();
+                choice1 = input1.nextInt();
+                if (choice1 < 1 || choice1 > 4) {
+                    Screen.clear();
+                    Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                }
+
+            } catch (Exception e) {
+                Screen.clear();
+                Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                input1.next();
+                }
+
+                switch(choice1){
+                    case 1:
+                        Screen.clear();
+                        QueueMenu(O);
+                        break;
+                    case 2:
+                        Screen.clear();
+                        AcceptedListMenu(O);
+                        break;
+                    case 3:
+                        Screen.clear();
+                        RejectedListMenu(O);
+                        break;
+                    case 4:
+                        Screen.clear();
+                        break;
+                    }
+
+            }while(choice1 != 4);
+            Screen.clear();
+    }
+
     public static void displayAdminMenu(){
         Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tAdmin Panel");
         System.out.println("==================================================================================================");
@@ -366,14 +408,159 @@ public static void QueueRejectAllConfirmation(Order O){
             System.out.println(O.getAcceptedList());
         
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        System.out.println("\t\t\t\t[1] Complete First Order\n\t\t\t\t[2] Complete All Orders\n\t\t\t\t[3] Back");
+        System.out.println("\t\t\t\t[1] Complete First Order\n\t\t\t\t[2] Complete Specific Order\n\t\t\t\t[3] Back");
         System.out.println("=======================================================================================================");
         System.out.print("\n\t\t\t       Select your Choice: ");
 
         
     }
 
-   
+   public static void ListCompleteConfirmationMenu(Order O){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tAccepted List");
+    System.out.println("=======================================================================================================");
+    System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println(O.getAcceptedList().getEntry(0));
+    
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\t\t\t\tAre you sure to complete first Orders?");
+    System.out.println("\t\t\t\t[1] Yes\n\t\t\t\t[2] No");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+   }
+
+   public static void ListCompleteConfirmation(Order O){
+    Scanner input = new Scanner(System.in);
+    int selection = 0;
+
+    
+    do {
+        try {
+            selection = 0;
+            
+            ListCompleteConfirmationMenu(O);
+            O.setCount(1);
+            selection = input.nextInt();
+            if (selection < 1 || selection > 2) {
+                Screen.clear();
+                Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+            }
+
+        } catch (Exception e) {
+            Screen.clear();
+            Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+            input.next();
+            }
+
+            switch(selection){
+                case 1:
+                    Screen.clear();
+                    O.getAcceptedList().delete(O.getAcceptedList().getEntry(0));
+                    
+                    break;
+                case 2:
+                    Screen.clear();
+                    break;
+            }
+    }while(selection != 2 && selection != 1);
+   }
+
+   public static void ListCompleteSpecificConfirmationMenu(Order O, int position){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tAccepted List");
+    System.out.println("=======================================================================================================");
+    System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println(O.getAcceptedList().getEntry(position));
+    
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\t\t\t\tAre you sure to complete this Orders?");
+    System.out.println("\t\t\t\t[1] Yes\n\t\t\t\t[2] No");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+   }
+
+   public static void ListCompleteSpecificConfirmation(Order O, int position){
+    Scanner input = new Scanner(System.in);
+    int selection = 0;
+
+    
+    do {
+        try {
+            selection = 0;
+            
+            ListCompleteSpecificConfirmationMenu(O, position);
+            O.setCount(1);
+            selection = input.nextInt();
+            if (selection < 1 || selection > 2) {
+                Screen.clear();
+                Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+            }
+
+        } catch (Exception e) {
+            Screen.clear();
+            Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+            input.next();
+            }
+
+            switch(selection){
+                case 1:
+                    Screen.clear();
+                    O.getAcceptedList().delete(O.getAcceptedList().getEntry(position));
+                    
+                    break;
+                case 2:
+                    Screen.clear();
+                    break;
+            }
+    }while(selection != 2 && selection != 1);
+   }
+
+   public static void AcceptedListGetPositionMenu(Order O){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tAccepted List");
+    System.out.println("=======================================================================================================");
+    System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println(O.getAcceptedList());
+    
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\t\t\t\tWhich Order do you want to remove?");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+   }
+
+   public static int AcceptedListGetPosition(Order O){
+    int selection = 0;
+    boolean check = true;
+    Scanner input = new Scanner(System.in);
+    
+    do {
+        try {
+            selection = 0;
+            check = true;
+            AcceptedListGetPositionMenu(O);
+            O.setCount(1);
+            selection = input.nextInt();
+            if (selection < 1 || selection > O.getAcceptedList().getCount()) {
+                Screen.clear();
+                Font.print(Font.ANSI_RED, "                            Out of Range, please try again!\n");
+                check = false;
+            }
+
+        } catch (Exception e) {
+            Screen.clear();
+            Font.print(Font.ANSI_RED, "                            Only numbers allowed, please try again!\n");
+            check = false;
+            input.next();
+            
+            }
+
+
+            
+    }while(check != true);
+    selection--;
+    Screen.clear();
+    return selection;
+   }
 
     public static void AcceptedListMenu(Order O){
         int i = 0;
@@ -405,33 +592,19 @@ public static void QueueRejectAllConfirmation(Order O){
                             Font.print(Font.ANSI_RED,"List is Empty.");
                             break;
                           }
-                        int index1 = O.getAcceptedList().getCount() - O.getAcceptedList().getCount();
-                        boolean check = O.getAcceptedList().delete(O.getAcceptedList().getEntry(0));
-                        if (check = true){
-                            Font.print(Font.ANSI_GREEN,"\n                              The Order has been Completed!\n");
-                        }
-                        else{
-                            Font.print(Font.ANSI_RED, "\n                                   The Order does not exist.");
-                        }
-                        System.out.print("\n                                  Press enter to continue...");
-                        try{System.in.read();}
-                        catch(Exception e){}
-                        Screen.clear();
+                          ListCompleteConfirmation(O);
                         break;
                     case 2:
                         Screen.clear();
-                        int index2 = 0;
-                        while(O.getAcceptedList().getEntry(index2) != null){
-                            
-                         O.getAcceptedList().delete(O.getAcceptedList().getEntry(index2));
-                            index2++;
-                        }
-
-
+                        if(O.getAcceptedList().isEmpty()){
+                            Font.print(Font.ANSI_RED,"List is Empty.");
+                            break;
+                          }
+                        int position = AcceptedListGetPosition(O);
+                        ListCompleteSpecificConfirmation(O, position);
                         break;
                     case 3:
                         Screen.clear();
-
                         break;
 
                     }
@@ -439,6 +612,156 @@ public static void QueueRejectAllConfirmation(Order O){
             }while(choice1 != 3);
             Screen.clear();
     }
+
+    public static void ListRefundConfirmationMenu(Order O){
+        Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tRejected List");
+        System.out.println("=======================================================================================================");
+        System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+            System.out.println(O.getRejectedList().getEntry(0));
+        
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("\t\t\t\tAre you sure to complete first Orders?");
+        System.out.println("\t\t\t\t[1] Yes\n\t\t\t\t[2] No");
+        System.out.println("=======================================================================================================");
+        System.out.print("\n\t\t\t       Select your Choice: ");
+       }
+    
+    public static void ListRefundConfirmation(Order O){
+        Scanner input = new Scanner(System.in);
+        int selection = 0;
+    
+        
+        do {
+            try {
+                selection = 0;
+                
+                ListRefundConfirmationMenu(O);
+                O.setCount(1);
+                selection = input.nextInt();
+                if (selection < 1 || selection > 2) {
+                    Screen.clear();
+                    Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+                }
+    
+            } catch (Exception e) {
+                Screen.clear();
+                Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+                input.next();
+                }
+    
+                switch(selection){
+                    case 1:
+                        Screen.clear();
+                        O.getRejectedList().delete(O.getRejectedList().getEntry(0));
+                        
+                        break;
+                    case 2:
+                        Screen.clear();
+                        break;
+                }
+        }while(selection != 2 && selection != 1);
+       }
+    
+       public static void ListRefundSpecificConfirmationMenu(Order O, int position){
+        Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tRejected List");
+        System.out.println("=======================================================================================================");
+        System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+            System.out.println(O.getRejectedList().getEntry(position));
+        
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("\t\t\t\tAre you sure to refund this Orders?");
+        System.out.println("\t\t\t\t[1] Yes\n\t\t\t\t[2] No");
+        System.out.println("=======================================================================================================");
+        System.out.print("\n\t\t\t       Select your Choice: ");
+       }
+    
+       public static void ListRefundSpecificConfirmation(Order O, int position){
+        Scanner input = new Scanner(System.in);
+        int selection = 0;
+    
+        
+        do {
+            try {
+                selection = 0;
+                
+                ListRefundSpecificConfirmationMenu(O, position);
+                O.setCount(1);
+                selection = input.nextInt();
+                if (selection < 1 || selection > 2) {
+                    Screen.clear();
+                    Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+                }
+    
+            } catch (Exception e) {
+                Screen.clear();
+                Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+                input.next();
+                }
+    
+                switch(selection){
+                    case 1:
+                        Screen.clear();
+                        O.getRejectedList().delete(O.getRejectedList().getEntry(position));
+                        
+                        break;
+                    case 2:
+                        Screen.clear();
+                        break;
+                }
+        }while(selection != 2 && selection != 1);
+       }
+    
+       public static void RejectedListGetPositionMenu(Order O){
+        Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tAccepted List");
+        System.out.println("=======================================================================================================");
+        System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+            System.out.println(O.getRejectedList());
+        
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("\t\t\t\tWhich Order do you want to remove?");
+        System.out.println("=======================================================================================================");
+        System.out.print("\n\t\t\t       Select your Choice: ");
+       }
+    
+       public static int RejectedListGetPosition(Order O){
+        int selection = 0;
+        boolean check = true;
+        Scanner input = new Scanner(System.in);
+        
+        do {
+            try {
+                selection = 0;
+                check = true;
+                RejectedListGetPositionMenu(O);
+                O.setCount(1);
+                selection = input.nextInt();
+                if (selection < 1 || selection > O.getRejectedList().getCount()) {
+                    Screen.clear();
+                    Font.print(Font.ANSI_RED, "                            Out of Range, please try again!\n");
+                    check = false;
+                }
+    
+            } catch (Exception e) {
+                Screen.clear();
+                Font.print(Font.ANSI_RED, "                            Only numbers allowed, please try again!\n");
+                check = false;
+                input.next();
+                
+                }
+    
+    
+                
+        }while(check != true);
+        selection--;
+        Screen.clear();
+        return selection;
+       }
+    
+
+
 
     public static void RejectedListMenu(Order O){
         int i = 0;
@@ -452,38 +775,41 @@ public static void QueueRejectAllConfirmation(Order O){
                 displayRejectedList(O);
                 O.setCount(1);
                 choice1 = input1.nextInt();
-                if (choice1 < 1 || choice1 > 4) {
+                if (choice1 < 1 || choice1 > 3) {
                     Screen.clear();
-                    Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                    Font.print(Font.ANSI_RED, "                            Only (1-3) is allowed, please try again!\n");
                 }
 
             } catch (Exception e) {
                 Screen.clear();
-                Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                Font.print(Font.ANSI_RED, "                            Only (1-3) is allowed, please try again!\n");
                 input1.next();
                 }
 
                 switch(choice1){
                     case 1:
                         Screen.clear();
-                        
+                        if(O.getRejectedList().isEmpty()){
+                            Font.print(Font.ANSI_RED,"List is Empty.");
+                            break;
+                          }
+                        ListRefundConfirmation(O);
                         break;
                     case 2:
                         Screen.clear();
-                        
-
-                        
+                        if(O.getRejectedList().isEmpty()){
+                            Font.print(Font.ANSI_RED,"List is Empty.");
+                            break;
+                          }
+                        int position = RejectedListGetPosition(O);
+                        ListRefundSpecificConfirmation(O, position);       
                         break;
                     case 3:
-                        Screen.clear();
-                        
-                        break;
-                    case 4:
                         Screen.clear();
                         break;
                     }
 
-            }while(choice1 != 4);
+            }while(choice1 != 3);
             Screen.clear();
     }
 
@@ -495,7 +821,7 @@ public static void QueueRejectAllConfirmation(Order O){
             System.out.println(O.getRejectedList());
         
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        System.out.println("\t\t\t\t[1] Refunded First Order\n\t\t\t\t[2] Refunded All Orders\n\t\t\t\t[3] Undo Specific Order\n\t\t\t\t[4] Back");
+        System.out.println("\t\t\t\t[1] Refunded First Order\n\t\t\t\t[2] Refunded Specific Order\n\t\t\t\t[3] Back");
         System.out.println("=======================================================================================================");
         System.out.print("\n\t\t\t       Select your Choice: ");
 
@@ -503,51 +829,10 @@ public static void QueueRejectAllConfirmation(Order O){
     }
 
 
-    public static void Menu(Order O){
-        Scanner input1 = new Scanner(System.in);
-        int choice1 = 0;
-        Screen.clear();
-        do {
-            try {
-                choice1 = 0;
-                displayAdminMenu();
-                choice1 = input1.nextInt();
-                if (choice1 < 1 || choice1 > 4) {
-                    Screen.clear();
-                    Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
-                }
-
-            } catch (Exception e) {
-                Screen.clear();
-                Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
-                input1.next();
-                }
-
-                switch(choice1){
-                    case 1:
-                        Screen.clear();
-                        QueueMenu(O);
-                        break;
-                    case 2:
-                        Screen.clear();
-                        AcceptedListMenu(O);
-                        break;
-                    case 3:
-                        Screen.clear();
-                        RejectedListMenu(O);
-                        break;
-                    case 4:
-                        Screen.clear();
-                        break;
-                    }
-
-            }while(choice1 != 4);
-            Screen.clear();
-    }
 
 
-            // Exception for handling invalid username or password
-            private static class InvalidException extends Exception {
+    // Exception for handling invalid username or password
+    private static class InvalidException extends Exception {
 
                 private final String errorMsg;
         
