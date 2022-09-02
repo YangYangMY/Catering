@@ -1,6 +1,7 @@
 package rsf2s1g2.adt;
 
 import rsf2s1g2.utility.Font;
+import rsf2s1g2.utility.Screen;
 
 /**
  *
@@ -48,15 +49,36 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
   
     @Override
   public boolean delete(T anData){
-      
-      int i = 0;
-      while(i < count && !anData.equals(data[i])){
-          i++;
+    boolean DataExist = false;
+    int tempI = 0;
+    T[] cloneData = data;
+  
+
+      for (int i = 0; i < getCount(); i++) {
+        if (anData.equals(data[i])) {
+            DataExist = true;
+            tempI = i;
+        }
       }
-      removeGap(i);
-      count --;
-      return true;
-  }
+      if(DataExist){
+        count--;
+
+        int a = 0;
+        // Move Entire  array to a temp array except the chosen delete id
+        for (int ia = 0; ia < getCount() + 1; ia++) { //50
+            if (!data[ia].equals(anData)) {
+                cloneData[a] = data[ia];
+                a++;
+            }
+        }
+        cloneData[getCount()] = null;
+        return true;
+
+      }else {
+        return false;
+    }
+  
+}
   
   
   public T getEntry(int position){
@@ -133,14 +155,13 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
   }
 
   private void removeGap(int givenPosition) {
-    int removedIndex = givenPosition - 1;   
+    int removedIndex = givenPosition;   
     int lastIndex = count - 1;             
 
-    
+    if(isEmpty()){
+      return;
+    }
     for (int index = removedIndex; index < lastIndex; index++) {
-      if (index == -1){
-        return;
-      }
       data[index] = data[index + 1];
     }
   }
