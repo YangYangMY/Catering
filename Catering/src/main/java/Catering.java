@@ -19,14 +19,12 @@ public class Catering {
         //test for array
         Order O = new Order();
         O.addOrder("Lee Wee Yan", "2021-7-12", "0177255766", 15.12);
-        O.addOrder("Cheong Tzen Yang", "2021-5-1", "0177255766", 3.12);
+        O.addOrder("Cheong Tzen Yang", "2021-5-1", "0177255766", 10003.12);
         O.addOrder("Tam Ga Men", "2020-1-1", "0177255766", 20.12);
         O.addOrder("BC", "2019-4-1", "0177255766", 20.12);
         O.addOrder("Tan Cherng Ming", "2012-8-1", "0175125766", 1020.12);
-        // O.RejectOrder(O.getOrderQueue().getEntry(0));
-        // O.RejectOrder(O.getOrderQueue().getEntry(1));
-        // O.RejectOrder(O.getOrderQueue().getEntry(2));
-        // System.out.println(O.getRejectedList());
+
+
 
         //Start Of Program
         int choice = 0;
