@@ -83,12 +83,12 @@ public class admin {
         System.out.print("\n\t\t\t       Select your Choice: ");
     }  
 
-    public static void QueueConfirmationMenu(Order O, int position){
+    public static void QueueConfirmationMenu(Order O){
         Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Evaluation");
         System.out.println("=======================================================================================================");
         System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
         System.out.println("-------------------------------------------------------------------------------------------------------");
-            System.out.println(O.getOrderQueue().getEntry(position));
+            System.out.println(O.getOrderQueue().peek());
         System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.println("\t\t\t\tAre you sure to accept this Order?");
         System.out.println("\t\t\t\t[1] Yes\n\t\t\t\t[2] No");
@@ -96,7 +96,7 @@ public class admin {
         System.out.print("\n\t\t\t       Select your Choice: ");
     }
 
-    public static void QueueAcceptConfirmation(Order O, int position){
+    public static void QueueAcceptConfirmation(Order O){
         Scanner input = new Scanner(System.in);
         int selection = 0;
 
@@ -105,7 +105,7 @@ public class admin {
             try {
                 selection = 0;
                 
-                QueueConfirmationMenu(O, position);
+                QueueConfirmationMenu(O);
                 O.setCount(1);
                 selection = input.nextInt();
                 if (selection < 1 || selection > 2) {
@@ -122,7 +122,7 @@ public class admin {
                 switch(selection){
                     case 1:
                         Screen.clear();
-                        O.AcceptOrder(O.getOrderQueue().getEntry(position));
+                        O.AcceptOrder(O.getOrderQueue().peek());
                         
                         break;
                     case 2:
@@ -130,6 +130,167 @@ public class admin {
                         break;
                 }
         }while(selection != 2 && selection != 1);
+}
+
+public static void QueueAcceptAllMenu(Order O){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Evaluation");
+    System.out.println("=======================================================================================================");
+    System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    for (int i = O.getOrderQueue().getFront(); i <= O.getOrderQueue().getRear(); i++){
+        System.out.println(O.getOrderQueue().getEntry(i));
+    } 
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\t\t\t\tAre you sure to accept all Orders?");
+    System.out.println("\t\t\t\t[1] Yes\n\t\t\t\t[2] No");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+}
+
+public static void QueueAcceptAllConfirmation(Order O){
+    Scanner input = new Scanner(System.in);
+    int selection = 0;
+
+    
+    do {
+        try {
+            selection = 0;
+            
+            QueueAcceptAllMenu(O);
+            O.setCount(1);
+            selection = input.nextInt();
+            if (selection < 1 || selection > 2) {
+                Screen.clear();
+                Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+            }
+
+        } catch (Exception e) {
+            Screen.clear();
+            Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+            input.next();
+            }
+
+            switch(selection){
+                case 1:
+                    Screen.clear();
+                    for(int i2 = O.getOrderQueue().getFront(); i2 <= O.getOrderQueue().getRear(); i2++){
+                        O.AcceptOrder(O.getOrderQueue().getEntry(i2));
+                        if(O.getOrderQueue().getEntry(i2) != null){
+                            Font.print(Font.ANSI_RED,"Data cannot be empty.");
+                        }
+                    }
+                    
+                    break;
+                case 2:
+                    Screen.clear();
+                    break;
+            }
+    }while(selection != 2 && selection != 1);
+}
+
+public static void QueueRejectConfirmationMenu(Order O){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Evaluation");
+    System.out.println("=======================================================================================================");
+    System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println(O.getOrderQueue().peek());
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\t\t\t\tAre you sure to reject this Order?");
+    System.out.println("\t\t\t\t[1] Yes\n\t\t\t\t[2] No");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+}
+
+public static void QueueRejectConfirmation(Order O){
+    Scanner input = new Scanner(System.in);
+    int selection = 0;
+
+    
+    do {
+        try {
+            selection = 0;
+            
+            QueueRejectConfirmationMenu(O);
+            O.setCount(1);
+            selection = input.nextInt();
+            if (selection < 1 || selection > 2) {
+                Screen.clear();
+                Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+            }
+
+        } catch (Exception e) {
+            Screen.clear();
+            Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+            input.next();
+            }
+
+            switch(selection){
+                case 1:
+                    Screen.clear();
+                    O.RejectOrder(O.getOrderQueue().peek());
+                    
+                    break;
+                case 2:
+                    Screen.clear();
+                    break;
+            }
+    }while(selection != 2 && selection != 1);
+}
+
+public static void QueueRejectAllMenu(Order O){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Evaluation");
+    System.out.println("=======================================================================================================");
+    System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    for (int i = O.getOrderQueue().getFront(); i <= O.getOrderQueue().getRear(); i++){
+        System.out.println(O.getOrderQueue().getEntry(i));
+    } 
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\t\t\t\tAre you sure to reject all Orders?");
+    System.out.println("\t\t\t\t[1] Yes\n\t\t\t\t[2] No");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+}
+
+public static void QueueRejectAllConfirmation(Order O){
+    Scanner input = new Scanner(System.in);
+    int selection = 0;
+
+    
+    do {
+        try {
+            selection = 0;
+            
+            QueueRejectAllMenu(O);
+            O.setCount(1);
+            selection = input.nextInt();
+            if (selection < 1 || selection > 2) {
+                Screen.clear();
+                Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+            }
+
+        } catch (Exception e) {
+            Screen.clear();
+            Font.print(Font.ANSI_RED, "                            Only (1-2) is allowed, please try again!\n");
+            input.next();
+            }
+
+            switch(selection){
+                case 1:
+                    Screen.clear();
+                    for(int i3 = O.getOrderQueue().getFront(); i3 <= O.getOrderQueue().getRear(); i3++){
+                        O.RejectOrder(O.getOrderQueue().getEntry(i3));
+                        if(O.getOrderQueue().getEntry(i3) != null){
+                            Font.print(Font.ANSI_RED,"Data cannot be empty.");
+                        }
+                    }
+                    
+                    break;
+                case 2:
+                    Screen.clear();
+                    break;
+            }
+    }while(selection != 2 && selection != 1);
 }
 
     public static void QueueMenu(Order O){
@@ -162,8 +323,7 @@ public class admin {
                             Font.print(Font.ANSI_RED,"Queue is Empty.");
                             break;
                         }
-                        i = O.getOrderQueue().getFront();
-                        QueueAcceptConfirmation(O, i);
+                        QueueAcceptConfirmation(O);
                         
                         break;
                     case 2:
@@ -172,12 +332,7 @@ public class admin {
                             Font.print(Font.ANSI_RED,"Queue is Empty.");
                             break;
                         }
-                        for(int i2 = O.getOrderQueue().getFront(); i2 <= O.getOrderQueue().getRear(); i2++){
-                            O.AcceptOrder(O.getOrderQueue().getEntry(i2));
-                            if(O.getOrderQueue().getEntry(i2) != null){
-                                Font.print(Font.ANSI_RED,"Data cannot be empty.");
-                            }
-                        }
+                        QueueAcceptAllConfirmation(O);
 
                         
                         break;
@@ -187,8 +342,7 @@ public class admin {
                             Font.print(Font.ANSI_RED,"Queue is Empty.");
                             break;
                         }
-                        i4= O.getOrderQueue().getFront();
-                        O.RejectOrder(O.getOrderQueue().getEntry(i4));
+                        QueueRejectConfirmation(O);
                         break;
                     case 4:
                         Screen.clear();
@@ -196,12 +350,7 @@ public class admin {
                             Font.print(Font.ANSI_RED,"Queue is Empty.");
                             break;
                         }
-                        for(int i3 = O.getOrderQueue().getFront(); i3 <= O.getOrderQueue().getRear(); i3++){
-                            O.RejectOrder(O.getOrderQueue().getEntry(i3));
-                            if(O.getOrderQueue().getEntry(i3) != null){
-                                Font.print(Font.ANSI_RED,"Data cannot be empty.");
-                            }
-                        }
+                        QueueRejectAllConfirmation(O);
                         break;
                     }
 
