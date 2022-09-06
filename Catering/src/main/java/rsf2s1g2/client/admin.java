@@ -621,7 +621,7 @@ public static void QueueRejectAllConfirmation(Order O){
             System.out.println(O.getRejectedList().getEntry(0));
         
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        System.out.println("\t\t\t\tAre you sure to complete first Orders?");
+        System.out.println("\t\t\t\tAre you sure to refund first Orders?");
         System.out.println("\t\t\t\t[1] Yes\n\t\t\t\t[2] No");
         System.out.println("=======================================================================================================");
         System.out.print("\n\t\t\t       Select your Choice: ");
