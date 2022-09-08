@@ -6,20 +6,25 @@ public class FoodBeverage {
 
     private String fbName;
     private int fbNum;
-    private double fbPrice = 0.0;
+    private double fbPrice;
     private double fbTotal;
-    private static double finalTotal;
+    private boolean printStringOne = false;
+    private static double foodFinalTotal;
+    private static double beverageFinalTotal;
+    private static int num = 0;
     DecimalFormat df = new DecimalFormat("0.00");
 
     public FoodBeverage(String fbName, double fbPrice) {
         this.fbName = fbName;
         this.fbPrice = fbPrice;
+        printStringOne = true;
     }
 
     public FoodBeverage(String fbName, int fbNum, double fbPrice) {
         this.fbName = fbName;
         this.fbNum = fbNum;
         this.fbPrice = fbPrice;
+        getFoodtotal();
     }
 
     //getters and setters
@@ -52,23 +57,34 @@ public class FoodBeverage {
         return fbTotal;
     }
 
-    public static void resetFinalTotal() {
-        finalTotal = 0.0;
+    public double getFoodFinaltotal() {
+        return foodFinalTotal;
     }
 
-    public double getFinaltotal() {
-        finalTotal += (fbNum * fbPrice);
-        return finalTotal;
+    public void setFoodFinaltotal(double foodFinalTotal) {
+        FoodBeverage.foodFinalTotal = foodFinalTotal;
     }
 
-    //toStrting method
+    public double getBeverageFinaltotal() {
+        return beverageFinalTotal;
+    }
+
+    public void setBeverageFinaltotal(double beverageFinalTotal) {
+        FoodBeverage.beverageFinalTotal = beverageFinalTotal;
+    }
+
+    public static void resetNum(){
+        num = 0;
+    }
+
+    //toString method
     @Override
     public String toString() {
-        if(getFoodtotal() == 0.0){
-            return "Food Name: " + fbName + "\tPrice: RM " + df.format(fbPrice);
+        num += 1;
+        if(printStringOne){
+            return num + ".\t" + fbName + "\t\t  " + df.format(fbPrice);
         } else {
-            return "Food Name: " + fbName + "\tQuality: " + fbNum + "\tPrice: RM " + df.format(fbPrice) + "\tTotal Price: RM " + df.format(getFoodtotal()) + "\tFinal Price: RM " + df.format(getFinaltotal());
+            return num + ".\t" + fbName + "\t\t  " + fbNum + "\t\t  " + df.format(fbPrice) + "\t\t  " + df.format(fbTotal);
         }
-
     }
 }

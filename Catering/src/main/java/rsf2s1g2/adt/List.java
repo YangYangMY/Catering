@@ -2,13 +2,10 @@ package rsf2s1g2.adt;
 
 import java.io.Serializable;
 
-import rsf2s1g2.entity.FoodBeverage;
-
 public class List<T> implements ListInterface<T>, Serializable {
 
   private T[] listArray;
-  private T[] tempListArray;
-  private int entryNum, tempEntryNum;
+  private int entryNum;
   private static final int CAPACITY = 50;
 
   public List() {
@@ -22,7 +19,6 @@ public class List<T> implements ListInterface<T>, Serializable {
 
   @Override
   public boolean add(T newObj) {
-    process();
     listArray[entryNum] = newObj;
     entryNum++;
     return true;
@@ -30,7 +26,6 @@ public class List<T> implements ListInterface<T>, Serializable {
 
   @Override
   public T remove(int posOfObj) {
-    process();
     T result = null;
 
     if ((posOfObj >= 1) && (posOfObj <= entryNum)) {
@@ -62,7 +57,10 @@ public class List<T> implements ListInterface<T>, Serializable {
 
   @Override
   public boolean isEmpty() {
-    return entryNum == 0;
+    if (entryNum == 0){
+      return true;
+    }
+    return false;
   }
 
   @Override
@@ -72,13 +70,11 @@ public class List<T> implements ListInterface<T>, Serializable {
 
   @Override
   public void clear() {
-    process();
     entryNum = 0;
   }
 
   @Override
   public boolean set(int posOfObj, T newObj) {
-    process();
     boolean isSuccessful = true;
 
     if ((posOfObj >= 1) && (posOfObj <= entryNum)) {
@@ -88,12 +84,6 @@ public class List<T> implements ListInterface<T>, Serializable {
     }
 
     return isSuccessful;
-  }
-
-  public void undo(){
-    listArray = tempListArray.clone();
-    entryNum = tempEntryNum;
-    FoodBeverage.resetFinalTotal();
   }
 
   private void removeGap(int posOfObj) {
@@ -113,11 +103,5 @@ public class List<T> implements ListInterface<T>, Serializable {
     }
 
     return outputStr;
-  }
-
-  public void process(){
-    tempListArray = listArray.clone();
-    tempEntryNum = entryNum;
-    FoodBeverage.resetFinalTotal();
   }
 }

@@ -5,14 +5,8 @@ import rsf2s1g2.adt.*;
 import rsf2s1g2.client.*;
 import rsf2s1g2.entity.*;
 
-/**
- *
- * 
- */
 public class Catering {
-
-
-    
+   
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         
@@ -24,13 +18,10 @@ public class Catering {
         O.addOrder("BC", "2019-4-1", "0177255766", 20.12);
         O.addOrder("Tan Cherng Ming", "2012-8-1", "0175125766", 1020.12);
 
-
-
         //Start Of Program
         int choice = 0;
         Screen.clear();
         do {
-            
             try {
                 choice = 0;
                 displayMenu();
@@ -45,11 +36,11 @@ public class Catering {
                 Font.print(Font.ANSI_RED, "                            Only (1-3) is allowed, please try again!\n");
                 input.next();
                 }
-
                 switch(choice){
                     case 1:
                         Screen.clear();
-                        
+                        //call food and beverage
+                        foodandbeverage.foodbeverage();
                         break;
                         case 2:
                         Screen.clear();
@@ -60,11 +51,7 @@ public class Catering {
                         displayEndScreen();
                         break;
                 }
-
             }while(choice != 3);
-        
-
-        
     }
         
      public static void displayMenu(){
@@ -103,13 +90,7 @@ public class Catering {
         }
      }
 
-
-
-
-    
-
-
-        // Exception for handling invalid username or password
+     // Exception for handling invalid username or password
         private static class InvalidException extends Exception {
 
             private final String errorMsg;
