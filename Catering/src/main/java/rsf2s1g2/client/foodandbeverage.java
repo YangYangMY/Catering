@@ -297,11 +297,22 @@ public class foodandbeverage {
                 System.out.println("\tInvalid Position");
                 continueMessage();
             } else {
-                fbselect.remove(posOfObj);
-                setFinaltotalXYZ(fbselect, fblist);
-                System.out.println("\tRemove Successful");
-                continueMessage();
-            }
+                if(fbselect.size() == 1){
+                    if(fblist.get(1).getFoodname().equals("Fried Chicken")){
+                        fbselect.get(posOfObj).setFoodFinaltotal(0);
+                    } else {
+                        fbselect.get(posOfObj).setBeverageFinaltotal(0);
+                    }
+                    fbselect.clear();
+                    System.out.println("\tRemove Successful");
+                    continueMessage();
+                } else {
+                    fbselect.remove(posOfObj);
+                    setFinaltotalXYZ(fbselect, fblist);
+                    System.out.println("\tRemove Successful");
+                    continueMessage();
+                }
+        }
         } else if (action == 3){
             if(fblist.get(1).getFoodname().equals("Fried Chicken")){
                 fbselect.get(posOfObj).setFoodFinaltotal(0);
