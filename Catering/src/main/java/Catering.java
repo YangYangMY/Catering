@@ -8,6 +8,10 @@ import rsf2s1g2.entity.*;
 public class Catering {
    
     public static void main(String[] args) {
+        ListInterface<FoodBeverage> foodlist = new List<FoodBeverage>(10);
+        ListInterface<FoodBeverage> beveragelist = new List<FoodBeverage>(10);
+        ListInterface<FoodBeverage> foodselect = new List<FoodBeverage>(10);
+        ListInterface<FoodBeverage> beverageselect = new List<FoodBeverage>(10);
         Scanner input = new Scanner(System.in);
         
         //Call dummy data from dummyscript
@@ -35,7 +39,7 @@ public class Catering {
                     case 1:
                         Screen.clear();
                         //call food and beverage
-                        foodandbeverage.foodbeverage();
+                        foodandbeverage.foodbeverage(foodlist, beveragelist, foodselect, beverageselect);
                         break;
                         case 2:
                         Screen.clear();

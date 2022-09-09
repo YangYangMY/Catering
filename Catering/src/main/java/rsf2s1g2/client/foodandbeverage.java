@@ -7,11 +7,7 @@ import rsf2s1g2.adt.*;
 import rsf2s1g2.entity.*;
 
 public class foodandbeverage {
-    public static void foodbeverage(){
-        ListInterface<FoodBeverage> foodlist = new List<FoodBeverage>(10);
-        ListInterface<FoodBeverage> beveragelist = new List<FoodBeverage>(10);
-        ListInterface<FoodBeverage> foodselect = new List<FoodBeverage>(10);
-        ListInterface<FoodBeverage> beverageselect = new List<FoodBeverage>(10);
+    public static void foodbeverage(ListInterface<FoodBeverage> foodlist, ListInterface<FoodBeverage> beveragelist, ListInterface<FoodBeverage> foodselect, ListInterface<FoodBeverage> beverageselect) {
         DecimalFormat df = new DecimalFormat("0.00");
         Scanner input = new Scanner(System.in);
         int choice, action, position = 1, quantity = 0;
@@ -174,6 +170,8 @@ public class foodandbeverage {
                     break;
             }
         } while (choice != 3);
+
+
     }
     
     public static void displayFAB(){
