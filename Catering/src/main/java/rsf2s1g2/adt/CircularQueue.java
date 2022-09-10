@@ -54,18 +54,16 @@ public class CircularQueue <T> implements CircularQueueInterface<T>{
         }
     }
     @Override
-    public T dequeue(){
-        T RemovedElement;
+    public boolean dequeue(){
         if(isEmpty()){
             System.out.println("Queue is Empty. Cannot delete data!");
-            return null;
+            return false;
         }else{
-            RemovedElement = array[front];
             array[front] = null;
             front = (front + 1)% array.length;
             count--;
         }
-        return RemovedElement;
+        return true;
     }
     
     @Override

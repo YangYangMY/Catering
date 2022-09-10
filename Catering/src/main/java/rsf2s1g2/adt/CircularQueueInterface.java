@@ -12,7 +12,7 @@ public interface CircularQueueInterface<T>{
     
     public boolean enqueue(T newEntry);
     
-    public T dequeue();
+    public boolean dequeue();
 	
     public T peek();
 	
