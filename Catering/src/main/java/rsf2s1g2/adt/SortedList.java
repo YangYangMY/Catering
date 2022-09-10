@@ -1,15 +1,12 @@
 package rsf2s1g2.adt;
-
 import rsf2s1g2.utility.Font;
 import rsf2s1g2.utility.Screen;
-
 /**
  *
  * @author Wee Yan
  * @param <T>
  */
 public class SortedList <T extends Comparable<T>> implements SortedListInterface<T>{
-  
   private T[] data;
   private int count;
   private static final int DEFAULT_CAPACITY = 30;
@@ -43,7 +40,6 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
       makeSpace(i+1);
       data[i] = newData;
       count++;
-      
       return true;
   }
   
@@ -62,7 +58,6 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
       }
       if(DataExist){
         count--;
-
         int a = 0;
         // Move Entire  array to a temp array except the chosen delete id
         for (int ia = 0; ia < getCount() + 1; ia++) { //50
@@ -80,10 +75,9 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
   
 }
   
-  
   public T getEntry(int position){
         int n = 0;
-        
+      
         while(data[n] != null){
             if(n == position){
                 return data[position];
@@ -94,12 +88,12 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
   }
 
   
-    @Override
+  @Override
   public void clear() {
     count = 0;
   }
   
-    @Override
+  @Override
   public boolean check(T anData) {
     boolean found = false;
     for (int index = 0; !found && (index < count); index++) {
@@ -132,9 +126,8 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
   public boolean isdataFull(){
       return count == data.length; 
   }
-  
 
-    private void ExpandData() {
+  private void ExpandData() {
     T[] oldList = data;
     int oldSize = oldList.length;
 
@@ -144,8 +137,8 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
       data[index] = oldList[index];
     }
   }
-  
-      private void makeSpace(int newPosition) {
+
+  private void makeSpace(int newPosition) {
     int newIndex = newPosition - 1; 
     int lastIndex = count - 1;      
 
@@ -153,11 +146,4 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
       data[index + 1] = data[index];
     }
   }
-
-
-
-
-
-
-    
 }
