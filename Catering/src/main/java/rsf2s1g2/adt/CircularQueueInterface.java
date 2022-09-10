@@ -1,7 +1,5 @@
 package rsf2s1g2.adt;
 
-
-
 /**
  *
  * @author Wee Yan
@@ -9,7 +7,6 @@ package rsf2s1g2.adt;
  * 
  */
 public interface CircularQueueInterface<T>{
-    
     public boolean enqueue(T newEntry);
     
     public boolean dequeue();
@@ -29,6 +26,4 @@ public interface CircularQueueInterface<T>{
     public int getFront();
 
     public int getRear();
-
-
 }

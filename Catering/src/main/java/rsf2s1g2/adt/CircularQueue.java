@@ -1,10 +1,6 @@
 package rsf2s1g2.adt;
-
 import java.util.Arrays;
-
 import rsf2s1g2.utility.Font;
-
-
 
 /**
  *
@@ -13,12 +9,11 @@ import rsf2s1g2.utility.Font;
  * 
  */
 public class CircularQueue <T> implements CircularQueueInterface<T>{
-    
     private int count;        //Current Queue size
     private T[] array;           // Data stored
     private final int capacity;       // Maximum size for circular queue
     private int rear;           //For adding new element at back or rear
-    private int front;          //For dequeing element from the front.
+    private int front;          //For dequeuing element from the front.
     private static final int DEFAULT_CAPACITY = 50;
     
     public CircularQueue(){
@@ -98,7 +93,6 @@ public class CircularQueue <T> implements CircularQueueInterface<T>{
             front = -1;
             rear = -1;
     }
-    
 
     @Override
     public T getEntry(int position) {
@@ -124,13 +118,4 @@ public class CircularQueue <T> implements CircularQueueInterface<T>{
     public int getFront() {
         return front;
     }
-
-
-
-
-
-    
-    
-
-
 }
