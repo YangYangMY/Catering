@@ -34,6 +34,10 @@ public class CircularQueue <T> implements CircularQueueInterface<T>{
     }
     @Override
     public boolean enqueue(T newEntry){
+        if(newEntry == null){
+            Font.print(Font.ANSI_RED,"Data cannot be empty!");
+            return false;
+        }
         if(isFull()){
             Font.print(Font.ANSI_RED,"Queue is Full. Cannot add more data!");
             return false;
