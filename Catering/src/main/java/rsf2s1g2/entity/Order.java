@@ -77,20 +77,12 @@ public class Order implements Comparable<Order> {
         
     }
 
-    public static int getNextOrderID() {
-        return nextOrderID;
-    }
-
     public static int getCount() {
         return count;
     }
 
     public static void setCount(int count) {
         Order.count = count;
-    }
-
-    public int getOrderId() {
-        return orderId;
     }
 
     public String getDate() {
