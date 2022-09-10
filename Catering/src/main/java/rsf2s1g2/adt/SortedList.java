@@ -154,18 +154,6 @@ public class SortedList <T extends Comparable<T>> implements SortedListInterface
     }
   }
 
-  private void removeGap(int givenPosition) {
-    int removedIndex = givenPosition;   
-    int lastIndex = count - 1;             
-
-    if(isEmpty()){
-      return;
-    }
-    for (int index = removedIndex; index < lastIndex; index++) {
-      data[index] = data[index + 1];
-    }
-  }
-
 
 
 
