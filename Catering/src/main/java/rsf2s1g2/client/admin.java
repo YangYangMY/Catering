@@ -128,6 +128,8 @@ public class admin {
             System.out.println(O.getOrderQueue().getEntry(i));
         } 
         System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("Total number of orders in queue: " + O.getOrderQueue().getCount());
+        System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.println("\t\t\t\t[1] Accept First Order\n\t\t\t\t[2] Accept All Orders\n\t\t\t\t[3] Reject First Order\n\t\t\t\t[4] Reject All Orders\n\t\t\t\t[5] Back");
         System.out.println("=======================================================================================================");
         System.out.print("\n\t\t\t       Select your Choice: ");
@@ -414,7 +416,8 @@ public static void QueueRejectAllConfirmation(Order O){
         System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
         System.out.println("-------------------------------------------------------------------------------------------------------");
             System.out.println(O.getAcceptedList());
-        
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("Total number of orders in queue: " + O.getAcceptedList().getCount());
         System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.println("\t\t\t\t[1] Complete First Order\n\t\t\t\t[2] Complete Specific Order\n\t\t\t\t[3] Back");
         System.out.println("=======================================================================================================");
@@ -627,7 +630,6 @@ public static void QueueRejectAllConfirmation(Order O){
         System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
         System.out.println("-------------------------------------------------------------------------------------------------------");
             System.out.println(O.getRejectedList().getEntry(0));
-        
         System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.println("\t\t\t\tAre you sure to refund first Orders?");
         System.out.println("\t\t\t\t[1] Yes\n\t\t\t\t[2] No");
@@ -826,8 +828,9 @@ public static void QueueRejectAllConfirmation(Order O){
         System.out.println("=======================================================================================================");
         System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
         System.out.println("-------------------------------------------------------------------------------------------------------");
-            System.out.println(O.getRejectedList());
-        
+        System.out.println(O.getRejectedList());
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("Total number of orders in queue: " + O.getRejectedList().getCount());
         System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.println("\t\t\t\t[1] Refunded First Order\n\t\t\t\t[2] Refunded Specific Order\n\t\t\t\t[3] Back");
         System.out.println("=======================================================================================================");
