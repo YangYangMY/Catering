@@ -12,6 +12,13 @@ public class Catering {
         ListInterface<FoodBeverage> beveragelist = new List<FoodBeverage>(10);
         ListInterface<FoodBeverage> foodselect = new List<FoodBeverage>(10);
         ListInterface<FoodBeverage> beverageselect = new List<FoodBeverage>(10);
+
+        ListInterface<Facility> facilitySizeList = new List<Facility>(10);
+        ListInterface<Facility> facilityColorList = new List<Facility>(10);
+        ListInterface<Facility> facilityOccasionList = new List<Facility>(10);
+        ListInterface<Facility> sizeselect = new List<Facility>(10);
+        ListInterface<Facility> colorselect = new List<Facility>(10);
+        ListInterface<Facility> occasionselect = new List<Facility>(10);
         Scanner input = new Scanner(System.in);
         
         //Call dummy data from dummyscript
@@ -43,6 +50,7 @@ public class Catering {
                         break;
                         case 2:
                         Screen.clear();
+                        //call facility
                         Admin(O);
                         break;
                     case 3:
