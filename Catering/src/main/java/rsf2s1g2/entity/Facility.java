@@ -58,6 +58,10 @@ public class Facility {
         return facilityFinalTotal;
     }
 
+    public void setFacilityFinaltotal(double facilityFinalTotal) {
+        Facility.facilityFinalTotal = facilityFinalTotal;
+    }
+
     public static void resetNumber() {
         num = 0;
     }
