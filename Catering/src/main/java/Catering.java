@@ -13,12 +13,12 @@ public class Catering {
         ListInterface<FoodBeverage> foodselect = new List<FoodBeverage>(10);
         ListInterface<FoodBeverage> beverageselect = new List<FoodBeverage>(10);
 
-        ListInterface<Facility> facilitySizeList = new List<Facility>(10);
-        ListInterface<Facility> facilityColorList = new List<Facility>(10);
-        ListInterface<Facility> facilityOccasionList = new List<Facility>(10);
-        ListInterface<Facility> sizeselect = new List<Facility>(10);
-        ListInterface<Facility> colorselect = new List<Facility>(10);
-        ListInterface<Facility> occasionselect = new List<Facility>(10);
+        ListInterface<Facility> facilitySizeList = new List<Facility>(100);
+        ListInterface<Facility> facilityColorList = new List<Facility>(100);
+        ListInterface<Facility> facilityOccasionList = new List<Facility>(100);
+        ListInterface<Facility> sizeselect = new List<Facility>(100);
+        ListInterface<Facility> colorselect = new List<Facility>(100);
+        ListInterface<Facility> occasionselect = new List<Facility>(100);
         Scanner input = new Scanner(System.in);
         
         //Call dummy data from dummyscript
@@ -45,12 +45,48 @@ public class Catering {
                 switch(choice){
                     case 1:
                         Screen.clear();
-                        //call food and beverage
-                        foodandbeverage.foodbeverage(foodlist, beveragelist, foodselect, beverageselect);
+                        int choice1 = 0;
+                        Screen.clear();
+                        do {
+                            try {
+                                choice1 = 0;
+                                OrderMenu();
+                                choice1 = input.nextInt();
+                                if (choice1 < 1 || choice1 > 3) {
+                                    Screen.clear();
+                                    Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                                }
+                
+                            } catch (Exception e) {
+                                Screen.clear();
+                                Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                                input.next();
+                                }
+                                switch(choice1){
+                                    case 1:
+                                        Screen.clear();
+                                        //call food and beverage
+                                        foodandbeverage.foodbeverage(foodlist, beveragelist, foodselect, beverageselect);
+                                        break;
+                                    case 2:
+                                        Screen.clear();
+                                        //call facility
+                                        facilities.facilitiess(facilitySizeList, facilityColorList, facilityOccasionList, sizeselect, colorselect, occasionselect);
+                                        break;
+                                    case 3:
+                                        Screen.clear();
+                                        // payment
+                                        break;
+                                    case 4:
+                                        Screen.clear();
+                                        displayEndScreen();
+                                        break;
+                                }
+                        } while(choice1 != 4);
                         break;
                         case 2:
                         Screen.clear();
-                        //call facility
+                        
                         Admin(O);
                         break;
                     case 3:
@@ -59,6 +95,46 @@ public class Catering {
                         break;
                 }
             }while(choice != 3);
+
+
+        int choice1 = 0;
+        Screen.clear();
+        do {
+            try {
+                choice1 = 0;
+                OrderMenu();
+                choice1 = input.nextInt();
+                if (choice1 < 1 || choice1 > 3) {
+                    Screen.clear();
+                    Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                }
+
+            } catch (Exception e) {
+                Screen.clear();
+                Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                input.next();
+                }
+                switch(choice1){
+                    case 1:
+                        Screen.clear();
+                        //call food and beverage
+                        foodandbeverage.foodbeverage(foodlist, beveragelist, foodselect, beverageselect);
+                        break;
+                    case 2:
+                        Screen.clear();
+                        //call facility
+                        facilities.facilitiess(facilitySizeList, facilityColorList, facilityOccasionList, sizeselect, colorselect, occasionselect);
+                        break;
+                    case 3:
+                        Screen.clear();
+                        // payment
+                        break;
+                    case 4:
+                        Screen.clear();
+                        displayEndScreen();
+                        break;
+                }
+        } while(choice1 != 4);
     }
         
      public static void displayMenu(){
@@ -73,6 +149,19 @@ public class Catering {
         System.out.println("==================================================================================================");
         System.out.print("\n\t\t\t       Select your Choice: ");
     }  
+    
+    public static void OrderMenu() {
+        Font.print(Font.ANSI_PURPLE,"\t\t  ██████╗ █████╗ ████████╗███████╗██████╗ ██╗███╗   ██╗ ██████╗ ");
+        Font.print(Font.ANSI_PURPLE,"\t\t ██╔════╝██╔══██╗╚══██╔══╝██╔════╝██╔══██╗██║████╗  ██║██╔════╝ ");
+        Font.print(Font.ANSI_CYAN,"\t\t ██║     ███████║   ██║   █████╗  ██████╔╝██║██╔██╗ ██║██║  ███╗        ");
+        Font.print(Font.ANSI_CYAN,"\t\t ██║     ██╔══██║   ██║   ██╔══╝  ██╔══██╗██║██║╚██╗██║██║   ██║");
+        Font.print(Font.ANSI_YELLOW,"\t\t ╚██████╗██║  ██║   ██║   ███████╗██║  ██║██║██║ ╚████║╚██████╔╝");
+        Font.print(Font.ANSI_YELLOW,"\t\t  ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ");
+        System.out.println("==================================================================================================");
+        System.out.println("\t\t\t\t\t1. Food & Beverage\n\t\t\t\t\t2. Facility\n\t\t\t\t\t3. Back");
+        System.out.println("==================================================================================================");
+        System.out.print("\n\t\t\t       Select your Choice: ");
+    }
     
      public static void displayEndScreen(){
         Font.print(Font.ANSI_YELLOW,"████████╗██╗  ██╗ █████╗ ███╗   ██╗██╗  ██╗    ██╗   ██╗ ██████╗ ██╗   ██╗    ██╗██╗");
