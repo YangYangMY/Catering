@@ -18,6 +18,13 @@ public class Facility {
         prntString = true;
     }
 
+    public Facility(String facilityName, double facilityPrice, int facilityNum) {
+        this.facilityName = facilityName;
+        this.facilityPrice = facilityPrice;
+        this.facilityNum = facilityNum;
+        prntString = true;
+    }
+
     public Facility(String facilityName, int facilityNum, double facilityPrice) {
         this.facilityName = facilityName;
         this.facilityNum = facilityNum;
