@@ -68,12 +68,13 @@ public class Facility {
 
     @Override
     public String toString() {
+        String space = "\t";
         if (prntString) {
-            return facilityName + " - " + df.format(facilityPrice);
+            return space + facilityName + " \t\t\t" + df.format(facilityPrice);
         } else {
             num++;
             facilityFinalTotal += facilityTotal;
-            return num + ". " + facilityName + " - " + facilityNum + " - " + df.format(facilityPrice) + " - " + df.format(facilityTotal);
+            return num + ". " + facilityName + " \t\t " + facilityNum + " \t\t " + df.format(facilityPrice) + " \t\t" + df.format(facilityTotal);
         }
     }
 }
