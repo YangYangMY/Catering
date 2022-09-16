@@ -158,7 +158,7 @@ public class Catering {
         Font.print(Font.ANSI_YELLOW,"\t\t ╚██████╗██║  ██║   ██║   ███████╗██║  ██║██║██║ ╚████║╚██████╔╝");
         Font.print(Font.ANSI_YELLOW,"\t\t  ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ");
         System.out.println("==================================================================================================");
-        System.out.println("\t\t\t\t\t1. Food & Beverage\n\t\t\t\t\t2. Facility\n\t\t\t\t\t3. Back");
+        System.out.println("\t\t\t\t\t1. Food & Beverage\n\t\t\t\t\t2. Facility\n\t\t\t\t\t3. Payment\n\t\t\t\t\t4. Exit");
         System.out.println("==================================================================================================");
         System.out.print("\n\t\t\t       Select your Choice: ");
     }

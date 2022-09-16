@@ -56,41 +56,41 @@ public class facilities {
                                     }
                                 }
                                 break;
-//                            case 3:
-//                                System.out.print("\t\tAll the facilities size will be removed! Ya sure? ");
-//                                System.out.println("1. YES");
-//                                System.out.println("2. NO");
-//                                int confirm = input.nextInt();
-//                                if (confirm == 1 && !sizeselect.isEmpty()) {
-//                                    facilitiesChosenModify(sizeselect, facilitySizeList, action, position, quantity);
-//                                }
-//                                Screen.clear();
-//                                break;
-//                            case 4:
-//                                if (sizeselect.isEmpty()) {
-//                                    System.out.println("\t\tYou have not selected any facilities size!");
-//                                    cont();
-//                                } else {
-//                                    displayFacilitiesSizeChosen(sizeselect, df);
-//                                    System.out.print("\tSelect the item to be modified: ");
-//                                    position = input.nextInt();
-//                                    if (sizeselect.size() < position || position < 1) {
-//                                        System.out.println("\t\tInvalid choice!");
-//                                        cont();
-//                                    } else {
-//                                        System.out.print("\tEnter the new quantity: ");
-//                                        quantity = input.nextInt();
-//                                        facilitiesChosenModify(sizeselect, facilitySizeList, action, position, quantity);
-//                                    }
-//                                }
-//                            case 5:
-//                                break;
+                            case 3:
+                               System.out.print("\t\tAll the facilities size will be removed! Ya sure? ");
+                               System.out.println("1. YES");
+                               System.out.println("2. NO");
+                               int confirm = input.nextInt();
+                               if (confirm == 1 && !sizeselect.isEmpty()) {
+                                   facilitiesChosenModify(sizeselect, facilitySizeList, action, position, quantity);
+                               }
+                               Screen.clear();
+                               break;
+                           case 4:
+                               if (sizeselect.isEmpty()) {
+                                   System.out.println("\t\tYou have not selected any facilities size!");
+                                   cont();
+                               } else {
+                                   displayFacilitiesSizeChosen(sizeselect, df);
+                                   System.out.print("\tSelect the item to be modified: ");
+                                   position = input.nextInt();
+                                   if (sizeselect.size() < position || position < 1) {
+                                       System.out.println("\t\tInvalid choice!");
+                                       cont();
+                                   } else {
+                                       System.out.print("\tEnter the new quantity: ");
+                                       quantity = input.nextInt();
+                                       facilitiesChosenModify(sizeselect, facilitySizeList, action, position, quantity);
+                                   }
+                               }
+                           case 5:
+                               break;
                             default:
                                 System.out.println("\t\tInvalid choice!");
                                 cont();
                                 break;
                         }
-                    } while (action != 3);
+                    } while (action != 5);
                     break;
                 case 2:
                     do {
@@ -127,44 +127,44 @@ public class facilities {
                                     }
                                 }
                                 break;
-//                            case 3:
-//                                System.out.print("\t\tAll the facilities color will be removed! Ya sure? (Y/N)");
-//                                int confirm = input.nextInt();
-//                                if (confirm == 1 && !colorselect.isEmpty()) {
-//                                    facilitiesChosenModify(colorselect, facilityColorList, action, position, quantity);
-//                                }
-//                                Screen.clear();
-//                                break;
-//                            case 4:
-//                                if (colorselect.isEmpty()) {
-//                                    System.out.println("\t\tYou have not selected any facilities!");
-//                                    cont();
-//                                } else {
-//                                    displayFacilitiesColorChosen(colorselect, df);
-//                                    System.out.print("\tSelect the item to be modified: ");
-//                                    position = input.nextInt();
-//                                    if (colorselect.size() < position || position < 1) {
-//                                        System.out.println("\t\tInvalid choice!");
-//                                        cont();
-//                                    } else {
-//                                        System.out.print("\tEnter the new quantity: ");
-//                                        quantity = input.nextInt();
-//                                        facilitiesChosenModify(colorselect, facilityColorList, action, position, quantity);
-//                                    }
-//                                }
-//                                break;
-//                            case 5:
-//                                break;
+                            case 3:
+                               System.out.print("\t\tAll the facilities color will be removed! Ya sure? (Y/N)");
+                               int confirm = input.nextInt();
+                               if (confirm == 1 && !colorselect.isEmpty()) {
+                                   facilitiesChosenModify(colorselect, facilityColorList, action, position, quantity);
+                               }
+                               Screen.clear();
+                               break;
+                           case 4:
+                               if (colorselect.isEmpty()) {
+                                   System.out.println("\t\tYou have not selected any facilities!");
+                                   cont();
+                               } else {
+                                   displayFacilitiesColorChosen(colorselect, df);
+                                   System.out.print("\tSelect the item to be modified: ");
+                                   position = input.nextInt();
+                                   if (colorselect.size() < position || position < 1) {
+                                       System.out.println("\t\tInvalid choice!");
+                                       cont();
+                                   } else {
+                                       System.out.print("\tEnter the new quantity: ");
+                                       quantity = input.nextInt();
+                                       facilitiesChosenModify(colorselect, facilityColorList, action, position, quantity);
+                                   }
+                               }
+                               break;
+                           case 5:
+                               break;
                             default:
                                 System.out.println("\t\tInvalid choice!");
                                 cont();
                                 break;
                         }
-                    } while (action != 3);
+                    } while (action != 5);
                     break;
                 case 3:
                     do {
-                        displayFacilitiesOccasionChosen(facilityOccasionList, df);
+                        displayFacilitiesOccasionChosen(occasionselect, df);
                         displayFacilitiesOccasionOption();
                         action = input.nextInt();
                         Screen.clear();
@@ -197,41 +197,41 @@ public class facilities {
                                     }
                                 }
                                 break;
-//                            case 3:
-//                                System.out.print("\t\tAll the facilities occasion will be removed! (1 == Yes) (2 == No)");
-//                                int confirm = input.nextInt();
-//                                if (confirm == 1 && !occasionselect.isEmpty()) {
-//                                    facilitiesChosenModify(occasionselect, facilityOccasionList, action, position, quantity);
-//                                }
-//                                Screen.clear();
-//                                break;
-//                            case 4:
-//                                if (occasionselect.isEmpty()) {
-//                                    System.out.println("\t\tYou have not selected any facilities!");
-//                                    cont();
-//                                } else {
-//                                    displayFacilitiesOccasionChosen(occasionselect, df);
-//                                    System.out.print("\tSelect the item to be modified: ");
-//                                    position = input.nextInt();
-//                                    if (occasionselect.size() < position || position < 1) {
-//                                        System.out.println("\t\tInvalid choice!");
-//                                        cont();
-//                                    } else {
-//                                        System.out.print("\tEnter the new quantity: ");
-//                                        quantity = input.nextInt();
-//                                        facilitiesChosenModify(occasionselect, facilityOccasionList, action, position, quantity);
-//                                    }
-//                                }
-//                                break;
-//                            case 5:
-//                                break;
+                           case 3:
+                               System.out.print("\t\tAll the facilities occasion will be removed! (1 == Yes) (2 == No)");
+                               int confirm = input.nextInt();
+                               if (confirm == 1 && !occasionselect.isEmpty()) {
+                                   facilitiesChosenModify(occasionselect, facilityOccasionList, action, position, quantity);
+                               }
+                               Screen.clear();
+                               break;
+                           case 4:
+                               if (occasionselect.isEmpty()) {
+                                   System.out.println("\t\tYou have not selected any facilities!");
+                                   cont();
+                               } else {
+                                   displayFacilitiesOccasionChosen(occasionselect, df);
+                                   System.out.print("\tSelect the item to be modified: ");
+                                   position = input.nextInt();
+                                   if (occasionselect.size() < position || position < 1) {
+                                       System.out.println("\t\tInvalid choice!");
+                                       cont();
+                                   } else {
+                                       System.out.print("\tEnter the new quantity: ");
+                                       quantity = input.nextInt();
+                                       facilitiesChosenModify(occasionselect, facilityOccasionList, action, position, quantity);
+                                   }
+                               }
+                               break;
+                           case 5:
+                               break;
                             default:
                                 System.out.println("\t\tInvalid choice!");
                                 cont();
                                 break;
 
                         }
-                    } while (action != 3);
+                    } while (action != 5);
                     break;
                 case 4:
                     break;
@@ -322,11 +322,11 @@ public class facilities {
         if (!sizeselect.isEmpty()) {
             Facility.resetNumber();
             System.out.println("=================================================================================================================================================");
-            System.out.println("\tSIZE \t\tTOTAL PRICE(RM)");
+            System.out.println("\tSIZE \t\tQUANTITY  \tPRICE(RM)  \tTOTAL PRICE(RM)");
             System.out.println("=================================================================================================================================================");
             System.out.print(sizeselect.toString());
             System.out.println("=================================================================================================================================================");
-            Font.print(Font.ANSI_YELLOW, "\t\t\t\t\t\tFINAL TOTAL \t " + df.format(sizeselect.get(1).getFacilityFinaltotal()));
+            Font.print(Font.ANSI_YELLOW, "\t\t\t\t\tFINAL TOTAL \t\t" + df.format(sizeselect.get(1).getSizeFinaltotal()));
             System.out.println("=================================================================================================================================================");
         } else {
             System.out.println("=================================================================================================================================================");
@@ -339,11 +339,11 @@ public class facilities {
         if (!colorselect.isEmpty()) {
             Facility.resetNumber();
             System.out.println("=================================================================================================================================================");
-            System.out.println("\tCOLOR \t\tTOTAL PRICE(RM)");
+            System.out.println("\tCOLOR \t\tQUANTITY  \tPRICE(RM)  \tTOTAL PRICE(RM)");
             System.out.println("=================================================================================================================================================");
             System.out.print(colorselect.toString());
             System.out.println("=================================================================================================================================================");
-            Font.print(Font.ANSI_YELLOW, "\t\t\t\t\t\tFINAL TOTAL \t " + df.format(colorselect.get(1).getFacilityFinaltotal()));
+            Font.print(Font.ANSI_YELLOW, "\t\t\t\t\tFINAL TOTAL \t\t" + df.format(colorselect.get(1).getColorFinaltotal()));
             System.out.println("=================================================================================================================================================");
         } else {
             System.out.println("=================================================================================================================================================");
@@ -356,11 +356,11 @@ public class facilities {
         if (!occasionselect.isEmpty()) {
             Facility.resetNumber();
             System.out.println("=================================================================================================================================================");
-            System.out.println("\tOCCASION \t\tTOTAL PRICE(RM)");
+            System.out.println("\tOCCASION \t\tQUANTITY  \tPRICE(RM)  \tTOTAL PRICE(RM)");
             System.out.println("=================================================================================================================================================");
             System.out.print(occasionselect.toString());
             System.out.println("=================================================================================================================================================");
-            Font.print(Font.ANSI_YELLOW, "\t\t\t\t\t\tFINAL TOTAL \t " + df.format(occasionselect.get(1).getFacilityFinaltotal()));
+            Font.print(Font.ANSI_YELLOW, "\t\t\t\t\tFINAL TOTAL \t\t" + df.format(occasionselect.get(1).getOccasionFinaltotal()));
             System.out.println("=================================================================================================================================================");
         } else {
             System.out.println("=================================================================================================================================================");
@@ -370,7 +370,7 @@ public class facilities {
 
     public static void displayFacilitiesSizeOption() {
         System.out.println("=================================================================================================================================================");
-        System.out.println("\t\t\t\t\t\t\t\t1. Add Size\n\t\t\t\t\t\t\t\t2. Remove Size\n\t\t\t\t\t\t\t\t3. Back");
+        System.out.println("\t\t\t\t\t\t\t\t1. Add Size\n\t\t\t\t\t\t\t\t2. Remove Size\n\t\t\t\t\t\t\t\t3. Clear Cart\n\t\t\t\t\t\t\t\t4. Modify Quantity\n\t\t\t\t\t\t\t\t5. Back");
         System.out.println("=================================================================================================================================================");
         System.out.print("\t\t\t\t\t\t\t       Select your Choice: ");
 
@@ -378,14 +378,14 @@ public class facilities {
 
     public static void displayFacilitiesColorOption() {
         System.out.println("=================================================================================================================================================");
-        System.out.println("\t\t\t\t\t\t\t\t1. Add Color\n\t\t\t\t\t\t\t\t2. Remove Color\n\t\t\t\t\t\t\t\t3. Back");
+        System.out.println("\t\t\t\t\t\t\t\t1. Add Color\n\t\t\t\t\t\t\t\t2. Remove Color\n\t\t\t\t\t\t\t\t3. Clear Cart\n\t\t\t\t\t\t\t\t4. Modify Quantity\n\t\t\t\t\t\t\t\t5. Back");
         System.out.println("=================================================================================================================================================");
         System.out.print("\t\t\t\t\t\t\t       Select your Choice: ");
     }
 
     public static void displayFacilitiesOccasionOption() {
         System.out.println("=================================================================================================================================================");
-        System.out.println("\t\t\t\t\t\t\t\t1. Add Occasion\n\t\t\t\t\t\t\t\t2. Remove Occasion\n\t\t\t\t\t\t\t\t3. Back");
+        System.out.println("\t\t\t\t\t\t\t\t1. Add Occasion\n\t\t\t\t\t\t\t\t2. Remove Occasion\n\t\t\t\t\t\t\t\t3. Clear Cart\n\t\t\t\t\t\t\t\t4. Modify Quantity\n\t\t\t\t\t\t\t\t5. Back");
         System.out.println("=================================================================================================================================================");
         System.out.print("\t\t\t\t\t\t\t       Select your Choice: ");
     }
@@ -410,39 +410,69 @@ public class facilities {
                 cont();
             }
         } else if (action == 2) {
-            if (index < 1 || index > facilitiesModi.size()) {
+            if (index < 1 || index > facilitiesList.size()) {
                 System.out.println("\tInvalid index");
                 cont();
             } else {
-                facilitiesModi.remove(index);
-                setFinalTotal(facilitiesModi, facilitiesList);
-                System.out.println("\tFacilities removed");
-                cont();
+                if(facilitiesModi.size() == 1){
+                    if(facilitiesList.get(1).getFacilityname().equals("Small")){
+                        facilitiesModi.get(index).setSizeFinaltotal(0);
+                    } else if(facilitiesList.get(1).getFacilityname().equals("Red")){
+                        facilitiesModi.get(index).setColorFinaltotal(0);
+                    } else {
+                        facilitiesModi.get(index).setOccasionFinaltotal(0);
+                    }
+                    facilitiesModi.clear();
+                    System.out.println("\tRemove Successful");
+                    cont();
+                } else {
+                    facilitiesModi.remove(index);
+                    setFinalTotal(facilitiesModi, facilitiesList);
+                    System.out.println("\tFacilities removed");
+                    cont();
+                }
             }
         } else if (action == 3) {
-            if (index < 1 || index > facilitiesModi.size()) {
+            if(facilitiesList.get(1).getFacilityname().equals("Small")){
+                facilitiesModi.get(index).setSizeFinaltotal(0);
+            } else if(facilitiesList.get(1).getFacilityname().equals("Red")){
+                facilitiesModi.get(index).setColorFinaltotal(0);
+            } else {
+                facilitiesModi.get(index).setOccasionFinaltotal(0);
+            }
+            facilitiesModi.clear();
+            System.out.println("\tFacilities cleared");
+            cont();
+        } else if (action == 4) {
+            if (index < 1 || index > facilitiesList.size()) {
                 System.out.println("\tInvalid index");
                 cont();
             } else {
-                System.out.print("\tEnter new facilities: ");
-                String newFacilities = input.nextLine();
-                facilitiesModi.get(index).setFacilityname(newFacilities);
-                System.out.println("\tFacilities modified");
+                facilitiesModi.set(index, new Facility(facilitiesList.get(index).getFacilityname(), facilitiesList.get(index).getFacilityprice(), facilitiesNum));
+                setFinalTotal(facilitiesModi, facilitiesList);
+                System.out.println("\tModify Successful");
                 cont();
             }
         }
     }
 
     public static void setFinalTotal(ListInterface<Facility> facilitiesModi, ListInterface<Facility> facilitiesList) {
-        double total = 0;
-        for (int i = 1; i < facilitiesModi.size() + 1; i++) {
-            for (int j = 1; j < facilitiesList.size() + 1; j++) {
-                if (facilitiesModi.get(i).getFacilityname().equals(facilitiesList.get(j).getFacilityname())) {
-                    total += (facilitiesList.get(j).getFacilityprice() * facilitiesModi.get(j).getFacilitynum());
-                }
+        if(facilitiesList.get(1).getFacilityname().equals("Small")){
+            facilitiesModi.get(1).setSizeFinaltotal(0);
+            for (int i = 1; i < facilitiesModi.size() + 1; i++) {
+                facilitiesModi.get(1).setSizeFinaltotal(facilitiesModi.get(1).getSizeFinaltotal() + (facilitiesModi.get(i).getFacilityprice() * facilitiesModi.get(i).getFacilitynum()));
+            }
+        } else if(facilitiesList.get(1).getFacilityname().equals("Red")){
+            facilitiesModi.get(1).setColorFinaltotal(0);
+            for (int i = 1; i < facilitiesModi.size() + 1; i++) {
+                facilitiesModi.get(1).setColorFinaltotal(facilitiesModi.get(1).getColorFinaltotal() + (facilitiesModi.get(i).getFacilityprice() * facilitiesModi.get(i).getFacilitynum()));
+            }
+        } else {
+            facilitiesModi.get(1).setOccasionFinaltotal(0);
+            for (int i = 1; i < facilitiesModi.size() + 1; i++) {
+                facilitiesModi.get(1).setOccasionFinaltotal(facilitiesModi.get(1).getOccasionFinaltotal() + (facilitiesModi.get(i).getFacilityprice() * facilitiesModi.get(i).getFacilitynum()));
             }
         }
-        facilitiesList.get(1).setFacilityFinaltotal(total);
     }
 
     public static void cont() {

@@ -8,7 +8,9 @@ public class Facility {
     private double facilityPrice;
     private double facilityTotal;
     private boolean prntString = false;
-    private static double facilityFinalTotal;
+    private static double sizeFinalTotal;
+    private static double colorFinalTotal;
+    private static double occasionFinalTotal;
     private static int num = 0;
     DecimalFormat df = new DecimalFormat("0.00");
 
@@ -22,13 +24,6 @@ public class Facility {
         this.facilityName = facilityName;
         this.facilityPrice = facilityPrice;
         this.facilityNum = facilityNum;
-        prntString = true;
-    }
-
-    public Facility(String facilityName, int facilityNum, double facilityPrice) {
-        this.facilityName = facilityName;
-        this.facilityNum = facilityNum;
-        this.facilityPrice = facilityPrice;
         getFacilitytotal();
     }
 
@@ -61,12 +56,28 @@ public class Facility {
         return facilityTotal;
     }
 
-    public double getFacilityFinaltotal() {
-        return facilityFinalTotal;
+    public double getSizeFinaltotal() {
+        return sizeFinalTotal;
     }
 
-    public void setFacilityFinaltotal(double facilityFinalTotal) {
-        Facility.facilityFinalTotal = facilityFinalTotal;
+    public double getColorFinaltotal() {
+        return colorFinalTotal;
+    }
+
+    public double getOccasionFinaltotal() {
+        return occasionFinalTotal;
+    }
+
+    public void setSizeFinaltotal(double sizeFinalTotal) {
+        Facility.sizeFinalTotal = sizeFinalTotal;
+    }
+
+    public void setColorFinaltotal(double colorFinalTotal) {
+        Facility.colorFinalTotal = colorFinalTotal;
+    }
+
+    public void setOccasionFinaltotal(double occasionFinalTotal) {
+        Facility.occasionFinalTotal = occasionFinalTotal;
     }
 
     public static void resetNumber() {
@@ -80,7 +91,6 @@ public class Facility {
             return space + facilityName + " \t\t\t" + df.format(facilityPrice);
         } else {
             num++;
-            facilityFinalTotal += facilityTotal;
             return num + ". " + facilityName + " \t\t " + facilityNum + " \t\t " + df.format(facilityPrice) + " \t\t" + df.format(facilityTotal);
         }
     }
