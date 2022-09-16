@@ -163,7 +163,7 @@ public class foodandbeverage {
     }
 
     public static void initialize(ListInterface<FoodBeverage> foodlist, ListInterface<FoodBeverage> beveragelist){
-        //Food List
+        //Food List 
         foodlist.add(new FoodBeverage("Fried Chicken", 6.0));
         foodlist.add(new FoodBeverage("Nasi Lemak", 2.0));
         foodlist.add(new FoodBeverage("Rendang Chicken", 6.5));

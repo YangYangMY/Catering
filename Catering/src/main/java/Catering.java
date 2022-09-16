@@ -61,7 +61,7 @@ public class Catering {
                                     displayEndScreen();
                                 }
                                 break;
-                            case 4: // Exit to Home
+                            case 4: // Exit to Home Menu
                                 break;
                         }
                     } while (choice1 != 4);

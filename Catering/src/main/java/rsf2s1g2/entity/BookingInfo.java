@@ -43,7 +43,7 @@ public class BookingInfo {
     }
 
     public void getSizeselect() {
-        
+        //
     }
 
     public void getColorselect() {
