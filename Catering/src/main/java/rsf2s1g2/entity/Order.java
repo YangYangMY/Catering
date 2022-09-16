@@ -42,28 +42,6 @@ public class Order implements Comparable<Order> {
     }
     
 
-    public void addOrder(BookingInfo bookinginfo, Customer customer, Facility facility, FoodBeverage foodbeverage, CircularQueueInterface<Order> orderQueue ){
-        orderQueue.enqueue(new Order(bookinginfo, customer, facility, foodbeverage));
-    }  
-    
-    
-    public void acceptOrder(Order newEntry, CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder){
-        boolean check = acceptedOrder.insert(newEntry);
-        if(check == true){
-            orderQueue.dequeue();
-        }
-    }
-    
-    public void rejectOrder(Order newEntry, CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> RejectedOrder){
-        boolean check = RejectedOrder.insert(newEntry);
-        if(check == true){
-            orderQueue.dequeue();
-        }
-    }
-
-    public void completeOrder(Order newEntry, SortedListInterface<Order> acceptedOrder){
-        acceptedOrder.delete(newEntry);
-    }
 
     @Override
     public String toString() {
