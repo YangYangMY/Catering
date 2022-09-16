@@ -2,14 +2,13 @@ package rsf2s1g2.client;
 
 import java.util.Scanner;
 import java.text.DecimalFormat;
-
 import rsf2s1g2.utility.*;
 import rsf2s1g2.adt.*;
 import rsf2s1g2.entity.*;
 
 public class facilities {
     public static void facilitiess(ListInterface<Facility> facilitySizeList, ListInterface<Facility> facilityColorList, ListInterface<Facility> facilityOccasionList,
-                                   ListInterface<Facility> sizeselect, ListInterface<Facility> colorselect, ListInterface<Facility> occasionselect) {
+                                   ListInterface<Facility> sizeselect, ListInterface<Facility> colorselect, ListInterface<Facility> occasionselect, Bag<String> remarkBag) {
         DecimalFormat df = new DecimalFormat("0.00");
         Scanner input = new Scanner(System.in);
         int choice, action, position = 1, quantity = 0;
@@ -37,7 +36,7 @@ public class facilities {
                                 } else {
                                     System.out.println("\t How many do you want to add?");
                                     quantity = input.nextInt();
-                                    facilitiesChosenModify(sizeselect, facilitySizeList, action, position, quantity);
+                                    facilitiesChosenModify(sizeselect, facilitySizeList, action, position, quantity, remarkBag);
                                 }
                                 break;
                             case 2:
@@ -52,7 +51,7 @@ public class facilities {
                                         System.out.println("\t\tInvalid choice!");
                                         cont();
                                     } else {
-                                        facilitiesChosenModify(sizeselect, facilitySizeList, action, position, quantity);
+                                        facilitiesChosenModify(sizeselect, facilitySizeList, action, position, quantity, remarkBag);
                                     }
                                 }
                                 break;
@@ -62,7 +61,7 @@ public class facilities {
                                System.out.println("2. NO");
                                int confirm = input.nextInt();
                                if (confirm == 1 && !sizeselect.isEmpty()) {
-                                   facilitiesChosenModify(sizeselect, facilitySizeList, action, position, quantity);
+                                   facilitiesChosenModify(sizeselect, facilitySizeList, action, position, quantity, remarkBag);
                                }
                                Screen.clear();
                                break;
@@ -80,7 +79,7 @@ public class facilities {
                                    } else {
                                        System.out.print("\tEnter the new quantity: ");
                                        quantity = input.nextInt();
-                                       facilitiesChosenModify(sizeselect, facilitySizeList, action, position, quantity);
+                                       facilitiesChosenModify(sizeselect, facilitySizeList, action, position, quantity, remarkBag);
                                    }
                                }
                            case 5:
@@ -108,7 +107,7 @@ public class facilities {
                                 } else {
                                     System.out.println("\t How many do you want to add?");
                                     quantity = input.nextInt();
-                                    facilitiesChosenModify(colorselect, facilityColorList, action, position, quantity);
+                                    facilitiesChosenModify(colorselect, facilityColorList, action, position, quantity, remarkBag);
                                 }
                                 break;
                             case 2:
@@ -123,7 +122,7 @@ public class facilities {
                                         System.out.println("\t\tInvalid choice!");
                                         cont();
                                     } else {
-                                        facilitiesChosenModify(colorselect, facilityColorList, action, position, quantity);
+                                        facilitiesChosenModify(colorselect, facilityColorList, action, position, quantity, remarkBag);
                                     }
                                 }
                                 break;
@@ -131,7 +130,7 @@ public class facilities {
                                System.out.print("\t\tAll the facilities color will be removed! Ya sure? (Y/N)");
                                int confirm = input.nextInt();
                                if (confirm == 1 && !colorselect.isEmpty()) {
-                                   facilitiesChosenModify(colorselect, facilityColorList, action, position, quantity);
+                                   facilitiesChosenModify(colorselect, facilityColorList, action, position, quantity, remarkBag);
                                }
                                Screen.clear();
                                break;
@@ -149,7 +148,7 @@ public class facilities {
                                    } else {
                                        System.out.print("\tEnter the new quantity: ");
                                        quantity = input.nextInt();
-                                       facilitiesChosenModify(colorselect, facilityColorList, action, position, quantity);
+                                       facilitiesChosenModify(colorselect, facilityColorList, action, position, quantity, remarkBag);
                                    }
                                }
                                break;
@@ -178,7 +177,7 @@ public class facilities {
                                 } else {
                                     System.out.println("\t How many do you want to add?");
                                     quantity = input.nextInt();
-                                    facilitiesChosenModify(occasionselect, facilityOccasionList, action, position, quantity);
+                                    facilitiesChosenModify(occasionselect, facilityOccasionList, action, position, quantity, remarkBag);
                                 }
                                 break;
                             case 2:
@@ -193,7 +192,7 @@ public class facilities {
                                         System.out.println("\t\tInvalid choice!");
                                         cont();
                                     } else {
-                                        facilitiesChosenModify(occasionselect, facilityOccasionList, action, position, quantity);
+                                        facilitiesChosenModify(occasionselect, facilityOccasionList, action, position, quantity, remarkBag);
                                     }
                                 }
                                 break;
@@ -201,7 +200,7 @@ public class facilities {
                                System.out.print("\t\tAll the facilities occasion will be removed! (1 == Yes) (2 == No)");
                                int confirm = input.nextInt();
                                if (confirm == 1 && !occasionselect.isEmpty()) {
-                                   facilitiesChosenModify(occasionselect, facilityOccasionList, action, position, quantity);
+                                   facilitiesChosenModify(occasionselect, facilityOccasionList, action, position, quantity, remarkBag);
                                }
                                Screen.clear();
                                break;
@@ -219,7 +218,7 @@ public class facilities {
                                    } else {
                                        System.out.print("\tEnter the new quantity: ");
                                        quantity = input.nextInt();
-                                       facilitiesChosenModify(occasionselect, facilityOccasionList, action, position, quantity);
+                                       facilitiesChosenModify(occasionselect, facilityOccasionList, action, position, quantity, remarkBag);
                                    }
                                }
                                break;
@@ -335,7 +334,7 @@ public class facilities {
     }
 
     public static void displayFacilitiesColorChosen(ListInterface<Facility> colorselect, DecimalFormat df) {
-        Font.print(Font.PURPLE_BOLD_BRIGHT, "\t\t\t\t\t\t\tFACILITIES COLOR CART");
+        Font.print(Font.PURPLE_BOLD_BRIGHT, "\t\t\t\t\t\t\tFACILITIES COLOR & CHAIR CART");
         if (!colorselect.isEmpty()) {
             Facility.resetNumber();
             System.out.println("=================================================================================================================================================");
@@ -347,7 +346,7 @@ public class facilities {
             System.out.println("=================================================================================================================================================");
         } else {
             System.out.println("=================================================================================================================================================");
-            Font.print(Font.RED_BOLD_BRIGHT, "\t\t\t\t   NO FACILITIES COLOR CHOSEN");
+            Font.print(Font.RED_BOLD_BRIGHT, "\t\t\t\t   NO FACILITIES COLOR & CHAIR CHOSEN");
         }
     }
 
@@ -390,7 +389,7 @@ public class facilities {
         System.out.print("\t\t\t\t\t\t\t       Select your Choice: ");
     }
 
-    public static void facilitiesChosenModify(ListInterface<Facility> facilitiesModi, ListInterface<Facility> facilitiesList, int action, int index, int facilitiesNum) {
+    public static void facilitiesChosenModify(ListInterface<Facility> facilitiesModi, ListInterface<Facility> facilitiesList, int action, int index, int facilitiesNum, Bag<String> remark) {
         Scanner input = new Scanner(System.in);
         if (action == 1) {
             boolean isDuplicate = false;
@@ -404,6 +403,9 @@ public class facilities {
                 }
             }
             if (isDuplicate == false) {
+                System.out.println("Any remarks?: ");
+                String remarks = input.nextLine();
+                remark.add(remarks);
                 facilitiesModi.add(new Facility(facilitiesList.get(index).getFacilityname(), facilitiesList.get(index).getFacilityprice(), facilitiesNum));
                 setFinalTotal(facilitiesModi, facilitiesList);
                 System.out.println("\tFacilities added");

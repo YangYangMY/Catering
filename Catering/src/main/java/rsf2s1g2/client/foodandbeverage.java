@@ -7,7 +7,7 @@ import rsf2s1g2.adt.*;
 import rsf2s1g2.entity.*;
 
 public class foodandbeverage {
-    public static void foodbeverage(ListInterface<FoodBeverage> foodlist, ListInterface<FoodBeverage> beveragelist, ListInterface<FoodBeverage> foodselect, ListInterface<FoodBeverage> beverageselect) {
+    public static void foodbeverage(ListInterface<FoodBeverage> foodlist, ListInterface<FoodBeverage> beveragelist, ListInterface<FoodBeverage> foodselect, ListInterface<FoodBeverage> beverageselect, Bag<String> remarksBag) {
         DecimalFormat df = new DecimalFormat("0.00");
         Scanner input = new Scanner(System.in);
         int choice, action, position = 1, quantity = 0;
@@ -36,7 +36,7 @@ public class foodandbeverage {
                                     continueMessage();
                                 } else {
                                     quantity = Screen.numInputValid(1,5000,"\tHow many do you want to add?: ", "\tPlease enter number within 1-5000");
-                                    foodSelectModifications(foodselect, foodlist, action, position, quantity);
+                                    foodSelectModifications(foodselect, foodlist, action, position, quantity,remarksBag);
                                 }
                                 break;
                             case 2:
@@ -50,14 +50,14 @@ public class foodandbeverage {
                                         System.out.println("\t\tInvalid choice!");
                                         continueMessage();
                                     } else {
-                                        foodSelectModifications(foodselect, foodlist, action, position, quantity);
+                                        foodSelectModifications(foodselect, foodlist, action, position, quantity,remarksBag);
                                     }
                                 }
                                 break;
                             case 3:
                                 int confirm = Screen.numInputValid(0,1,"\t\tThe food cart will be clear. Are you sure? (1 = Yes, 0 = No): ", "\t\tInvalid input. Please try again");
                                 if (confirm == 1 && !foodselect.isEmpty())
-                                    foodSelectModifications(foodselect, foodlist, action, position, quantity);
+                                    foodSelectModifications(foodselect, foodlist, action, position, quantity,remarksBag);
                                 Screen.clear();
                                 break;
                             case 4:
@@ -72,7 +72,7 @@ public class foodandbeverage {
                                         continueMessage();
                                     } else {
                                         quantity = Screen.numInputValid(1,5,"\tEnter the number: ", "\tInvalid input. Please try again");
-                                        foodSelectModifications(foodselect, foodlist, action, position, quantity);
+                                        foodSelectModifications(foodselect, foodlist, action, position, quantity,remarksBag);
                                     }
                                 }
                                 break;
@@ -97,7 +97,7 @@ public class foodandbeverage {
                                     continueMessage();
                                 } else {
                                     quantity = Screen.numInputValid(1,5000,"\tHow many do you want to add?: ", "\tPlease enter number within 1-5000");
-                                    foodSelectModifications(beverageselect, beveragelist, action, position, quantity);
+                                    foodSelectModifications(beverageselect, beveragelist, action, position, quantity,remarksBag);
                                 }
                                 break;
                             case 2:
@@ -111,14 +111,14 @@ public class foodandbeverage {
                                         System.out.println("\t\tInvalid choice!");
                                         continueMessage();
                                     } else {
-                                        foodSelectModifications(beverageselect, beveragelist, action, position, quantity);
+                                        foodSelectModifications(beverageselect, beveragelist, action, position, quantity,remarksBag);
                                     }
                                 }
                                 break;
                             case 3:
                                 int confirm = Screen.numInputValid(0,1,"\t\tThe beverage cart will be clear. Are you sure? (1 = Yes, 0 = No): ", "\t\tInvalid input. Please try again");
                                 if (confirm == 1 && !beverageselect.isEmpty())
-                                    foodSelectModifications(beverageselect, beveragelist, action, position, quantity);
+                                    foodSelectModifications(beverageselect, beveragelist, action, position, quantity,remarksBag);
                                 Screen.clear();
                                 break;
                             case 4:
@@ -133,7 +133,7 @@ public class foodandbeverage {
                                         continueMessage();
                                     } else {
                                         quantity = Screen.numInputValid(1,5,"\tEnter the number: ", "\tInvalid input. Please try again");
-                                        foodSelectModifications(beverageselect, beveragelist, action, position, quantity);
+                                        foodSelectModifications(beverageselect, beveragelist, action, position, quantity,remarksBag);
                                     }
                                 }
                                 break;
@@ -241,7 +241,7 @@ public class foodandbeverage {
         System.out.println("===================================================================================");
     }
 
-    public static void foodSelectModifications(ListInterface<FoodBeverage> fbselect, ListInterface<FoodBeverage> fblist, int action, int posOfObj, int fbNum){
+    public static void foodSelectModifications(ListInterface<FoodBeverage> fbselect, ListInterface<FoodBeverage> fblist, int action, int posOfObj, int fbNum, Bag<String> remarks){
         Scanner input = new Scanner(System.in);
         //Add = 1, Remove = 2, Clear = 3, Undo = 4, Modify = 5
         if (action == 1){
@@ -256,6 +256,9 @@ public class foodandbeverage {
                 }
             } 
             if (isDuplicate == false){
+                System.out.println("Any remarks? ");
+                String remark = input.nextLine();
+                remarks.add(remark);
                 fbselect.add(new FoodBeverage(fblist.get(posOfObj).getFoodname(), fbNum, fblist.get(posOfObj).getFoodprice()));
                 setFinaltotalXYZ(fbselect, fblist);
                 System.out.println("\tAdd Successful");
