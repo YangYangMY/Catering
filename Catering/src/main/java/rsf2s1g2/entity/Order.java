@@ -16,14 +16,11 @@ public class Order implements Comparable<Order> {
     private String phoneNum;
     private String date;
     private double orderAmount;
-    CircularQueueInterface<Order> orderQueue = new CircularQueue<>();
-    SortedListInterface<Order> AcceptedOrder = new SortedList<>();
-    SortedListInterface<Order> RejectedOrder = new SortedList<>();
+    private BookingInfo bookingInfo;
+    private Customer customer;
+    private Facility facility;
+    private FoodBeverage foodbeverage;
 
-    public Order(){
-        
-    }
-    
     public Order(String customerName, String date, String phoneNum, double orderAmount){
         this.orderId = nextOrderID++;
         this.customerName = customerName;
@@ -32,38 +29,40 @@ public class Order implements Comparable<Order> {
         this.orderAmount = orderAmount;
     }
     
-    public void addOrder(String customerName, String date,String phoneNum, double orderAmount){
-        orderQueue.enqueue(new Order(customerName, date, phoneNum, orderAmount));
+    public Order(BookingInfo bookinginfo, Customer customer, Facility facility, FoodBeverage foodbeverage){
+        this.orderId = nextOrderID++;
+        this.customerName = customer.getName();
+        this.phoneNum = customer.getPhoneNum();
+        this.date = null;
+        this.orderAmount = 0;
+        this.bookingInfo = bookinginfo;
+        this.customer = customer;
+        this.facility = facility;
+        this.foodbeverage = foodbeverage;
+    }
+    
+
+    public void addOrder(BookingInfo bookinginfo, Customer customer, Facility facility, FoodBeverage foodbeverage, CircularQueueInterface<Order> orderQueue ){
+        orderQueue.enqueue(new Order(bookinginfo, customer, facility, foodbeverage));
     }  
     
-    public CircularQueueInterface<Order> getOrderQueue(){
-        return orderQueue;
-    }
     
-    public SortedListInterface<Order> getAcceptedList(){
-        return AcceptedOrder;
-    }
-    
-    public SortedListInterface<Order> getRejectedList(){
-        return RejectedOrder;
-    }
-    
-    public void AcceptOrder(Order newEntry){
-        boolean check = AcceptedOrder.insert(newEntry);
+    public void acceptOrder(Order newEntry, CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder){
+        boolean check = acceptedOrder.insert(newEntry);
         if(check == true){
             orderQueue.dequeue();
         }
     }
     
-    public void RejectOrder(Order newEntry){
+    public void rejectOrder(Order newEntry, CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> RejectedOrder){
         boolean check = RejectedOrder.insert(newEntry);
         if(check == true){
             orderQueue.dequeue();
         }
     }
 
-    public void CompleteOrder(Order newEntry){
-        AcceptedOrder.delete(newEntry);
+    public void completeOrder(Order newEntry, SortedListInterface<Order> acceptedOrder){
+        acceptedOrder.delete(newEntry);
     }
 
     @Override
@@ -76,7 +75,7 @@ public class Order implements Comparable<Order> {
         return this.date.compareTo(o.getDate());
         
     }
-
+    
     public static int getCount() {
         return count;
     }

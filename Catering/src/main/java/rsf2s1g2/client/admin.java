@@ -3,6 +3,7 @@ package rsf2s1g2.client;
 import java.util.Scanner;
 
 import rsf2s1g2.utility.*;
+import rsf2s1g2.adt.*;
 import rsf2s1g2.entity.*;
 
 
@@ -69,7 +70,7 @@ public class admin {
         return check;
     }
 
-    public static void Menu(Order O){
+    public static void Menu(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrderOrder O){
         Scanner input1 = new Scanner(System.in);
         int choice1 = 0;
         Screen.clear();
@@ -119,28 +120,28 @@ public class admin {
         System.out.print("\n\t\t\t       Select your Choice: ");
     }  
 
-    public static void displayQueue(Order O){
+    public static void displayQueue(CircularQueueInterface<Order> orderQueue){
         Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Evaluation");
         System.out.println("=======================================================================================================");
         System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        for (int i = O.getOrderQueue().getFront(); i <= O.getOrderQueue().getRear(); i++){
-            System.out.println(O.getOrderQueue().getEntry(i));
+        for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
+            System.out.println(orderQueue.getEntry(i));
         } 
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        System.out.println("Total number of orders in queue: " + O.getOrderQueue().getCount());
+        System.out.println("Total number of orders in queue: " + orderQueue.getCount());
         System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.println("\t\t\t\t[1] Accept First Order\n\t\t\t\t[2] Accept All Orders\n\t\t\t\t[3] Reject First Order\n\t\t\t\t[4] Reject All Orders\n\t\t\t\t[5] Back");
         System.out.println("=======================================================================================================");
         System.out.print("\n\t\t\t       Select your Choice: ");
     }  
 
-    public static void QueueConfirmationMenu(Order O){
+    public static void QueueConfirmationMenu(CircularQueueInterface<Order> orderQueue){
         Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Evaluation");
         System.out.println("=======================================================================================================");
         System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
         System.out.println("-------------------------------------------------------------------------------------------------------");
-            System.out.println(O.getOrderQueue().peek());
+            System.out.println(orderQueue.peek());
         System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.println("\t\t\t\tAre you sure to accept this Order?");
         System.out.println("\t\t\t\t[1] Yes\n\t\t\t\t[2] No");
@@ -148,7 +149,7 @@ public class admin {
         System.out.print("\n\t\t\t       Select your Choice: ");
     }
 
-    public static void QueueAcceptConfirmation(Order O){
+    public static void QueueAcceptConfirmation(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder){
         Scanner input = new Scanner(System.in);
         int selection = 0;
 
@@ -157,8 +158,8 @@ public class admin {
             try {
                 selection = 0;
                 
-                QueueConfirmationMenu(O);
-                O.setCount(1);
+                QueueConfirmationMenu(orderQueue);
+                Order.setCount(1);
                 selection = input.nextInt();
                 if (selection < 1 || selection > 2) {
                     Screen.clear();
@@ -174,8 +175,10 @@ public class admin {
                 switch(selection){
                     case 1:
                         Screen.clear();
-                        O.AcceptOrder(O.getOrderQueue().peek());
-                        
+                        boolean check = acceptedOrder.insert(orderQueue.peek());
+                        if(check == true){
+                            orderQueue.dequeue();
+                        }
                         break;
                     case 2:
                         Screen.clear();
@@ -184,13 +187,13 @@ public class admin {
         }while(selection != 2 && selection != 1);
 }
 
-public static void QueueAcceptAllMenu(Order O){
+public static void QueueAcceptAllMenu(CircularQueueInterface<Order> orderQueue){
     Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Evaluation");
     System.out.println("=======================================================================================================");
     System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
     System.out.println("-------------------------------------------------------------------------------------------------------");
-    for (int i = O.getOrderQueue().getFront(); i <= O.getOrderQueue().getRear(); i++){
-        System.out.println(O.getOrderQueue().getEntry(i));
+    for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
+        System.out.println(orderQueue.getEntry(i));
     } 
     System.out.println("-------------------------------------------------------------------------------------------------------");
     System.out.println("\t\t\t\tAre you sure to accept all Orders?");
@@ -199,7 +202,7 @@ public static void QueueAcceptAllMenu(Order O){
     System.out.print("\n\t\t\t       Select your Choice: ");
 }
 
-public static void QueueAcceptAllConfirmation(Order O){
+public static void QueueAcceptAllConfirmation(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder){
     Scanner input = new Scanner(System.in);
     int selection = 0;
 
@@ -208,8 +211,8 @@ public static void QueueAcceptAllConfirmation(Order O){
         try {
             selection = 0;
             
-            QueueAcceptAllMenu(O);
-            O.setCount(1);
+            QueueAcceptAllMenu(orderQueue);
+            Order.setCount(1);
             selection = input.nextInt();
             if (selection < 1 || selection > 2) {
                 Screen.clear();
@@ -225,9 +228,13 @@ public static void QueueAcceptAllConfirmation(Order O){
             switch(selection){
                 case 1:
                     Screen.clear();
-                    for(int i2 = O.getOrderQueue().getFront(); i2 <= O.getOrderQueue().getRear(); i2++){
-                        O.AcceptOrder(O.getOrderQueue().getEntry(i2));
-                        if(O.getOrderQueue().getEntry(i2) != null){
+                    for(int i2 = orderQueue.getFront(); i2 <= orderQueue.getRear(); i2++){
+                        
+                        boolean check = acceptedOrder.insert(orderQueue.getEntry(i2));
+                        if(check == true){
+                            orderQueue.dequeue();
+                        }
+                        if(orderQueue.getEntry(i2) != null){
                             Font.print(Font.ANSI_RED,"Data cannot be empty.");
                         }
                     }
@@ -240,12 +247,12 @@ public static void QueueAcceptAllConfirmation(Order O){
     }while(selection != 2 && selection != 1);
 }
 
-public static void QueueRejectConfirmationMenu(Order O){
+public static void QueueRejectConfirmationMenu(CircularQueueInterface<Order> orderQueue){
     Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Evaluation");
     System.out.println("=======================================================================================================");
     System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
     System.out.println("-------------------------------------------------------------------------------------------------------");
-        System.out.println(O.getOrderQueue().peek());
+        System.out.println(orderQueue.peek());
     System.out.println("-------------------------------------------------------------------------------------------------------");
     System.out.println("\t\t\t\tAre you sure to reject this Order?");
     System.out.println("\t\t\t\t[1] Yes\n\t\t\t\t[2] No");
@@ -253,7 +260,7 @@ public static void QueueRejectConfirmationMenu(Order O){
     System.out.print("\n\t\t\t       Select your Choice: ");
 }
 
-public static void QueueRejectConfirmation(Order O){
+public static void QueueRejectConfirmation(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> rejectedOrder){
     Scanner input = new Scanner(System.in);
     int selection = 0;
 
@@ -262,8 +269,8 @@ public static void QueueRejectConfirmation(Order O){
         try {
             selection = 0;
             
-            QueueRejectConfirmationMenu(O);
-            O.setCount(1);
+            QueueRejectConfirmationMenu(orderQueue);
+            Order.setCount(1);
             selection = input.nextInt();
             if (selection < 1 || selection > 2) {
                 Screen.clear();
@@ -279,7 +286,10 @@ public static void QueueRejectConfirmation(Order O){
             switch(selection){
                 case 1:
                     Screen.clear();
-                    O.RejectOrder(O.getOrderQueue().peek());
+                    boolean check = rejectedOrder.insert(orderQueue.peek());
+                    if(check == true){
+                        orderQueue.dequeue();
+                    }
                     
                     break;
                 case 2:
@@ -289,13 +299,13 @@ public static void QueueRejectConfirmation(Order O){
     }while(selection != 2 && selection != 1);
 }
 
-public static void QueueRejectAllMenu(Order O){
+public static void QueueRejectAllMenu(CircularQueueInterface<Order> orderQueue){
     Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Evaluation");
     System.out.println("=======================================================================================================");
     System.out.println(String.format("%-9s","No.")  + String.format("%-15s", "Order ID") + String.format("%-12s", "Date") + String.format("%-17s", "Price (RM)") + String.format("%-25s","Customer Name") + String.format("%-16s", "Phone Number") );
     System.out.println("-------------------------------------------------------------------------------------------------------");
-    for (int i = O.getOrderQueue().getFront(); i <= O.getOrderQueue().getRear(); i++){
-        System.out.println(O.getOrderQueue().getEntry(i));
+    for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
+        System.out.println(orderQueue.getEntry(i));
     } 
     System.out.println("-------------------------------------------------------------------------------------------------------");
     System.out.println("\t\t\t\tAre you sure to reject all Orders?");
@@ -304,7 +314,7 @@ public static void QueueRejectAllMenu(Order O){
     System.out.print("\n\t\t\t       Select your Choice: ");
 }
 
-public static void QueueRejectAllConfirmation(Order O){
+public static void QueueRejectAllConfirmation(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> rejectedOrder){
     Scanner input = new Scanner(System.in);
     int selection = 0;
 
@@ -313,8 +323,8 @@ public static void QueueRejectAllConfirmation(Order O){
         try {
             selection = 0;
             
-            QueueRejectAllMenu(O);
-            O.setCount(1);
+            QueueRejectAllMenu(orderQueue);
+            Order.setCount(1);
             selection = input.nextInt();
             if (selection < 1 || selection > 2) {
                 Screen.clear();
@@ -330,9 +340,12 @@ public static void QueueRejectAllConfirmation(Order O){
             switch(selection){
                 case 1:
                     Screen.clear();
-                    for(int i3 = O.getOrderQueue().getFront(); i3 <= O.getOrderQueue().getRear(); i3++){
-                        O.RejectOrder(O.getOrderQueue().getEntry(i3));
-                        if(O.getOrderQueue().getEntry(i3) != null){
+                    for(int i3 = orderQueue.getFront(); i3 <= orderQueue.getRear(); i3++){
+                        boolean check = rejectedOrder.insert(orderQueue.getEntry(i3));
+                        if(check == true){
+                            orderQueue.dequeue();
+                        }
+                        if(orderQueue.getEntry(i3) != null){
                             Font.print(Font.ANSI_RED,"Data cannot be empty.");
                         }
                     }
@@ -371,7 +384,7 @@ public static void QueueRejectAllConfirmation(Order O){
                 switch(choice1){
                     case 1:
                         Screen.clear();
-                        if(O.getOrderQueue().isEmpty()){
+                        if(orderQueue.isEmpty()){
                             Font.print(Font.ANSI_RED,"Queue is Empty.");
                             break;
                         }
@@ -380,7 +393,7 @@ public static void QueueRejectAllConfirmation(Order O){
                         break;
                     case 2:
                         Screen.clear();
-                        if(O.getOrderQueue().isEmpty()){
+                        if(orderQueue.isEmpty()){
                             Font.print(Font.ANSI_RED,"Queue is Empty.");
                             break;
                         }
@@ -390,7 +403,7 @@ public static void QueueRejectAllConfirmation(Order O){
                         break;
                     case 3:
                         Screen.clear();
-                        if(O.getOrderQueue().isEmpty()){
+                        if(orderQueue.isEmpty()){
                             Font.print(Font.ANSI_RED,"Queue is Empty.");
                             break;
                         }
@@ -398,7 +411,7 @@ public static void QueueRejectAllConfirmation(Order O){
                         break;
                     case 4:
                         Screen.clear();
-                        if(O.getOrderQueue().isEmpty()){
+                        if(orderQueue.isEmpty()){
                             Font.print(Font.ANSI_RED,"Queue is Empty.");
                             break;
                         }

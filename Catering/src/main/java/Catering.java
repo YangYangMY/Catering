@@ -24,11 +24,18 @@ public class Catering {
 
         //Booking Initialisation
         ListInterface<BookingInfo> bookinglist = new List<BookingInfo>(100);
-        
+
+        //Order Init
+        CircularQueueInterface<Order> orderQueue = new CircularQueue<>();
+        SortedListInterface<Order> acceptedOrder = new SortedList<>();
+        SortedListInterface<Order> rejectedOrder = new SortedList<>();
+        //Order dummy test
+        DummyScript.DummyOrderData(orderQueue);
+
+
         Scanner input = new Scanner(System.in);
 
-        // Call dummy data from dummyscript
-        Order O = dummyScript.DummyOrderData();
+        
 
         // Start Of Program
         int choice = 0, choice1 = 0;
@@ -67,7 +74,7 @@ public class Catering {
                     } while (choice1 != 4);
                     break;
                 case 2: // Admin
-                    Admin(O);
+                    Admin(orderQueue, acceptedOrder, rejectedOrder);
                     break;
                 case 3: // End of Program
                     displayEndScreen();
@@ -111,11 +118,11 @@ public class Catering {
     }
 
     // START OF ADMIN SECTION
-    public static void Admin(Order O) {
+    public static void Admin(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder) {
 
         boolean check = admin.Login();
         if (check == true) {
-            admin.Menu(O);
+            admin.Menu(orderQueue, acceptedOrder, rejectedOrder);
         }
     }
 
