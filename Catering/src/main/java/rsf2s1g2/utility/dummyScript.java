@@ -20,7 +20,8 @@ public class DummyScript {
         orderQueue.enqueue(item1);
         orderQueue.enqueue(item2);
         orderQueue.enqueue(item3);
-    
+        orderQueue.enqueue(item4);
+        orderQueue.enqueue(item5);
     }
 
 }
