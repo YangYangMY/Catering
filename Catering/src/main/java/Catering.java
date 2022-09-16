@@ -8,11 +8,13 @@ import rsf2s1g2.entity.*;
 public class Catering {
 
     public static void main(String[] args) {
+        //F&B Initialisation
         ListInterface<FoodBeverage> foodlist = new List<FoodBeverage>(10);
         ListInterface<FoodBeverage> beveragelist = new List<FoodBeverage>(10);
         ListInterface<FoodBeverage> foodselect = new List<FoodBeverage>(10);
         ListInterface<FoodBeverage> beverageselect = new List<FoodBeverage>(10);
-
+        
+        //Facility Initialisation
         ListInterface<Facility> facilitySizeList = new List<Facility>(100);
         ListInterface<Facility> facilityColorList = new List<Facility>(100);
         ListInterface<Facility> facilityOccasionList = new List<Facility>(100);
@@ -26,7 +28,6 @@ public class Catering {
 
         // Start Of Program
         int choice = 0, choice1 = 0;
-        ;
         Screen.clear();
         do {
             displayMenu();
