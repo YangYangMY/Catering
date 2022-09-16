@@ -17,8 +17,6 @@ public interface ListInterface<T> {
   public void clear();
 
   public boolean set(int givenPos, T newObj);
-
-public Object getTotalPrice();
 }
 
   

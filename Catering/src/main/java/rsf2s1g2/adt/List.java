@@ -104,10 +104,4 @@ public class List<T> implements ListInterface<T>, Serializable {
 
     return outputStr;
   }
-
-  @Override
-  public Object getTotalPrice() {
-    // TODO Auto-generated method stub
-    return null;
-  }
 }
