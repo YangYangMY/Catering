@@ -21,6 +21,10 @@ public class Catering {
         ListInterface<Facility> sizeselect = new List<Facility>(100);
         ListInterface<Facility> colorselect = new List<Facility>(100);
         ListInterface<Facility> occasionselect = new List<Facility>(100);
+
+        //Booking Initialisation
+        ListInterface<BookingInfo> bookinglist = new List<BookingInfo>(100);
+        
         Scanner input = new Scanner(System.in);
 
         // Call dummy data from dummyscript
@@ -34,7 +38,7 @@ public class Catering {
             choice = Screen.numInputValid(1, 3, "\t\t\t       Select your Choice: ","                            Only (1-3) is allowed, please try again!");
             Screen.clear();
             switch (choice) {
-                case 1:
+                case 1: // Menu (Food & Beverage, Facility, Payment)
                     do {
                         OrderMenu();
                         choice1 = Screen.numInputValid(1, 4, "\t\t\t       Select your Choice: ", "                            Only (1-4) is allowed, please try again!");
@@ -47,17 +51,25 @@ public class Catering {
                                 facilities.facilitiess(facilitySizeList, facilityColorList, facilityOccasionList, sizeselect, colorselect, occasionselect);
                                 break;
                             case 3: // call payment
+                                if(foodselect.isEmpty() || beverageselect.isEmpty() || sizeselect.isEmpty() || colorselect.isEmpty() || occasionselect.isEmpty()){
+                                    Font.print(Font.RED_BOLD_BRIGHT, "\t\tPlease select all the options before proceed to payment!");
+                                    continueMessage();
+                                } else {
+                                    //Payment Start Here
+                                    bookinglist.add(new BookingInfo(foodselect, beverageselect, sizeselect, colorselect, occasionselect));
+                                    bookinglist.get(1).getFoodselect(); // Function to call the foodselect list, same goes to the other list
+                                    displayEndScreen();
+                                }
                                 break;
-                            case 4:
-                                displayEndScreen();
+                            case 4: // Exit to Home
                                 break;
                         }
                     } while (choice1 != 4);
                     break;
-                case 2:
+                case 2: // Admin
                     Admin(O);
                     break;
-                case 3:
+                case 3: // End of Program
                     displayEndScreen();
                     break;
             }

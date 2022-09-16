@@ -56,9 +56,8 @@ public class foodandbeverage {
                                 break;
                             case 3:
                                 int confirm = Screen.numInputValid(0,1,"\t\tThe food cart will be clear. Are you sure? (1 = Yes, 0 = No): ", "\t\tInvalid input. Please try again");
-                                if (confirm == 1 && !foodselect.isEmpty()) {
+                                if (confirm == 1 && !foodselect.isEmpty())
                                     foodSelectModifications(foodselect, foodlist, action, position, quantity);
-                                }
                                 Screen.clear();
                                 break;
                             case 4:
@@ -117,10 +116,9 @@ public class foodandbeverage {
                                 }
                                 break;
                             case 3:
-                            int confirm = Screen.numInputValid(0,1,"\t\tThe beverage cart will be clear. Are you sure? (1 = Yes, 0 = No): ", "\t\tInvalid input. Please try again");
-                                if (confirm == 1 && !beverageselect.isEmpty()) {
+                                int confirm = Screen.numInputValid(0,1,"\t\tThe beverage cart will be clear. Are you sure? (1 = Yes, 0 = No): ", "\t\tInvalid input. Please try again");
+                                if (confirm == 1 && !beverageselect.isEmpty())
                                     foodSelectModifications(beverageselect, beveragelist, action, position, quantity);
-                                }
                                 Screen.clear();
                                 break;
                             case 4:
@@ -142,34 +140,26 @@ public class foodandbeverage {
                             case 5:
                                 // Exit
                                 break;
-                            default:
-                                System.out.println("Invalid choice");
-                                continueMessage();
-                                break;
                         }
                     } while (action != 5);
                     break;
                 case 3:
                     // Exit
                     break;
-                default:
-                    break;
             }
         } while (choice != 3);
-
-
     }
     
     public static void displayFAB(){
-            Font.print(Font.ANSI_YELLOW,"\t ███████╗ ██████╗  ██████╗ ██████╗      █████╗ ███╗   ██╗██████╗     ██████╗ ███████╗██╗   ██╗███████╗██████╗  █████╗  ██████╗ ███████╗ ");
-            Font.print(Font.ANSI_YELLOW,"\t ██╔════╝██╔═══██╗██╔═══██╗██╔══██╗    ██╔══██╗████╗  ██║██╔══██╗    ██╔══██╗██╔════╝██║   ██║██╔════╝██╔══██╗██╔══██╗██╔════╝ ██╔════╝ ");
-            Font.print(Font.ANSI_YELLOW,"\t █████╗  ██║   ██║██║   ██║██║  ██║    ███████║██╔██╗ ██║██║  ██║    ██████╔╝█████╗  ██║   ██║█████╗  ██████╔╝███████║██║  ███╗█████╗   ");
-            Font.print(Font.ANSI_YELLOW,"\t ██╔══╝  ██║   ██║██║   ██║██║  ██║    ██╔══██║██║╚██╗██║██║  ██║    ██╔══██╗██╔══╝  ╚██╗ ██╔╝██╔══╝  ██╔══██╗██╔══██║██║   ██║██╔══╝   ");
-            Font.print(Font.ANSI_YELLOW,"\t ██║     ╚██████╔╝╚██████╔╝██████╔╝    ██║  ██║██║ ╚████║██████╔╝    ██████╔╝███████╗ ╚████╔╝ ███████╗██║  ██║██║  ██║╚██████╔╝███████╗ ");
-            Font.print(Font.ANSI_YELLOW,"\t ╚═╝      ╚═════╝  ╚═════╝ ╚═════╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝     ╚═════╝ ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝ ");
-            System.out.println("=================================================================================================================================================");
-            System.out.println("\t\t\t\t\t\t\t\t1. Food\n\t\t\t\t\t\t\t\t2. Beverage\n\t\t\t\t\t\t\t\t3. Exit");
-            System.out.println("=================================================================================================================================================");
+        Font.print(Font.ANSI_YELLOW,"\t ███████╗ ██████╗  ██████╗ ██████╗      █████╗ ███╗   ██╗██████╗     ██████╗ ███████╗██╗   ██╗███████╗██████╗  █████╗  ██████╗ ███████╗ ");
+        Font.print(Font.ANSI_YELLOW,"\t ██╔════╝██╔═══██╗██╔═══██╗██╔══██╗    ██╔══██╗████╗  ██║██╔══██╗    ██╔══██╗██╔════╝██║   ██║██╔════╝██╔══██╗██╔══██╗██╔════╝ ██╔════╝ ");
+        Font.print(Font.ANSI_YELLOW,"\t █████╗  ██║   ██║██║   ██║██║  ██║    ███████║██╔██╗ ██║██║  ██║    ██████╔╝█████╗  ██║   ██║█████╗  ██████╔╝███████║██║  ███╗█████╗   ");
+        Font.print(Font.ANSI_YELLOW,"\t ██╔══╝  ██║   ██║██║   ██║██║  ██║    ██╔══██║██║╚██╗██║██║  ██║    ██╔══██╗██╔══╝  ╚██╗ ██╔╝██╔══╝  ██╔══██╗██╔══██║██║   ██║██╔══╝   ");
+        Font.print(Font.ANSI_YELLOW,"\t ██║     ╚██████╔╝╚██████╔╝██████╔╝    ██║  ██║██║ ╚████║██████╔╝    ██████╔╝███████╗ ╚████╔╝ ███████╗██║  ██║██║  ██║╚██████╔╝███████╗ ");
+        Font.print(Font.ANSI_YELLOW,"\t ╚═╝      ╚═════╝  ╚═════╝ ╚═════╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝     ╚═════╝ ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝ ");
+        System.out.println("=================================================================================================================================================");
+        System.out.println("\t\t\t\t\t\t\t\t1. Food\n\t\t\t\t\t\t\t\t2. Beverage\n\t\t\t\t\t\t\t\t3. Exit");
+        System.out.println("=================================================================================================================================================");
     }
 
     public static void initialize(ListInterface<FoodBeverage> foodlist, ListInterface<FoodBeverage> beveragelist){
