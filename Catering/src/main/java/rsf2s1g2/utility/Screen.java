@@ -1,6 +1,7 @@
 package rsf2s1g2.utility;
 
 import java.util.Scanner;
+import rsf2s1g2.utility.Font;
 
 /**
  *
@@ -35,19 +36,19 @@ public class Screen {
     }
   }
 
-  public static int numInputValid(int min, int max, String message) {
+  public static int numInputValid(int min, int max, String message, String invalidMessage) {
     Scanner input = new Scanner(System.in);
     int num = 0;
     try {
       System.out.print(message);
       num = input.nextInt();
       if (num < min || num > max) {
-        System.out.println("Invalid input. Please try again.");
-        num = numInputValid(min, max, message);
+        Font.print(Font.RED_BOLD_BRIGHT,invalidMessage);
+        num = numInputValid(min, max, message, invalidMessage);
       }
     } catch (Exception e) {
-      System.out.println("Invalid input. Please try again.");
-      num = numInputValid(min, max, message);
+      Font.print(Font.RED_BOLD_BRIGHT,invalidMessage);
+      num = numInputValid(min, max, message, invalidMessage);
     }
     return num;
   }

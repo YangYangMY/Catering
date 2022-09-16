@@ -17,26 +17,25 @@ public class foodandbeverage {
             // 1 = food, 2 = beverage, 3 = exit
             Screen.clear();
             displayFAB();
-            choice = input.nextInt();
+            choice = Screen.numInputValid(1,3,"\t\t\t\t\t\t\t       Select your Choice: ", "\t\t\t\t\t\t\t       Invalid input. Please try again");
             Screen.clear();
             switch (choice) {
                 case 1:
                     do {
                         displayFoodSelect(foodselect, df);
                         displayFoodOption();
-                        action = input.nextInt();
+                        action = Screen.numInputValid(1,5,"\t\tSelect your Choice: ", "\t\tInvalid input. Please try again");
                         Screen.clear();
                         // Add = 1, Remove = 2, Clear = 3, Modify = 4, Back = 5
                         switch (action) {
                             case 1:
                                 displayFoodList(foodlist);
-                                position = input.nextInt();
+                                position = Screen.numInputValid(1,5,"\tSelect Food to Add (1-5): ", "\tInvalid input. Please try again");
                                 if (foodlist.size() < position || position < 1) {
                                     System.out.println("\t\tInvalid choice!");
                                     continueMessage();
                                 } else {
-                                    System.out.print("\tHow many do you want to add?: ");
-                                    quantity = input.nextInt();
+                                    quantity = Screen.numInputValid(1,5000,"\tHow many do you want to add?: ", "\tPlease enter number within 1-5000");
                                     foodSelectModifications(foodselect, foodlist, action, position, quantity);
                                 }
                                 break;
@@ -46,8 +45,7 @@ public class foodandbeverage {
                                     continueMessage();
                                 } else {
                                     displayFoodSelect(foodselect, df);
-                                    System.out.print("\tSelect the item to be removed: ");
-                                    position = input.nextInt();
+                                    position = Screen.numInputValid(1,5,"\tSelect the item to be removed: ", "\tInvalid input. Please try again");
                                     if (foodselect.size() < position || position < 1) {
                                         System.out.println("\t\tInvalid choice!");
                                         continueMessage();
@@ -57,8 +55,7 @@ public class foodandbeverage {
                                 }
                                 break;
                             case 3:
-                                System.out.print("\t\tAll the food will be remove. Are you sure? (1 = Yes): ");
-                                int confirm = input.nextInt();
+                                int confirm = Screen.numInputValid(0,1,"\t\tThe food cart will be clear. Are you sure? (1 = Yes, 0 = No): ", "\t\tInvalid input. Please try again");
                                 if (confirm == 1 && !foodselect.isEmpty()) {
                                     foodSelectModifications(foodselect, foodlist, action, position, quantity);
                                 }
@@ -70,23 +67,17 @@ public class foodandbeverage {
                                     continueMessage();
                                 } else {
                                     displayFoodSelect(foodselect, df);
-                                    System.out.print("\tSelect the item to be modified: ");
-                                    position = input.nextInt();
+                                    position = Screen.numInputValid(1,5,"\tSelect the item to be modified: ", "\tInvalid input. Please try again");
                                     if (foodselect.size() < position || position < 1) {
                                         System.out.println("\t\tInvalid choice!");
                                         continueMessage();
                                     } else {
-                                        System.out.print("\tEnter the number: ");
-                                        quantity = input.nextInt();
+                                        quantity = Screen.numInputValid(1,5,"\tEnter the number: ", "\tInvalid input. Please try again");
                                         foodSelectModifications(foodselect, foodlist, action, position, quantity);
                                     }
                                 }
                                 break;
                             case 5:
-                                break;
-                            default:
-                                System.out.println("Invalid choice");
-                                continueMessage();
                                 break;
                         }
                     } while (action != 5);
@@ -95,19 +86,18 @@ public class foodandbeverage {
                     do {
                         displayBeverageSelect(beverageselect, df);
                         displayBeverageOption();
-                        action = input.nextInt();
+                        action = Screen.numInputValid(1,5,"\t\tSelect your Choice: ", "\t\tInvalid input. Please try again");
                         Screen.clear();
                         // Add = 1, Remove = 2, Clear = 3, Modify = 4, Back = 5
                         switch (action) {
                             case 1:
                                 displayBeverageList(beveragelist);
-                                position = input.nextInt();
+                                position = Screen.numInputValid(1,5,"\tSelect Beverage to Add (1-5): ", "\tInvalid input. Please try again");
                                 if (beveragelist.size() < position || position < 1) {
                                     System.out.println("\t\tInvalid choice!");
                                     continueMessage();
                                 } else {
-                                    System.out.print("\tHow many do you want to add?: ");
-                                    quantity = input.nextInt();
+                                    quantity = Screen.numInputValid(1,5000,"\tHow many do you want to add?: ", "\tPlease enter number within 1-5000");
                                     foodSelectModifications(beverageselect, beveragelist, action, position, quantity);
                                 }
                                 break;
@@ -117,8 +107,7 @@ public class foodandbeverage {
                                     continueMessage();
                                 } else {
                                     displayBeverageSelect(beverageselect, df);
-                                    System.out.print("\tSelect the item to be removed: ");
-                                    position = input.nextInt();
+                                    position = Screen.numInputValid(1,5,"\tSelect the item to be removed: ", "\tInvalid input. Please try again");
                                     if (beverageselect.size() < position || position < 1) {
                                         System.out.println("\t\tInvalid choice!");
                                         continueMessage();
@@ -128,8 +117,7 @@ public class foodandbeverage {
                                 }
                                 break;
                             case 3:
-                                System.out.print("\t\tAll the beverage will be remove. Are you sure? (1 = Yes): ");
-                                int confirm = input.nextInt();
+                            int confirm = Screen.numInputValid(0,1,"\t\tThe beverage cart will be clear. Are you sure? (1 = Yes, 0 = No): ", "\t\tInvalid input. Please try again");
                                 if (confirm == 1 && !beverageselect.isEmpty()) {
                                     foodSelectModifications(beverageselect, beveragelist, action, position, quantity);
                                 }
@@ -141,14 +129,12 @@ public class foodandbeverage {
                                     continueMessage();
                                 } else {
                                     displayFoodSelect(beverageselect, df);
-                                    System.out.print("\tSelect the item to be modified: ");
-                                    position = input.nextInt();
+                                    position = Screen.numInputValid(1,5,"\tSelect the item to be modified: ", "\tInvalid input. Please try again");
                                     if (beverageselect.size() < position || position < 1) {
                                         System.out.println("\t\tInvalid choice!");
                                         continueMessage();
                                     } else {
-                                        System.out.print("\tEnter the number: ");
-                                        quantity = input.nextInt();
+                                        quantity = Screen.numInputValid(1,5,"\tEnter the number: ", "\tInvalid input. Please try again");
                                         foodSelectModifications(beverageselect, beveragelist, action, position, quantity);
                                     }
                                 }
@@ -184,7 +170,6 @@ public class foodandbeverage {
             System.out.println("=================================================================================================================================================");
             System.out.println("\t\t\t\t\t\t\t\t1. Food\n\t\t\t\t\t\t\t\t2. Beverage\n\t\t\t\t\t\t\t\t3. Exit");
             System.out.println("=================================================================================================================================================");
-            System.out.print("\t\t\t\t\t\t\t       Select your Choice: ");
     }
 
     public static void initialize(ListInterface<FoodBeverage> foodlist, ListInterface<FoodBeverage> beveragelist){
@@ -209,7 +194,6 @@ public class foodandbeverage {
         System.out.println("================================================");
         System.out.print(foodlist.toString());
         System.out.println("================================================");
-        System.out.print("\tSelect Food to Add (1-5): ");
     }
 
     public static void displayBeverageList(ListInterface<FoodBeverage> beveragelist){
@@ -219,7 +203,6 @@ public class foodandbeverage {
         System.out.println("================================================");
         System.out.print(beveragelist.toString());
         System.out.println("================================================");
-        System.out.print("\tSelect Beverage to Add (1-5): ");
     }
 
     public static void displayFoodSelect(ListInterface<FoodBeverage> foodselect, DecimalFormat df){
@@ -261,13 +244,11 @@ public class foodandbeverage {
     public static void displayFoodOption(){
         System.out.println("\t\t1. Add Food\n\t\t2. Remove Food\n\t\t3. Clear All Food\n\t\t4. Modify Quantity\n\t\t5. Exit");
         System.out.println("===================================================================================");
-        System.out.print("\t\tSelect your Choice: ");
     }
 
     public static void displayBeverageOption(){
         System.out.println("\t\t\t1. Add Beverage\n\t\t\t2. Remove Beverage\n\t\t\t3. Clear All Beverage\n\t\t\t4. Modify Quantity\n\t\t\t5. Exit");
         System.out.println("===================================================================================");
-        System.out.print("\t\t\tSelect your Choice: ");
     }
 
     public static void foodSelectModifications(ListInterface<FoodBeverage> fbselect, ListInterface<FoodBeverage> fblist, int action, int posOfObj, int fbNum){
@@ -349,9 +330,8 @@ public class foodandbeverage {
 
     public static void continueMessage(){
         Scanner input = new Scanner(System.in);
-        String enterToContinue;
         System.out.print("\nEnter to continue...");
-        enterToContinue = input.nextLine();
+        input.nextLine();
         Screen.clear();
     }
 }
