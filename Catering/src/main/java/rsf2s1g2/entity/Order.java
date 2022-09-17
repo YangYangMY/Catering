@@ -66,4 +66,8 @@ public class Order implements Comparable<Order> {
     public String getDate() {
         return date;
     }
+
+    public static int getNextOrderID() {
+        return nextOrderID;
+    }
 }
