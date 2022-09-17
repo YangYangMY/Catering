@@ -118,6 +118,26 @@ public class admin {
         Screen.clear();
         Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
         System.out.println("==================================================================================================");
+        for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
+            if((orderQueue.getEntry(i).getOrderId()) == orderid){
+                orderQueue.getEntry(i).getBookingInfo().getFoodselect();
+            }
+        } 
+        for (int i = 0; i < acceptedOrder.getCount(); i++){
+            if(acceptedOrder.getEntry(i).getOrderId() == orderid){
+                acceptedOrder.getEntry(i).getBookingInfo().getFoodselect();
+            }
+        }
+        for(int i = 0; i < rejectedOrder.getCount(); i++){
+            if(rejectedOrder.getEntry(i).getOrderId() == orderid){
+                rejectedOrder.getEntry(i).getBookingInfo().getFoodselect();
+            }
+        }
+        System.out.println("-------------------------------------------------------------------------------------------------------");
+        System.out.println("\t\t\t\t[1] Food Summary\n\t\t\t\t[2] Beverage Summary\n\t\t\t\t[3] Facility Summary\n\t\t\t\t[4] Back");
+        System.out.println("=======================================================================================================");
+        System.out.print("\n\t\t\t       Select your Choice: ");
+        input2.next();
     }
 }
 
