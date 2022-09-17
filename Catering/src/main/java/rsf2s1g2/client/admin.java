@@ -17,7 +17,7 @@ import rsf2s1g2.entity.*;
 public class admin {
     
 
-    public static boolean Login(){
+    public static boolean login(){
         boolean check = true;
         Scanner input1 = new Scanner(System.in);
         String username = "admin";
@@ -70,6 +70,57 @@ public class admin {
         return check;
     }
 
+    public static boolean orderidCheck(int orderid){
+        Screen.clear();
+        boolean check = false;
+
+        int currentOrderId = Order.getNextOrderID();
+        if(orderid < (currentOrderId) && orderid >= 2001){
+            check = true;
+        }
+        else{
+            Screen.clear();
+            Font.print(Font.ANSI_RED, "                            Order ID is not found, please try again!\n");
+        }
+
+        return check;
+    }
+
+    public static void orderDetails(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder){
+        Scanner input2 = new Scanner(System.in);
+        Screen.clear();
+        int orderid = 0;
+        boolean check = false;
+
+        do {
+            try {
+                orderid = 0;
+                Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
+                System.out.println("==================================================================================================");
+                System.out.print("\n\t\t\t       Enter Order ID (Type 0 to exit): ");
+                orderid = input2.nextInt();
+                check = orderidCheck(orderid);
+                if(orderid == 0){
+                    check = true;
+                }
+
+            } catch (Exception e) {
+                Screen.clear();
+                Font.print(Font.ANSI_RED, "                            Only (1-5) is allowed, please try again!\n");
+                input2.next();
+                }
+    }while(check != true);
+
+    if (orderid == 0){
+        return;
+    }
+    else{
+        Screen.clear();
+        Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
+        System.out.println("==================================================================================================");
+    }
+}
+
     public static void Menu(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder){
         Scanner input1 = new Scanner(System.in);
         int choice1 = 0;
@@ -79,43 +130,47 @@ public class admin {
                 choice1 = 0;
                 displayAdminMenu();
                 choice1 = input1.nextInt();
-                if (choice1 < 1 || choice1 > 4) {
+                if (choice1 < 1 || choice1 > 5) {
                     Screen.clear();
-                    Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                    Font.print(Font.ANSI_RED, "                            Only (1-5) is allowed, please try again!\n");
                 }
 
             } catch (Exception e) {
                 Screen.clear();
-                Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                Font.print(Font.ANSI_RED, "                            Only (1-5) is allowed, please try again!\n");
                 input1.next();
                 }
 
                 switch(choice1){
                     case 1:
                         Screen.clear();
-                        QueueMenu(orderQueue, acceptedOrder, rejectedOrder);
+                        queueMenu(orderQueue, acceptedOrder, rejectedOrder);
                         break;
                     case 2:
                         Screen.clear();
-                        AcceptedListMenu(acceptedOrder);
+                        acceptedListMenu(acceptedOrder);
                         break;
                     case 3:
                         Screen.clear();
-                        RejectedListMenu(rejectedOrder);
+                        rejectedListMenu(rejectedOrder);
                         break;
                     case 4:
+                        Screen.clear();
+                        orderDetails(orderQueue, acceptedOrder, rejectedOrder);
+                        break;
+                    case 5:
                         Screen.clear();
                         break;
                     }
 
-            }while(choice1 != 4);
+            }while(choice1 != 5);
             Screen.clear();
     }
 
     public static void displayAdminMenu(){
         Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tAdmin Panel");
         System.out.println("==================================================================================================");
-        System.out.println("\t\t\t\t[1] Order Evaluation\n\t\t\t\t[2] Accepted Orders\n\t\t\t\t[3] Rejected Orders\n\t\t\t\t[4] Back");
+        System.out.println("\t\t\t\t[1] Order Evaluation\n\t\t\t\t[2] Accepted Orders\n\t\t\t\t[3] Rejected Orders\n\t\t\t\t[4] Order Details\n\t\t\t\t[5] Back");
         System.out.println("==================================================================================================");
         System.out.print("\n\t\t\t       Select your Choice: ");
     }  
@@ -358,7 +413,7 @@ public static void QueueRejectAllConfirmation(CircularQueueInterface<Order> orde
     }while(selection != 2 && selection != 1);
 }
 
-    public static void QueueMenu(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder){
+    public static void queueMenu(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder){
         int i = 0, i4 = 0;
         Scanner input1 = new Scanner(System.in);
         int choice1 = 0;
@@ -586,7 +641,7 @@ public static void QueueRejectAllConfirmation(CircularQueueInterface<Order> orde
     return selection;
    }
 
-    public static void AcceptedListMenu(SortedListInterface<Order> acceptedOrder){
+    public static void acceptedListMenu(SortedListInterface<Order> acceptedOrder){
         int i = 0;
         Scanner input1 = new Scanner(System.in);
         int choice1 = 0;
@@ -786,7 +841,7 @@ public static void QueueRejectAllConfirmation(CircularQueueInterface<Order> orde
 
 
 
-    public static void RejectedListMenu(SortedListInterface<Order> rejectedOrder){
+    public static void rejectedListMenu(SortedListInterface<Order> rejectedOrder){
         int i = 0;
         Scanner input1 = new Scanner(System.in);
         int choice1 = 0;
