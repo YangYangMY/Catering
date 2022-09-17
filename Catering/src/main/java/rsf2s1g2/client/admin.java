@@ -70,27 +70,322 @@ public class admin {
         return check;
     }
 
-    public static boolean orderidCheck(int orderid){
+    public static int orderidCheck(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder, int orderid){
         Screen.clear();
-        boolean check = false;
+        int check = 0;
 
         int currentOrderId = Order.getNextOrderID();
         if(orderid < (currentOrderId) && orderid >= 2001){
-            check = true;
+            for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
+                if((orderQueue.getEntry(i).getOrderId()) == orderid){
+                    check = 1;
+                }
+            } 
+            for (int i = 0; i < acceptedOrder.getCount(); i++){
+                if(acceptedOrder.getEntry(i).getOrderId() == orderid){
+                    check = 2;
+                }
+            }
+            for(int i = 0; i < rejectedOrder.getCount(); i++){
+                if(rejectedOrder.getEntry(i).getOrderId() == orderid){
+                    check = 3;
+                }
+            }
         }
         else{
             Screen.clear();
             Font.print(Font.ANSI_RED, "                            Order ID is not found, please try again!\n");
+            check = 0;
         }
 
         return check;
     }
 
+
+public static void displayOrderMenu(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder, int orderid){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
+    System.out.println("==================================================================================================");
+    Font.print(Font.ANSI_CYAN, "Order Id : " + orderid);
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+}
+
+public static void displayCustomer(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder, int orderid, int check){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
+    System.out.println("==================================================================================================");
+    Font.print(Font.ANSI_CYAN, "Order Id : " + orderid);
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    
+    if (check == 1){
+        for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
+            if((orderQueue.getEntry(i).getOrderId()) == orderid){
+                orderQueue.getEntry(i).getcustomer();
+            }
+        } 
+    }
+    else if (check == 2){
+        for (int i = 0; i < acceptedOrder.getCount(); i++){
+            if(acceptedOrder.getEntry(i).getOrderId() == orderid){
+                acceptedOrder.getEntry(i).getcustomer();
+            }
+        }
+    }
+    else{
+        for(int i = 0; i < rejectedOrder.getCount(); i++){
+            if(rejectedOrder.getEntry(i).getOrderId() == orderid){
+                rejectedOrder.getEntry(i).getcustomer();
+            }
+        }
+    }
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+}
+
+
+public static void displayFood(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder, int orderid, int check){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
+    System.out.println("==================================================================================================");
+    Font.print(Font.ANSI_CYAN, "Order Id : " + orderid);
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    
+    if (check == 1){
+        for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
+            if((orderQueue.getEntry(i).getOrderId()) == orderid){
+                orderQueue.getEntry(i).getBookingInfo().getFoodselect();
+            }
+        } 
+    }
+    else if (check == 2){
+        for (int i = 0; i < acceptedOrder.getCount(); i++){
+            if(acceptedOrder.getEntry(i).getOrderId() == orderid){
+                acceptedOrder.getEntry(i).getBookingInfo().getFoodselect();
+            }
+        }
+    }
+    else{
+        for(int i = 0; i < rejectedOrder.getCount(); i++){
+            if(rejectedOrder.getEntry(i).getOrderId() == orderid){
+                rejectedOrder.getEntry(i).getBookingInfo().getFoodselect();
+            }
+        }
+    }
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+}
+
+public static void displayBeverage(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder, int orderid, int check){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
+    System.out.println("==================================================================================================");
+    Font.print(Font.ANSI_CYAN, "Order Id : " + orderid);
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    
+    if (check == 1){
+        for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
+            if((orderQueue.getEntry(i).getOrderId()) == orderid){
+                orderQueue.getEntry(i).getBookingInfo().getBeverageselect();
+            }
+        } 
+    }
+    else if (check == 2){
+        for (int i = 0; i < acceptedOrder.getCount(); i++){
+            if(acceptedOrder.getEntry(i).getOrderId() == orderid){
+                acceptedOrder.getEntry(i).getBookingInfo().getBeverageselect();
+            }
+        }
+    }
+    else{
+        for(int i = 0; i < rejectedOrder.getCount(); i++){
+            if(rejectedOrder.getEntry(i).getOrderId() == orderid){
+                rejectedOrder.getEntry(i).getBookingInfo().getBeverageselect();
+            }
+        }
+    }
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+}
+
+public static void displayFBaccess(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder, int orderid, int check){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
+    System.out.println("==================================================================================================");
+    Font.print(Font.ANSI_CYAN, "Order Id : " + orderid);
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    
+    if (check == 1){
+        for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
+            if((orderQueue.getEntry(i).getOrderId()) == orderid){
+                orderQueue.getEntry(i).getBookingInfo().getFbAccessoriesSelect();
+            }
+        } 
+    }
+    else if (check == 2){
+        for (int i = 0; i < acceptedOrder.getCount(); i++){
+            if(acceptedOrder.getEntry(i).getOrderId() == orderid){
+                acceptedOrder.getEntry(i).getBookingInfo().getFbAccessoriesSelect();
+            }
+        }
+    }
+    else{
+        for(int i = 0; i < rejectedOrder.getCount(); i++){
+            if(rejectedOrder.getEntry(i).getOrderId() == orderid){
+                rejectedOrder.getEntry(i).getBookingInfo().getFbAccessoriesSelect();
+            }
+        }
+    }
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+}
+
+public static void displayFacilitySize(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder, int orderid, int check){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
+    System.out.println("==================================================================================================");
+    Font.print(Font.ANSI_CYAN, "Order Id : " + orderid);
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    
+    if (check == 1){
+        for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
+            if((orderQueue.getEntry(i).getOrderId()) == orderid){
+                orderQueue.getEntry(i).getBookingInfo().getSizeselect();
+            }
+        } 
+    }
+    else if (check == 2){
+        for (int i = 0; i < acceptedOrder.getCount(); i++){
+            if(acceptedOrder.getEntry(i).getOrderId() == orderid){
+                acceptedOrder.getEntry(i).getBookingInfo().getSizeselect();
+            }
+        }
+    }
+    else{
+        for(int i = 0; i < rejectedOrder.getCount(); i++){
+            if(rejectedOrder.getEntry(i).getOrderId() == orderid){
+                rejectedOrder.getEntry(i).getBookingInfo().getSizeselect();
+            }
+        }
+    }
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+}
+
+public static void displayFacilityColor(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder, int orderid, int check){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
+    System.out.println("==================================================================================================");
+    Font.print(Font.ANSI_CYAN, "Order Id : " + orderid);
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    
+    if (check == 1){
+        for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
+            if((orderQueue.getEntry(i).getOrderId()) == orderid){
+                orderQueue.getEntry(i).getBookingInfo().getColorselect();
+            }
+        } 
+    }
+    else if (check == 2){
+        for (int i = 0; i < acceptedOrder.getCount(); i++){
+            if(acceptedOrder.getEntry(i).getOrderId() == orderid){
+                acceptedOrder.getEntry(i).getBookingInfo().getColorselect();
+            }
+        }
+    }
+    else{
+        for(int i = 0; i < rejectedOrder.getCount(); i++){
+            if(rejectedOrder.getEntry(i).getOrderId() == orderid){
+                rejectedOrder.getEntry(i).getBookingInfo().getColorselect();
+            }
+        }
+    }
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+}
+
+public static void displayFacilityOccassion(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder, int orderid, int check){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
+    System.out.println("==================================================================================================");
+    Font.print(Font.ANSI_CYAN, "Order Id : " + orderid);
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    
+    if (check == 1){
+        for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
+            if((orderQueue.getEntry(i).getOrderId()) == orderid){
+                orderQueue.getEntry(i).getBookingInfo().getOccasionselect();
+            }
+        } 
+    }
+    else if (check == 2){
+        for (int i = 0; i < acceptedOrder.getCount(); i++){
+            if(acceptedOrder.getEntry(i).getOrderId() == orderid){
+                acceptedOrder.getEntry(i).getBookingInfo().getOccasionselect();
+            }
+        }
+    }
+    else{
+        for(int i = 0; i < rejectedOrder.getCount(); i++){
+            if(rejectedOrder.getEntry(i).getOrderId() == orderid){
+                rejectedOrder.getEntry(i).getBookingInfo().getOccasionselect();
+            }
+        }
+    }
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+}
+
+public static void displayFacilityAccessories(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder, int orderid, int check){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
+    System.out.println("==================================================================================================");
+    Font.print(Font.ANSI_CYAN, "Order Id : " + orderid);
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    
+    if (check == 1){
+        for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
+            if((orderQueue.getEntry(i).getOrderId()) == orderid){
+                orderQueue.getEntry(i).getBookingInfo().getFacilityAccessoriesSelect();
+            }
+        } 
+    }
+    else if (check == 2){
+        for (int i = 0; i < acceptedOrder.getCount(); i++){
+            if(acceptedOrder.getEntry(i).getOrderId() == orderid){
+                acceptedOrder.getEntry(i).getBookingInfo().getFacilityAccessoriesSelect();
+            }
+        }
+    }
+    else{
+        for(int i = 0; i < rejectedOrder.getCount(); i++){
+            if(rejectedOrder.getEntry(i).getOrderId() == orderid){
+                rejectedOrder.getEntry(i).getBookingInfo().getFacilityAccessoriesSelect();
+            }
+        }
+    }
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+}
+
+
     public static void orderDetails(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder){
         Scanner input2 = new Scanner(System.in);
         Screen.clear();
         int orderid = 0;
-        boolean check = false;
+        int check = 0;
+        boolean check1 = false;
+        int selection = 0;
 
         do {
             try {
@@ -99,47 +394,88 @@ public class admin {
                 System.out.println("==================================================================================================");
                 System.out.print("\n\t\t\t       Enter Order ID (Type 0 to exit): ");
                 orderid = input2.nextInt();
-                check = orderidCheck(orderid);
-                if(orderid == 0){
-                    check = true;
+                check = orderidCheck(orderQueue, rejectedOrder, rejectedOrder, orderid);
+                if(orderid == 0 || check == 1 || check == 2 || check == 3){
+                    check1 = true;
+                }
+                else{
+                    check1 = false;
                 }
 
             } catch (Exception e) {
                 Screen.clear();
-                Font.print(Font.ANSI_RED, "                            Only (1-5) is allowed, please try again!\n");
+                Font.print(Font.ANSI_RED, "                            Only numbers allowed, please try again!\n");
                 input2.next();
                 }
-    }while(check != true);
+    }while(check1 != true);
 
     if (orderid == 0){
         return;
     }
     else{
         Screen.clear();
-        Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
-        System.out.println("==================================================================================================");
-        for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
-            if((orderQueue.getEntry(i).getOrderId()) == orderid){
-                orderQueue.getEntry(i).getBookingInfo().getFoodselect();
+        do {
+            try {
+                selection = 0;
+                
+                displayOrderMenu(orderQueue, acceptedOrder, rejectedOrder, orderid);;
+                selection = input2.nextInt();
+                if (selection < 1 || selection > 9) {
+                    Screen.clear();
+                    Font.print(Font.ANSI_RED, "                            Only (1-9) is allowed, please try again!\n");
+                }
+
+            } catch (Exception e) {
+                Screen.clear();
+                Font.print(Font.ANSI_RED, "                            Only (1-9) is allowed, please try again!\n");
+                input2.next();
+                }
+        
+
+        switch(selection){
+            case 1:
+                Screen.clear();
+                
+                break;
+            case 2:
+                Screen.clear();
+                displayFood(orderQueue, acceptedOrder, rejectedOrder, orderid, check);
+                break;
+            case 3:
+                Screen.clear();
+                displayBeverage(orderQueue, acceptedOrder, rejectedOrder, orderid, check);
+                break;
+            case 4:
+                Screen.clear();
+                displayFBaccess(orderQueue, acceptedOrder, rejectedOrder, orderid, check);
+                break;
+            case 5:
+                Screen.clear();
+                displayFacilitySize(orderQueue, acceptedOrder, rejectedOrder, orderid, check);
+                break;
+            case 6:
+                Screen.clear();
+                displayFacilityColor(orderQueue, acceptedOrder, rejectedOrder, orderid, check);
+                break;
+            case 7:
+                Screen.clear();
+                displayFacilityOccassion(orderQueue, acceptedOrder, rejectedOrder, orderid, check);
+                break;
+            case 8:
+                Screen.clear();
+                displayFacilityAccessories(orderQueue, acceptedOrder, rejectedOrder, orderid, check);
+                break;
+            case 9:
+                Screen.clear();
+                break;
             }
-        } 
-        for (int i = 0; i < acceptedOrder.getCount(); i++){
-            if(acceptedOrder.getEntry(i).getOrderId() == orderid){
-                acceptedOrder.getEntry(i).getBookingInfo().getFoodselect();
-            }
-        }
-        for(int i = 0; i < rejectedOrder.getCount(); i++){
-            if(rejectedOrder.getEntry(i).getOrderId() == orderid){
-                rejectedOrder.getEntry(i).getBookingInfo().getFoodselect();
-            }
-        }
-        System.out.println("-------------------------------------------------------------------------------------------------------");
-        System.out.println("\t\t\t\t[1] Food Summary\n\t\t\t\t[2] Beverage Summary\n\t\t\t\t[3] Facility Summary\n\t\t\t\t[4] Back");
-        System.out.println("=======================================================================================================");
-        System.out.print("\n\t\t\t       Select your Choice: ");
-        input2.next();
-    }
+
+
+    }while(selection != 9);
+    Screen.clear();
+
 }
+    }
 
     public static void Menu(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder){
         Scanner input1 = new Scanner(System.in);
