@@ -75,6 +75,8 @@ public class Order implements Comparable<Order> {
         return orderId;
     }
 
-  
+    public Customer getcustomer(){
+        return customer;
+    }
     
 }
