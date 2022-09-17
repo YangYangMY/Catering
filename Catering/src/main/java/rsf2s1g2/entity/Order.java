@@ -18,8 +18,6 @@ public class Order implements Comparable<Order> {
     private double orderAmount;
     private BookingInfo bookingInfo;
     private Customer customer;
-    private Facility facility;
-    private FoodBeverage foodbeverage;
 
     public Order(String customerName, String date, String phoneNum, double orderAmount){
         this.orderId = nextOrderID++;
@@ -29,16 +27,14 @@ public class Order implements Comparable<Order> {
         this.orderAmount = orderAmount;
     }
     
-    public Order(BookingInfo bookinginfo, Customer customer, Facility facility, FoodBeverage foodbeverage){
+    public Order(String date, BookingInfo bookinginfo, Customer customer){
         this.orderId = nextOrderID++;
         this.customerName = customer.getName();
         this.phoneNum = customer.getPhoneNum();
-        this.date = null;
+        this.date = date;
         this.orderAmount = 0;
         this.bookingInfo = bookinginfo;
         this.customer = customer;
-        this.facility = facility;
-        this.foodbeverage = foodbeverage;
     }
     
 
@@ -70,4 +66,15 @@ public class Order implements Comparable<Order> {
     public static int getNextOrderID() {
         return nextOrderID;
     }
+
+    public BookingInfo getBookingInfo() {
+        return bookingInfo;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+  
+    
 }
