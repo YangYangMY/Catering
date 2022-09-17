@@ -12,17 +12,8 @@ public class FoodBeverage {
     private static double foodFinalTotal;
     private static double beverageFinalTotal;
     private static int num = 0;
-    private String extraRemark;
     DecimalFormat df = new DecimalFormat("0.00");
-
-    public String getExtraRemark() {
-        return extraRemark;
-    }
-     
-    public void setExtraRemark(String extraRemark) {
-        this.extraRemark = extraRemark;
-    }
-
+    
     public FoodBeverage(String fbName, double fbPrice) {
         this.fbName = fbName;
         this.fbPrice = fbPrice;

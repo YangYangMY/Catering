@@ -65,6 +65,16 @@ public final class Bag<T> implements BagInterface<T> {
         return result;
     }
 
+    public T get(int position){
+        T result = null;
+
+        if ((position >= 1) && (position <= numberOfEntries)) {
+          result = bag[position - 1];
+        }
+
+        return result;
+    }
+
     // Sees whether this bag is full.
     private boolean isArrayFull() {
         return numberOfEntries >= bag.length;

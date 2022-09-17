@@ -3,7 +3,7 @@ package rsf2s1g2.utility;
 import rsf2s1g2.adt.*;
 import rsf2s1g2.entity.*;
 
-public class DummyScript {
+public class dummyScript {
 
     public static void DummyOrderData(CircularQueueInterface<Order> orderQueue){
         Order item1 =new Order("Lee Wee Yan", "2021-7-12", "0177255766", 15.12
