@@ -122,7 +122,7 @@ public class Catering {
     // START OF ADMIN SECTION
     public static void Admin(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder) {
 
-        boolean check = admin.Login();
+        boolean check = admin.login();
         if (check == true) {
             admin.Menu(orderQueue, acceptedOrder, rejectedOrder);
         }
