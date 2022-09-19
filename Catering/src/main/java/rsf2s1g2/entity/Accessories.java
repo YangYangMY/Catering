@@ -1,6 +1,5 @@
 package rsf2s1g2.entity;
 
-import rsf2s1g2.utility.*;
 
 public class Accessories {
     private String accName;
