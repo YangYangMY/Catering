@@ -17,7 +17,7 @@ public class payment {
 
         switch (displayCart(bookinglist)) {
             case 1:
-                switch (getPymt()) {
+                switch (getPymt(bookinglist)) {
                     case 1:
                         paymentMethod = "Online Bank Transfer";
                         break;
@@ -73,7 +73,7 @@ public class payment {
         return choice;
     }
 
-    public static int getPymt() {
+    public static int getPymt(ListInterface<BookingInfo> bookinglist) {
         int pymtMethod;
         String bankAccountNum, cardNum, phoneNum, pinCode;
 
@@ -133,12 +133,13 @@ public class payment {
                         System.out.println("\t Please wait a moment. A PIN code has been sent to your device.");
                         Screen.pause(3);
                         do {
-                            System.out.print("\n\t\t    Please insert the PIN code: ");
+                            System.out.print("\n\t\t    Please insert the PIN code (5 digits): ");
                             pinCode = input.nextLine();
 
                             if (pinCode.length() != 5) {
                                 System.out.println("\n\t\t Please insert the 5 digits PIN code!");
                             } else {
+                                System.out.println("\n\t\t\t  The payment is processing...");
                                 Screen.pause(2);
                                 System.out.println("\n\t\t\t      Payment Successful!\n");
                                 foodandbeverage.continueMessage();
@@ -150,7 +151,7 @@ public class payment {
                 break;
 
             case 4:
-                Screen.clear();
+                displayCart(bookinglist);
                 break;
         }
 
@@ -169,6 +170,7 @@ public class payment {
             if (otpNum.length() != 6) {
                 System.out.println("\n\t\t  Invalid Input! Please try again.");
             } else {
+                System.out.println("\n\t\t\t  The payment is processing...");
                 Screen.pause(2);
                 System.out.println("\n\t\t\t      Payment Successful!\n");
                 foodandbeverage.continueMessage();

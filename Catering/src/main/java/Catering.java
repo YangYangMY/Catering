@@ -68,8 +68,7 @@ public class Catering {
                                 } else {
                                     //Payment Start Here
                                     bookinglist.add(new BookingInfo(foodselect, beverageselect, sizeselect, colorselect, occasionselect, fbAccessoriesSelect, facilityAccessoriesSelect));
-                                    bookinglist.get(1).getFoodselect(); // Function to call the foodselect list, same goes to the other list
-                                    displayEndScreen();
+                                    payment.pymt(bookinglist, foodselect, beverageselect, sizeselect, colorselect, occasionselect);
                                 }
                                 break;
                             case 4: // Exit to Home Menu
