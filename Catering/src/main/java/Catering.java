@@ -29,13 +29,15 @@ public class Catering {
         //Booking Initialisation
         ListInterface<BookingInfo> bookinglist = new List<BookingInfo>(100);
 
-
+        
         //Order Init
         CircularQueueInterface<Order> orderQueue = new CircularQueue<>();
         SortedListInterface<Order> acceptedOrder = new SortedList<>();
         SortedListInterface<Order> rejectedOrder = new SortedList<>();
         //Order dummy test
         dummyScript.DummyOrderData(orderQueue);
+
+        // orderQueue.enqueue(Order("2001-10-2", bookinglist, customer));
 
         Scanner input = new Scanner(System.in);
 
