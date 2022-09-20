@@ -9,11 +9,12 @@ import rsf2s1g2.entity.*;
 
 public class facilities {
     public static void facilitiess(ListInterface<Facility> facilitySizeList, ListInterface<Facility> facilityColorList, ListInterface<Facility> facilityOccasionList,
-                                   ListInterface<Facility> sizeselect, ListInterface<Facility> colorselect, ListInterface<Facility> occasionselect) {
+                                   ListInterface<Facility> sizeselect, ListInterface<Facility> colorselect, ListInterface<Facility> occasionselect, ListInterface<Accessories> facilityAccessoriesList, BagInterface<Accessories> facilityAccessoriesSelect) {
         DecimalFormat df = new DecimalFormat("0.00");
         Scanner input = new Scanner(System.in);
         int choice, action, position = 1, quantity = 0;
-        initialize(facilitySizeList, facilityColorList, facilityOccasionList);
+        final int num4Bag = 10;
+        initialize(facilitySizeList, facilityColorList, facilityOccasionList, facilityAccessoriesList);
 
         do {
             Screen.clear();
@@ -229,18 +230,51 @@ public class facilities {
                                 System.out.println("\t\tInvalid choice!");
                                 cont();
                                 break;
-
                         }
                     } while (action != 5);
                     break;
                 case 4:
+                    // Accessories
+                    do{
+                        displayFacilitiesAccessoriesSelect(facilityAccessoriesSelect);
+                        Accessories.displayAccesorries();
+                        action = Screen.numInputValid(1,3,"\t\t\tSelect your Choice: ", "\t\t\tInvalid input. Please try again");
+                        Screen.clear();
+                        switch(action){
+                            case 1: //add
+                                displayAccesorriesList(facilityAccessoriesList);
+                                position = Screen.numInputValid(1,4,"  Select Accesorries to Add (1-4): ", " Invalid input. Please try again");
+                                if (facilityAccessoriesList.size() < position || position < 1) {
+                                    Font.print(Font.RED_BOLD_BRIGHT,"\t\tInvalid choice!");
+                                    cont();
+                                } else {
+                                    facilityAccessoriesSelect.add(new Accessories(facilityAccessoriesList.get(position).getAccName(), num4Bag));
+                                    System.out.println("\tAdd Successful");
+                                    cont();
+                                }
+                                break;
+                            case 2: //clear
+                                int confirm = Screen.numInputValid(0,1,"\t\tThe accessories cart will be clear. Are you sure? (1 = Yes, 0 = No): ", "\t\tInvalid input. Please try again");
+                                if (confirm == 1 && !facilityAccessoriesSelect.isEmpty()){
+                                    facilityAccessoriesSelect.clear();
+                                    System.out.println("\t\tClear Successful");
+                                    cont();
+                                }
+                                Screen.clear();
+                                break; 
+                            case 3: 
+                                //Exit
+                                break;
+                        }
+                    } while(action != 3);
+                    break;
+                case 5:
                     break;
                 default:
                     break;
             }
-        } while (choice != 4);
+        } while (choice != 5);
     }
-
 
     public static void displayFacilities() {
         Font.print(Font.ANSI_YELLOW, "\t\t\t\t\t ███████╗ █████╗  ██████╗██╗██╗     ██╗████████╗██╗███████╗███████╗ ");
@@ -250,12 +284,12 @@ public class facilities {
         Font.print(Font.ANSI_YELLOW, "\t\t\t\t\t ██║     ██║  ██║╚██████╗██║███████╗██║   ██║   ██║███████╗███████║ ");
         Font.print(Font.ANSI_YELLOW, "\t\t\t\t\t ╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝╚══════╝╚═╝   ╚═╝   ╚═╝╚══════╝╚══════╝ ");
         System.out.println("=================================================================================================================================================");
-        System.out.println("\t\t\t\t\t\t\t\t1. Size\n\t\t\t\t\t\t\t\t2. Color\n\t\t\t\t\t\t\t\t3. Occasion\n\t\t\t\t\t\t\t\t4. Exit");
+        System.out.println("\t\t\t\t\t\t\t\t1. Size\n\t\t\t\t\t\t\t\t2. Color\n\t\t\t\t\t\t\t\t3. Occasion\n\t\t\t\t\t\t\t\t4. Accessories\n\t\t\t\t\t\t\t\t5. Exit");
         System.out.println("=================================================================================================================================================");
         System.out.print("\t\t\t\t\t\t\t       Select your Choice: ");
     }
 
-    public static void initialize(ListInterface<Facility> facilitySizeList, ListInterface<Facility> facilityColorList, ListInterface<Facility> facilityOccasionList) {
+    public static void initialize(ListInterface<Facility> facilitySizeList, ListInterface<Facility> facilityColorList, ListInterface<Facility> facilityOccasionList, ListInterface<Accessories> facilityAccessoriesList) {
         // Size lol
         facilitySizeList.add(new Facility("Small", 500.00));
         facilitySizeList.add(new Facility("Medium", 1000.00));
@@ -285,6 +319,11 @@ public class facilities {
         facilityOccasionList.add(new Facility("Easter", 100.00));
         facilityOccasionList.add(new Facility("Valentine's Day", 100.00));
         facilityOccasionList.add(new Facility("New Year's Eve", 100.00));
+        //Accessories
+        facilityAccessoriesList.add(new Accessories("LED light")); 
+        facilityAccessoriesList.add(new Accessories("Board Game"));
+        facilityAccessoriesList.add(new Accessories("Rubbish Bin"));
+        facilityAccessoriesList.add(new Accessories("Rubbish Bag"));
     }
 
     public static void displayFacilitiesSize(ListInterface<Facility> facilitySizeList) {
@@ -315,6 +354,17 @@ public class facilities {
         System.out.print(facilityOccasionList.toString());
         System.out.println("=================================================================================================================================================");
         System.out.println("\tSELECT THE OCCASION (1-13)");
+    }
+
+    public static void displayAccesorriesList(ListInterface<Accessories> facilityAccessoriesList){
+        Accessories.resetNum();
+        System.out.println("======================================");
+        System.out.println("\tACCESSORIES NAME ");
+        System.out.println("======================================");
+        System.out.print(facilityAccessoriesList.toString());
+        System.out.println("======================================");
+        System.out.println("\t10 per add");
+        System.out.println("======================================");
     }
 
     public static void displayFacilitiesSizeChosen(ListInterface<Facility> sizeselect, DecimalFormat df) {
@@ -365,6 +415,22 @@ public class facilities {
         } else {
             System.out.println("=================================================================================================================================================");
             Font.print(Font.RED_BOLD_BRIGHT, "\t\t\t\t   NO FACILITIES OCCASION CHOSEN");
+        }
+    }
+
+    public static void displayFacilitiesAccessoriesSelect(BagInterface<Accessories> facilityAccessoriesSelect){
+        Font.print(Font.PURPLE_BOLD_BRIGHT,"\t\t\t  ACCESSORIES CART");
+        if(!facilityAccessoriesSelect.isEmpty()){
+            Accessories.resetNum();
+            System.out.println("====================================================================");
+            System.out.println("\tACCESSORIES NAME \t\tQUANTITY");
+            System.out.println("====================================================================");
+            System.out.println(facilityAccessoriesSelect.toString());
+            System.out.println("====================================================================");
+        } else {
+            System.out.println("====================================================================");
+            Font.print(Font.RED_BOLD_BRIGHT,"\t\t\tNO ACCESSORIES SELECTED");
+            System.out.println("====================================================================");
         }
     }
 

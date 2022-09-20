@@ -13,6 +13,8 @@ public class Catering {
         ListInterface<FoodBeverage> beveragelist = new List<FoodBeverage>(10);
         ListInterface<FoodBeverage> foodselect = new List<FoodBeverage>(10);
         ListInterface<FoodBeverage> beverageselect = new List<FoodBeverage>(10);
+        ListInterface<Accessories> fbAccessoriesList = new List<Accessories>(20);
+        BagInterface<Accessories> fbAccessoriesSelect = new Bag<Accessories>(100);
         
         //Facility Initialisation
         ListInterface<Facility> facilitySizeList = new List<Facility>(100);
@@ -21,14 +23,23 @@ public class Catering {
         ListInterface<Facility> sizeselect = new List<Facility>(100);
         ListInterface<Facility> colorselect = new List<Facility>(100);
         ListInterface<Facility> occasionselect = new List<Facility>(100);
+        ListInterface<Accessories> facilityAccessoriesList = new List<Accessories>(20);
+        BagInterface<Accessories> facilityAccessoriesSelect = new Bag<Accessories>(100);
 
         //Booking Initialisation
         ListInterface<BookingInfo> bookinglist = new List<BookingInfo>(100);
-        
-        Scanner input = new Scanner(System.in);
 
-        // Call dummy data from dummyscript
-        Order O = dummyScript.DummyOrderData();
+        
+        //Order Init
+        CircularQueueInterface<Order> orderQueue = new CircularQueue<>();
+        SortedListInterface<Order> acceptedOrder = new SortedList<>();
+        SortedListInterface<Order> rejectedOrder = new SortedList<>();
+        //Order dummy test
+        dummyScript.DummyOrderData(orderQueue);
+
+        // orderQueue.enqueue(Order("2001-10-2", bookinglist, customer));
+
+        Scanner input = new Scanner(System.in);
 
         // Start Of Program
         int choice = 0, choice1 = 0;
@@ -45,10 +56,10 @@ public class Catering {
                         Screen.clear();
                         switch (choice1) {
                             case 1: // call food and beverage
-                                foodandbeverage.foodbeverage(foodlist, beveragelist, foodselect, beverageselect);
+                                foodandbeverage.foodbeverage(foodlist, beveragelist, foodselect, beverageselect, fbAccessoriesList, fbAccessoriesSelect);
                                 break;
                             case 2: // call facility
-                                facilities.facilitiess(facilitySizeList, facilityColorList, facilityOccasionList, sizeselect, colorselect, occasionselect);
+                                facilities.facilitiess(facilitySizeList, facilityColorList, facilityOccasionList, sizeselect, colorselect, occasionselect, facilityAccessoriesList, facilityAccessoriesSelect);
                                 break;
                             case 3: // call payment
                                 if(foodselect.isEmpty() || beverageselect.isEmpty() || sizeselect.isEmpty() || colorselect.isEmpty() || occasionselect.isEmpty()){
@@ -56,7 +67,7 @@ public class Catering {
                                     continueMessage();
                                 } else {
                                     //Payment Start Here
-                                    bookinglist.add(new BookingInfo(foodselect, beverageselect, sizeselect, colorselect, occasionselect));
+                                    bookinglist.add(new BookingInfo(foodselect, beverageselect, sizeselect, colorselect, occasionselect, fbAccessoriesSelect, facilityAccessoriesSelect));
                                     bookinglist.get(1).getFoodselect(); // Function to call the foodselect list, same goes to the other list
                                     displayEndScreen();
                                 }
@@ -67,7 +78,7 @@ public class Catering {
                     } while (choice1 != 4);
                     break;
                 case 2: // Admin
-                    Admin(O);
+                    Admin(orderQueue, acceptedOrder, rejectedOrder);
                     break;
                 case 3: // End of Program
                     displayEndScreen();
@@ -111,11 +122,11 @@ public class Catering {
     }
 
     // START OF ADMIN SECTION
-    public static void Admin(Order O) {
+    public static void Admin(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder) {
 
-        boolean check = admin.Login();
+        boolean check = admin.login();
         if (check == true) {
-            admin.Menu(O);
+            admin.Menu(orderQueue, acceptedOrder, rejectedOrder);
         }
     }
 

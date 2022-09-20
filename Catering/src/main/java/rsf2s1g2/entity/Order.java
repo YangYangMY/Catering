@@ -16,14 +16,9 @@ public class Order implements Comparable<Order> {
     private String phoneNum;
     private String date;
     private double orderAmount;
-    CircularQueueInterface<Order> orderQueue = new CircularQueue<>();
-    SortedListInterface<Order> AcceptedOrder = new SortedList<>();
-    SortedListInterface<Order> RejectedOrder = new SortedList<>();
+    private BookingInfo bookingInfo;
+    private Customer customer;
 
-    public Order(){
-        
-    }
-    
     public Order(String customerName, String date, String phoneNum, double orderAmount){
         this.orderId = nextOrderID++;
         this.customerName = customerName;
@@ -32,39 +27,18 @@ public class Order implements Comparable<Order> {
         this.orderAmount = orderAmount;
     }
     
-    public void addOrder(String customerName, String date,String phoneNum, double orderAmount){
-        orderQueue.enqueue(new Order(customerName, date, phoneNum, orderAmount));
-    }  
-    
-    public CircularQueueInterface<Order> getOrderQueue(){
-        return orderQueue;
+    public Order(String date, BookingInfo bookinginfo, Customer customer){
+        this.orderId = nextOrderID++;
+        this.customerName = customer.getName();
+        this.phoneNum = customer.getPhoneNum();
+        this.date = date;
+        this.orderAmount = 0;
+        this.bookingInfo = bookinginfo;
+        this.customer = customer;
     }
     
-    public SortedListInterface<Order> getAcceptedList(){
-        return AcceptedOrder;
-    }
-    
-    public SortedListInterface<Order> getRejectedList(){
-        return RejectedOrder;
-    }
-    
-    public void AcceptOrder(Order newEntry){
-        boolean check = AcceptedOrder.insert(newEntry);
-        if(check == true){
-            orderQueue.dequeue();
-        }
-    }
-    
-    public void RejectOrder(Order newEntry){
-        boolean check = RejectedOrder.insert(newEntry);
-        if(check == true){
-            orderQueue.dequeue();
-        }
-    }
 
-    public void CompleteOrder(Order newEntry){
-        AcceptedOrder.delete(newEntry);
-    }
+
 
     @Override
     public String toString() {
@@ -76,7 +50,7 @@ public class Order implements Comparable<Order> {
         return this.date.compareTo(o.getDate());
         
     }
-
+    
     public static int getCount() {
         return count;
     }
@@ -88,4 +62,21 @@ public class Order implements Comparable<Order> {
     public String getDate() {
         return date;
     }
+
+    public static int getNextOrderID() {
+        return nextOrderID;
+    }
+
+    public BookingInfo getBookingInfo() {
+        return bookingInfo;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public Customer getcustomer(){
+        return customer;
+    }
+    
 }

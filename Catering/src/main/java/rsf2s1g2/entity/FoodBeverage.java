@@ -13,7 +13,7 @@ public class FoodBeverage {
     private static double beverageFinalTotal;
     private static int num = 0;
     DecimalFormat df = new DecimalFormat("0.00");
-
+    
     public FoodBeverage(String fbName, double fbPrice) {
         this.fbName = fbName;
         this.fbPrice = fbPrice;
@@ -25,6 +25,9 @@ public class FoodBeverage {
         this.fbNum = fbNum;
         this.fbPrice = fbPrice;
         getFoodtotal();
+    }
+
+    public FoodBeverage(String remark) {
     }
 
     //getters and setters

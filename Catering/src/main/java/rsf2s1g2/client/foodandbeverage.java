@@ -7,17 +7,18 @@ import rsf2s1g2.adt.*;
 import rsf2s1g2.entity.*;
 
 public class foodandbeverage {
-    public static void foodbeverage(ListInterface<FoodBeverage> foodlist, ListInterface<FoodBeverage> beveragelist, ListInterface<FoodBeverage> foodselect, ListInterface<FoodBeverage> beverageselect) {
+    public static void foodbeverage(ListInterface<FoodBeverage> foodlist, ListInterface<FoodBeverage> beveragelist, ListInterface<FoodBeverage> foodselect, ListInterface<FoodBeverage> beverageselect, ListInterface<Accessories> fbAccessoriesList, BagInterface<Accessories> fbAccessoriesSelect) {
         DecimalFormat df = new DecimalFormat("0.00");
         Scanner input = new Scanner(System.in);
         int choice, action, position = 1, quantity = 0;
-        initialize(foodlist, beveragelist);
+        final int num4Bag = 10;
+        initialize(foodlist, beveragelist, fbAccessoriesList);
 
         do {
             // 1 = food, 2 = beverage, 3 = exit
             Screen.clear();
             displayFAB();
-            choice = Screen.numInputValid(1,3,"\t\t\t\t\t\t\t       Select your Choice: ", "\t\t\t\t\t\t\t       Invalid input. Please try again");
+            choice = Screen.numInputValid(1,4,"\t\t\t\t\t\t\t       Select your Choice: ", "\t\t\t\t\t\t\t       Invalid input. Please try again");
             Screen.clear();
             switch (choice) {
                 case 1:
@@ -32,7 +33,7 @@ public class foodandbeverage {
                                 displayFoodList(foodlist);
                                 position = Screen.numInputValid(1,5,"\tSelect Food to Add (1-5): ", "\tInvalid input. Please try again");
                                 if (foodlist.size() < position || position < 1) {
-                                    System.out.println("\t\tInvalid choice!");
+                                    Font.print(Font.RED_BOLD_BRIGHT,"\t\tInvalid choice!");
                                     continueMessage();
                                 } else {
                                     quantity = Screen.numInputValid(1,5000,"\tHow many do you want to add?: ", "\tPlease enter number within 1-5000");
@@ -47,7 +48,7 @@ public class foodandbeverage {
                                     displayFoodSelect(foodselect, df);
                                     position = Screen.numInputValid(1,5,"\tSelect the item to be removed: ", "\tInvalid input. Please try again");
                                     if (foodselect.size() < position || position < 1) {
-                                        System.out.println("\t\tInvalid choice!");
+                                        Font.print(Font.RED_BOLD_BRIGHT,"\t\tInvalid choice!");
                                         continueMessage();
                                     } else {
                                         foodSelectModifications(foodselect, foodlist, action, position, quantity);
@@ -93,7 +94,7 @@ public class foodandbeverage {
                                 displayBeverageList(beveragelist);
                                 position = Screen.numInputValid(1,5,"\tSelect Beverage to Add (1-5): ", "\tInvalid input. Please try again");
                                 if (beveragelist.size() < position || position < 1) {
-                                    System.out.println("\t\tInvalid choice!");
+                                    Font.print(Font.RED_BOLD_BRIGHT,"\t\tInvalid choice!");
                                     continueMessage();
                                 } else {
                                     quantity = Screen.numInputValid(1,5000,"\tHow many do you want to add?: ", "\tPlease enter number within 1-5000");
@@ -108,7 +109,7 @@ public class foodandbeverage {
                                     displayBeverageSelect(beverageselect, df);
                                     position = Screen.numInputValid(1,5,"\tSelect the item to be removed: ", "\tInvalid input. Please try again");
                                     if (beverageselect.size() < position || position < 1) {
-                                        System.out.println("\t\tInvalid choice!");
+                                        Font.print(Font.RED_BOLD_BRIGHT,"\t\tInvalid choice!");
                                         continueMessage();
                                     } else {
                                         foodSelectModifications(beverageselect, beveragelist, action, position, quantity);
@@ -129,7 +130,7 @@ public class foodandbeverage {
                                     displayFoodSelect(beverageselect, df);
                                     position = Screen.numInputValid(1,5,"\tSelect the item to be modified: ", "\tInvalid input. Please try again");
                                     if (beverageselect.size() < position || position < 1) {
-                                        System.out.println("\t\tInvalid choice!");
+                                        Font.print(Font.RED_BOLD_BRIGHT,"\t\tInvalid choice!");
                                         continueMessage();
                                     } else {
                                         quantity = Screen.numInputValid(1,5,"\tEnter the number: ", "\tInvalid input. Please try again");
@@ -144,10 +145,44 @@ public class foodandbeverage {
                     } while (action != 5);
                     break;
                 case 3:
+                    // Accessories
+                    do{
+                        displayAccessoriesSelect(fbAccessoriesSelect);
+                        Accessories.displayAccesorries();
+                        action = Screen.numInputValid(1,3,"\t\t\tSelect your Choice: ", "\t\t\tInvalid input. Please try again");
+                        Screen.clear();
+                        switch(action){
+                            case 1: //add
+                                displayAccesorriesList(fbAccessoriesList);
+                                position = Screen.numInputValid(1,4,"  Select Accesorries to Add (1-4): ", " Invalid input. Please try again");
+                                if (fbAccessoriesList.size() < position || position < 1) {
+                                    Font.print(Font.RED_BOLD_BRIGHT,"\t\tInvalid choice!");
+                                    continueMessage();
+                                } else {
+                                    fbAccessoriesSelect.add(new Accessories(fbAccessoriesList.get(position).getAccName(), num4Bag));
+                                    System.out.println("\tAdd Successful");
+                                    continueMessage();
+                                }
+                                break;
+                            case 2: //clear
+                                int confirm = Screen.numInputValid(0,1,"\t\tThe accessories cart will be clear. Are you sure? (1 = Yes, 0 = No): ", "\t\tInvalid input. Please try again");
+                                if (confirm == 1 && !fbAccessoriesSelect.isEmpty()){
+                                    fbAccessoriesSelect.clear();
+                                    System.out.println("\t\tClear Successful");
+                                    continueMessage();
+                                }
+                                break; 
+                            case 3: 
+                                //Exit
+                                break;
+                        }
+                    } while(action != 3);
+                    break;
+                case 4:
                     // Exit
                     break;
             }
-        } while (choice != 3);
+        } while (choice != 4);
     }
     
     public static void displayFAB(){
@@ -158,11 +193,11 @@ public class foodandbeverage {
         Font.print(Font.ANSI_YELLOW,"\t ██║     ╚██████╔╝╚██████╔╝██████╔╝    ██║  ██║██║ ╚████║██████╔╝    ██████╔╝███████╗ ╚████╔╝ ███████╗██║  ██║██║  ██║╚██████╔╝███████╗ ");
         Font.print(Font.ANSI_YELLOW,"\t ╚═╝      ╚═════╝  ╚═════╝ ╚═════╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝     ╚═════╝ ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝ ");
         System.out.println("=================================================================================================================================================");
-        System.out.println("\t\t\t\t\t\t\t\t1. Food\n\t\t\t\t\t\t\t\t2. Beverage\n\t\t\t\t\t\t\t\t3. Exit");
+        System.out.println("\t\t\t\t\t\t\t\t1. Food\n\t\t\t\t\t\t\t\t2. Beverage\n\t\t\t\t\t\t\t\t3. Accessories\n\t\t\t\t\t\t\t\t4. Exit");
         System.out.println("=================================================================================================================================================");
     }
 
-    public static void initialize(ListInterface<FoodBeverage> foodlist, ListInterface<FoodBeverage> beveragelist){
+    public static void initialize(ListInterface<FoodBeverage> foodlist, ListInterface<FoodBeverage> beveragelist, ListInterface<Accessories> fbAccessoriesList){
         //Food List 
         foodlist.add(new FoodBeverage("Fried Chicken", 6.0));
         foodlist.add(new FoodBeverage("Nasi Lemak", 2.0));
@@ -175,6 +210,11 @@ public class foodandbeverage {
         beveragelist.add(new FoodBeverage("Plain Water", 0.5));
         beveragelist.add(new FoodBeverage("Green Tea", 1.8));
         beveragelist.add(new FoodBeverage("Honey Lemon", 3.5));
+        //Accessories List
+        fbAccessoriesList.add(new Accessories("Cutlery Set")); 
+        fbAccessoriesList.add(new Accessories("Tissue Box"));
+        fbAccessoriesList.add(new Accessories("Napkin"));
+        fbAccessoriesList.add(new Accessories("Paper Cup & Plate"));
     }
 
     public static void displayFoodList(ListInterface<FoodBeverage> foodlist){
@@ -193,6 +233,17 @@ public class foodandbeverage {
         System.out.println("================================================");
         System.out.print(beveragelist.toString());
         System.out.println("================================================");
+    }
+
+    public static void displayAccesorriesList(ListInterface<Accessories> fbAccessoriesList){
+        Accessories.resetNum();
+        System.out.println("======================================");
+        System.out.println("\tACCESSORIES NAME ");
+        System.out.println("======================================");
+        System.out.print(fbAccessoriesList.toString());
+        System.out.println("======================================");
+        System.out.println("\t10 per add");
+        System.out.println("======================================");
     }
 
     public static void displayFoodSelect(ListInterface<FoodBeverage> foodselect, DecimalFormat df){
@@ -228,6 +279,22 @@ public class foodandbeverage {
             System.out.println("===================================================================================");
             Font.print(Font.RED_BOLD_BRIGHT,"\t\t\t     NO BEVERAGE SELECTED");
             System.out.println("===================================================================================");
+        }
+    }
+
+    public static void displayAccessoriesSelect(BagInterface<Accessories> fbAccessoriesSelect){
+        Font.print(Font.PURPLE_BOLD_BRIGHT,"\t\t\t  ACCESSORIES CART");
+        if(!fbAccessoriesSelect.isEmpty()){
+            Accessories.resetNum();
+            System.out.println("====================================================================");
+            System.out.println("\tACCESSORIES NAME \t\tQUANTITY");
+            System.out.println("====================================================================");
+            System.out.println(fbAccessoriesSelect.toString());
+            System.out.println("====================================================================");
+        } else {
+            System.out.println("====================================================================");
+            Font.print(Font.RED_BOLD_BRIGHT,"\t\t\tNO ACCESSORIES SELECTED");
+            System.out.println("====================================================================");
         }
     }
 
@@ -324,4 +391,5 @@ public class foodandbeverage {
         input.nextLine();
         Screen.clear();
     }
+
 }
