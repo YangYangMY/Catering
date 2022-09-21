@@ -65,16 +65,6 @@ public final class Bag<T> implements BagInterface<T> {
         return result;
     }
 
-    public T get(int position){
-        T result = null;
-
-        if ((position >= 1) && (position <= numberOfEntries)) {
-          result = bag[position - 1];
-        }
-
-        return result;
-    }
-
     // Sees whether this bag is full.
     private boolean isArrayFull() {
         return numberOfEntries >= bag.length;
@@ -168,11 +158,12 @@ public final class Bag<T> implements BagInterface<T> {
     public String toString() {
         String result = "\n";
         for (int i = 0; i < numberOfEntries; i++) {
-            System.out.println(bag[i]);
+            System.out.println("\t" + bag[i]);
         }
         return result;
     }
-    
+
+
     // Check to see if two bags are equals.  
     public boolean equals(Bag<T> aBag) {
         boolean result = true; 
