@@ -16,4 +16,6 @@ public interface MapInterface<K, V> {
 
     public boolean contains(K key);
 
+    public int getNumOfEntries();
+    
 }

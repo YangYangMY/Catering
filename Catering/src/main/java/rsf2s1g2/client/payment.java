@@ -22,19 +22,19 @@ public class payment {
                 switch (getPymt(bookinglist)) {
                     case 1:
                         paymentMethod = "Online Bank Transfer";
-                        payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
+                        //payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
                         break;
 
                     case 2:
                         paymentMethod = "Debit / Credit Card";
-                        payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
+                        //payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
                         break;
 
                     case 3:
                         paymentMethod = "E-wallet";
-                        payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
+                       // payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
                 }
-
+                payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
                 System.out.println( paymentMethod + " " + getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect));
 
             case 2:

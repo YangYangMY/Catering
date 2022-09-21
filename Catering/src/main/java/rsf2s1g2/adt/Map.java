@@ -1,5 +1,7 @@
 package rsf2s1g2.adt;
 
+import java.util.Scanner;
+
 public class Map<K, V> implements MapInterface <K, V> {
     
     private MapTable<K, V>[] hashTable;		
@@ -19,7 +21,13 @@ public class Map<K, V> implements MapInterface <K, V> {
     public boolean add(K key, V value) {
         hashTable[numOfEntries] = new MapTable<K, V>(key, value);
         numOfEntries++;
-
+        Scanner input = new Scanner(System.in);
+        System.out.println("YES ADD");
+        System.out.println(numOfEntries-1);
+        System.out.println(hashTable[numOfEntries-1].getValue());
+        System.out.println(hashTable.length);
+        System.out.println(numOfEntries);
+        input.next();
         return true;
     }
 
@@ -40,8 +48,12 @@ public class Map<K, V> implements MapInterface <K, V> {
     public int getValueIndex(K key) {
         int index = 0;
 
-        for(int i = 0; i < hashTable.length; i++){
-            if(key == hashTable[i].getKey()){
+        if(hashTable == null){
+            System.out.println("Data is Empty");
+        }
+        
+        for(int i = 0; i < numOfEntries; i++){
+            if(hashTable[i].getKey().equals(key)){
                 index = i;
             }
         }
@@ -61,6 +73,7 @@ public class Map<K, V> implements MapInterface <K, V> {
         return dataValue;
     }
 
+    
     @Override
     public int size() {
         return numOfEntries;
@@ -84,6 +97,11 @@ public class Map<K, V> implements MapInterface <K, V> {
         }
 
         return output;
+    }
+
+    @Override
+    public int getNumOfEntries() {
+        return numOfEntries;
     }
 
     private class MapTable<K,V>{
@@ -116,4 +134,7 @@ public class Map<K, V> implements MapInterface <K, V> {
         }
 
     }
+
+
+
 }

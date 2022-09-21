@@ -38,8 +38,8 @@ public class Catering {
         SortedListInterface<Order> rejectedOrder = new SortedList<>();
         //Order dummy test
         dummyScript.DummyOrderData(orderQueue);
-
-        // orderQueue.enqueue(Order("2001-10-2", bookinglist, customer));
+        //String date = "2001-10-2";
+        //orderQueue.enqueue(Order(date, bookinglist, customer));
 
         Scanner input = new Scanner(System.in);
 
@@ -71,7 +71,9 @@ public class Catering {
                                     //Payment Start Here
                                     bookinglist.add(new BookingInfo(foodselect, beverageselect, sizeselect, colorselect, occasionselect, fbAccessoriesSelect, facilityAccessoriesSelect));
                                     payment.pymt(payments, bookinglist, foodselect, beverageselect, sizeselect, colorselect, occasionselect);
-                                    System.out.println(payments);
+                                   System.out.println(payments.getValue(payments.getNumOfEntries()-1).getId());
+                                   System.out.println(payments.getValue(payments.getValue(payments.getNumOfEntries()-1).getId()));
+                                   
                                 }
                                 break;
                             case 4: // Exit to Home Menu
