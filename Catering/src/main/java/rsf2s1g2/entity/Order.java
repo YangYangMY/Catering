@@ -26,7 +26,7 @@ public class Order implements Comparable<Order> {
     
     public Order(String date, ListInterface<BookingInfo> bookinginfo, MapInterface<String, Customer> customers){
         this.orderId = nextOrderID++;
-        this.customerName = ;
+        this.customerName = customers.getNumOfEntries();
         this.phoneNum = customers.getPhoneNum();
         this.date = date;
         this.orderAmount = bookinginfo.get(1).getTotalPrice();
