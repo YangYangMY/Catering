@@ -32,7 +32,7 @@ public class Order implements Comparable<Order> {
         this.customerName = customer.getName();
         this.phoneNum = customer.getPhoneNum();
         this.date = date;
-        this.orderAmount = 0;
+        this.orderAmount = bookinginfo.getTotalPrice();
         this.bookingInfo = bookinginfo;
         this.customer = customer;
     }
