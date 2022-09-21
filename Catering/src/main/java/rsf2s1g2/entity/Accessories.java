@@ -38,9 +38,9 @@ public class Accessories {
     public String toString() {
         num += 1;
         if(printStringOne){
-            return num + ".\t" + accName;
+            return num + ".\t " + accName ;
         } else {
-            return num + ". " + accName + "\t" + accNum;
+            return num + ". " + accName + "\t\t\t" + accNum;
         }
     }
 }

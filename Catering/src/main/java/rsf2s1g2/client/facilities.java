@@ -427,6 +427,8 @@ public class facilities {
             System.out.println("====================================================================");
             System.out.println(facilityAccessoriesSelect.toString());
             System.out.println("====================================================================");
+            System.out.println("TOTAL ITEMS SELECTED = " + facilityAccessoriesSelect.getCurrentSize());
+            System.out.println("====================================================================");
         } else {
             System.out.println("====================================================================");
             Font.print(Font.RED_BOLD_BRIGHT,"\t\t\tNO ACCESSORIES SELECTED");

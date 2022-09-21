@@ -291,7 +291,7 @@ public class foodandbeverage {
             System.out.println("====================================================================");
             System.out.println(fbAccessoriesSelect.toString());
             System.out.println("====================================================================");
-            System.out.println("\n\nTOTAL ITEMS SELECTED = " + fbAccessoriesSelect.getCurrentSize());
+            System.out.println("TOTAL ITEMS SELECTED = " + fbAccessoriesSelect.getCurrentSize());
             System.out.println("====================================================================");
         } else {
             System.out.println("====================================================================");
