@@ -4,15 +4,23 @@ import java.util.Scanner;
 import rsf2s1g2.adt.Map;
 import rsf2s1g2.adt.MapInterface;
 import rsf2s1g2.entity.Customer;
+import rsf2s1g2.utility.Font;
+import rsf2s1g2.utility.Screen;
 
 public class customer {
-    MapInterface<String, Customer> cust = new Map<String, Customer>();
+    
     private static Scanner input = new Scanner(System.in);
 
-    public void addDetails(){
-        System.out.println("  ====================================");
-        System.out.println("                 Check Out");
-        System.out.println("  ====================================");
+    public static void addDetails(){
+        MapInterface<String, Customer> cust = new Map<String, Customer>();
+
+        Font.print(Font.ANSI_YELLOW, "\t   ██████╗██╗  ██╗███████╗ ██████╗██╗  ██╗ ██████╗ ██╗   ██╗████████╗");
+        Font.print(Font.ANSI_YELLOW, "\t  ██╔════╝██║  ██║██╔════╝██╔════╝██║ ██╔╝██╔═══██╗██║   ██║╚══██╔══╝");
+        Font.print(Font.ANSI_YELLOW, "\t  ██║     ███████║█████╗  ██║     █████╔╝ ██║   ██║██║   ██║   ██║   ");
+        Font.print(Font.ANSI_YELLOW, "\t  ██║     ██╔══██║██╔══╝  ██║     ██╔═██╗ ██║   ██║██║   ██║   ██║   ");
+        Font.print(Font.ANSI_YELLOW, "\t   ██████╗██║  ██║███████╗╚██████╗██║  ██╗╚██████╔╝╚██████╔╝   ██║   ");
+        Font.print(Font.ANSI_YELLOW, "\t   ╚═════╝╚═╝  ╚═╝╚══════╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝    ╚═╝   ");
+        System.out.println("  =========================================================================================");
         
         System.out.print("     Name         : ");
         String custName = input.nextLine();
@@ -25,7 +33,7 @@ public class customer {
         cust.add(custIcNo, new Customer(custIcNo, custName, custPhoneNum, custAddr));
     }
 
-    public String validateIcNo(){
+    public static String validateIcNo(){
         String custIcNo = "";
         boolean isValid = true;
 

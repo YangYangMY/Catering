@@ -29,6 +29,8 @@ public class Catering {
         //Booking Initialisation
         ListInterface<BookingInfo> bookinglist = new List<BookingInfo>(100);
 
+        //Payment
+        MapInterface<Integer, Payment> payments = new Map<Integer, Payment>();
         
         //Order Init
         CircularQueueInterface<Order> orderQueue = new CircularQueue<>();
@@ -68,7 +70,8 @@ public class Catering {
                                 } else {
                                     //Payment Start Here
                                     bookinglist.add(new BookingInfo(foodselect, beverageselect, sizeselect, colorselect, occasionselect, fbAccessoriesSelect, facilityAccessoriesSelect));
-                                    payment.pymt(bookinglist, foodselect, beverageselect, sizeselect, colorselect, occasionselect);
+                                    payment.pymt(payments, bookinglist, foodselect, beverageselect, sizeselect, colorselect, occasionselect);
+                                    System.out.println(payments);
                                 }
                                 break;
                             case 4: // Exit to Home Menu

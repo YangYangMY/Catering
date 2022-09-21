@@ -76,6 +76,16 @@ public class Map<K, V> implements MapInterface <K, V> {
         return getValue(key) != null;
     }
 
+    @Override
+    public String toString() {
+        String output = " ";
+        for(int i = 0; i < hashTable.length; i++){
+            output += "Key: " + hashTable[i].getKey() + " Value: " + hashTable[i].getValue();
+        }
+
+        return output;
+    }
+
     private class MapTable<K,V>{
         private K key;
         private V value;
