@@ -33,7 +33,7 @@ public class payment {
                        // payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
                 }
                 payments.add(Payment.getId(),new Payment(bookinglist.get(1).getTotalPrice(),paymentMethod));
-                System.out.println( paymentMethod + " " + bookinglist.get(1).getTotalPrice());
+                orderQueue.enqueue(Order(date, bookinglist, customer));
 
             case 2:
                 Screen.clear();

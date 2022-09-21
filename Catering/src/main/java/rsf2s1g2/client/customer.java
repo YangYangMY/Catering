@@ -11,9 +11,8 @@ public class customer {
     
     private static Scanner input = new Scanner(System.in);
 
-    public static String addDetails(){
-        MapInterface<String, Customer> cust = new Map<String, Customer>();
-
+    public static String addDetails(MapInterface<String, Customer> customers){
+       
         Font.print(Font.ANSI_YELLOW, "\t   ██████╗██╗  ██╗███████╗ ██████╗██╗  ██╗ ██████╗ ██╗   ██╗████████╗");
         Font.print(Font.ANSI_YELLOW, "\t  ██╔════╝██║  ██║██╔════╝██╔════╝██║ ██╔╝██╔═══██╗██║   ██║╚══██╔══╝");
         Font.print(Font.ANSI_YELLOW, "\t  ██║     ███████║█████╗  ██║     █████╔╝ ██║   ██║██║   ██║   ██║   ");
@@ -32,7 +31,7 @@ public class customer {
         System.out.print("     Catering Date: ");
         String date = input.nextLine();
 
-        cust.add(custIcNo, new Customer(custIcNo, custName, custPhoneNum, custAddr));
+        customers.add(custIcNo, new Customer(custIcNo, custName, custPhoneNum, custAddr));
 
         return date;
         

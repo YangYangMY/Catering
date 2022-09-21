@@ -31,6 +31,10 @@ public class Catering {
 
         //Payment
         MapInterface<Integer, Payment> payments = new Map<Integer, Payment>();
+
+        //Customer
+        MapInterface<String, Customer> customers = new Map<String, Customer>();
+
         
         //Order Init
         CircularQueueInterface<Order> orderQueue = new CircularQueue<>();
@@ -70,10 +74,11 @@ public class Catering {
                                 } else {
                                     //Payment Start Here
                                     bookinglist.add(new BookingInfo(foodselect, beverageselect, sizeselect, colorselect, occasionselect, fbAccessoriesSelect, facilityAccessoriesSelect));
-                                    payment.pymt(payments, bookinglist);
-                                   System.out.println(payments.getValue(payments.getNumOfEntries()-1).getId());
-                                   System.out.println(payments.getValue(payments.getValue(payments.getNumOfEntries()-1).getId()));
+                                    payment.pymt(customers, payments, bookinglist, orderQueue);
+                                   //System.out.println(payments.getValue(payments.getNumOfEntries()-1).getId());
+                                   //System.out.println(payments.getValue(payments.getValue(payments.getNumOfEntries()-1).getId()));
                                    
+                                    System.out.println(payments); 
                                 }
                                 break;
                             case 4: // Exit to Home Menu
