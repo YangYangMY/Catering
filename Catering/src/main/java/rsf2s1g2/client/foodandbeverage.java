@@ -395,9 +395,9 @@ public class foodandbeverage {
     }
 
     // count the total number of entries in the bag
-    public static int getNumberOfEntries(BagInterface<FoodBeverage> aBag) {
+    public static int getNumberOfEntries(BagInterface<FoodBeverage> Bag) {
         int numberOfEntries = 0;
-        Object[] bagArray = aBag.toArray();
+        Object[] bagArray = Bag.toArray();
         for (int index = 0; index < bagArray.length; index++) {
             numberOfEntries++;
         } // end for
