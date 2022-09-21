@@ -9,14 +9,14 @@ public class payment {
 
     public static Scanner input = new Scanner(System.in);
 
-    public static void pymt(MapInterface<Integer, Payment> payments, ListInterface<BookingInfo> bookinglist) {
+    public static void pymt(MapInterface<String, Customer> customers, MapInterface<Integer, Payment> payments, ListInterface<BookingInfo> bookinglist, CircularQueueInterface<Order> orderQueue) {
        
         String paymentMethod = "";
 
         switch (displayCart(bookinglist)) {
             case 1:
                 Screen.clear();
-                String cateringDate = customer.addDetails();
+                String cateringDate = customer.addDetails(customers);
                 switch (getPymt(bookinglist)) {
                     case 1:
                         paymentMethod = "Online Bank Transfer";
@@ -33,7 +33,8 @@ public class payment {
                        // payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
                 }
                 payments.add(Payment.getId(),new Payment(bookinglist.get(1).getTotalPrice(),paymentMethod));
-                orderQueue.enqueue(Order(date, bookinglist, customer));
+                orderQueue.enqueue(Order(cateringDate, bookinglist, customers));
+                //testing
 
             case 2:
                 Screen.clear();
