@@ -1,8 +1,5 @@
 package rsf2s1g2.entity;
-import rsf2s1g2.adt.CircularQueue;
-import rsf2s1g2.adt.CircularQueueInterface;
-import rsf2s1g2.adt.SortedList;
-import rsf2s1g2.adt.SortedListInterface;
+import rsf2s1g2.adt.*;
 
 /**
  *
@@ -16,8 +13,8 @@ public class Order implements Comparable<Order> {
     private String phoneNum;
     private String date;
     private double orderAmount;
-    private BookingInfo bookingInfo;
-    private Customer customer;
+    private ListInterface<BookingInfo> bookingInfo;
+    private MapInterface<String, Customer> customer;
 
     public Order(String customerName, String date, String phoneNum, double orderAmount){
         this.orderId = nextOrderID++;
@@ -27,14 +24,14 @@ public class Order implements Comparable<Order> {
         this.orderAmount = orderAmount;
     }
     
-    public Order(String date, BookingInfo bookinginfo, Customer customer){
+    public Order(String date, ListInterface<BookingInfo> bookinginfo, MapInterface<String, Customer> customers){
         this.orderId = nextOrderID++;
-        this.customerName = customer.getName();
-        this.phoneNum = customer.getPhoneNum();
+        this.customerName = ;
+        this.phoneNum = customers.getPhoneNum();
         this.date = date;
-        this.orderAmount = bookinginfo.getTotalPrice();
+        this.orderAmount = bookinginfo.get(1).getTotalPrice();
         this.bookingInfo = bookinginfo;
-        this.customer = customer;
+        this.customer = customers;
     }
     
 

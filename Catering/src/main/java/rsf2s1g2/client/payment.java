@@ -4,6 +4,7 @@ import java.util.Scanner;
 import rsf2s1g2.utility.*;
 import rsf2s1g2.adt.*;
 import rsf2s1g2.entity.*;
+import rsf2s1g2.entity.Order;
 
 public class payment {
 
@@ -33,7 +34,8 @@ public class payment {
                        // payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
                 }
                 payments.add(Payment.getId(),new Payment(bookinglist.get(1).getTotalPrice(),paymentMethod));
-                orderQueue.enqueue(Order(cateringDate, bookinglist, customers));
+                Order item1 = new Order(cateringDate, bookinglist, customers);
+                orderQueue.enqueue(item1);
                 //testing
 
             case 2:
