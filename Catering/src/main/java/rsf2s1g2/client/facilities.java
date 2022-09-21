@@ -547,4 +547,13 @@ public class facilities {
         input.nextLine();
         Screen.clear();
     }
+
+    public static int getNumberOfEntries(BagInterface<FoodBeverage> Bag) {
+        int numberOfEntries = 0;
+        Object[] bagArray = Bag.toArray();
+        for (int index = 0; index < bagArray.length; index++) {
+            numberOfEntries++;
+        } // end for
+        return numberOfEntries;
+    } // end getNumberOfEntries
 }

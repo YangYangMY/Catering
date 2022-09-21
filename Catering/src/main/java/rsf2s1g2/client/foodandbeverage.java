@@ -291,6 +291,8 @@ public class foodandbeverage {
             System.out.println("====================================================================");
             System.out.println(fbAccessoriesSelect.toString());
             System.out.println("====================================================================");
+            System.out.println("\n\nTOTAL ITEMS SELECTED = " + fbAccessoriesSelect.getCurrentSize());
+            System.out.println("====================================================================");
         } else {
             System.out.println("====================================================================");
             Font.print(Font.RED_BOLD_BRIGHT,"\t\t\tNO ACCESSORIES SELECTED");
@@ -391,5 +393,16 @@ public class foodandbeverage {
         input.nextLine();
         Screen.clear();
     }
+
+    // count the total number of entries in the bag
+    public static int getNumberOfEntries(BagInterface<FoodBeverage> Bag) {
+        int numberOfEntries = 0;
+        Object[] bagArray = Bag.toArray();
+        for (int index = 0; index < bagArray.length; index++) {
+            numberOfEntries++;
+        } // end for
+        return numberOfEntries;
+    } // end getNumberOfEntries
+    
 
 }

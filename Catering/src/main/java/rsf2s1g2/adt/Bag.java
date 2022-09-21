@@ -163,11 +163,12 @@ public final class Bag<T> implements BagInterface<T> {
     } 
     
     
-    // Override the equals method so that we can tell if two bags contain the same items
+    // converts the bag to a string
+    @Override
     public String toString() {
-        String result = "\t";
+        String result = "\n";
         for (int i = 0; i < numberOfEntries; i++) {
-            result += bag[i] + " \t";
+            System.out.println(bag[i]);
         }
         return result;
     }
