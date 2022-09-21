@@ -43,4 +43,6 @@ public interface BagInterface<T> {
     @return A newly allocated array of all the entries in the bag.
             Note: If the bag is empty, the returned array is empty. */
     public T[] toArray();
+
+    public Object get(int i);
 } // end BagInterface
