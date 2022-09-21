@@ -156,21 +156,21 @@ public static void displayFood(CircularQueueInterface<Order> orderQueue, SortedL
     if (check == 1){
         for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
             if((orderQueue.getEntry(i).getOrderId()) == orderid){
-                orderQueue.getEntry(i).getBookingInfo().getFoodselect();
+                orderQueue.getEntry(i).getBookingInfo().get(1).getFoodselect();;
             }
         } 
     }
     else if (check == 2){
         for (int i = 0; i < acceptedOrder.getCount(); i++){
             if(acceptedOrder.getEntry(i).getOrderId() == orderid){
-                acceptedOrder.getEntry(i).getBookingInfo().getFoodselect();
+                acceptedOrder.getEntry(i).getBookingInfo().get(1).getFoodselect();
             }
         }
     }
     else{
         for(int i = 0; i < rejectedOrder.getCount(); i++){
             if(rejectedOrder.getEntry(i).getOrderId() == orderid){
-                rejectedOrder.getEntry(i).getBookingInfo().getFoodselect();
+                rejectedOrder.getEntry(i).getBookingInfo().get(1).getFoodselect();
             }
         }
     }
@@ -189,21 +189,21 @@ public static void displayBeverage(CircularQueueInterface<Order> orderQueue, Sor
     if (check == 1){
         for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
             if((orderQueue.getEntry(i).getOrderId()) == orderid){
-                orderQueue.getEntry(i).getBookingInfo().getBeverageselect();
+                orderQueue.getEntry(i).getBookingInfo().get(1).getBeverageselect();
             }
         } 
     }
     else if (check == 2){
         for (int i = 0; i < acceptedOrder.getCount(); i++){
             if(acceptedOrder.getEntry(i).getOrderId() == orderid){
-                acceptedOrder.getEntry(i).getBookingInfo().getBeverageselect();
+                acceptedOrder.getEntry(i).getBookingInfo().get(1).getBeverageselect();
             }
         }
     }
     else{
         for(int i = 0; i < rejectedOrder.getCount(); i++){
             if(rejectedOrder.getEntry(i).getOrderId() == orderid){
-                rejectedOrder.getEntry(i).getBookingInfo().getBeverageselect();
+                rejectedOrder.getEntry(i).getBookingInfo().get(1).getBeverageselect();
             }
         }
     }
@@ -222,21 +222,21 @@ public static void displayFBaccess(CircularQueueInterface<Order> orderQueue, Sor
     if (check == 1){
         for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
             if((orderQueue.getEntry(i).getOrderId()) == orderid){
-                orderQueue.getEntry(i).getBookingInfo().getFbAccessoriesSelect();
+                orderQueue.getEntry(i).getBookingInfo().get(1).getFbAccessoriesSelect();
             }
         } 
     }
     else if (check == 2){
         for (int i = 0; i < acceptedOrder.getCount(); i++){
             if(acceptedOrder.getEntry(i).getOrderId() == orderid){
-                acceptedOrder.getEntry(i).getBookingInfo().getFbAccessoriesSelect();
+                acceptedOrder.getEntry(i).getBookingInfo().get(1).getFbAccessoriesSelect();
             }
         }
     }
     else{
         for(int i = 0; i < rejectedOrder.getCount(); i++){
             if(rejectedOrder.getEntry(i).getOrderId() == orderid){
-                rejectedOrder.getEntry(i).getBookingInfo().getFbAccessoriesSelect();
+                rejectedOrder.getEntry(i).getBookingInfo().get(1).getFbAccessoriesSelect();
             }
         }
     }
@@ -255,21 +255,21 @@ public static void displayFacilitySize(CircularQueueInterface<Order> orderQueue,
     if (check == 1){
         for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
             if((orderQueue.getEntry(i).getOrderId()) == orderid){
-                orderQueue.getEntry(i).getBookingInfo().getSizeselect();
+                orderQueue.getEntry(i).getBookingInfo().get(1).getSizeselect();
             }
         } 
     }
     else if (check == 2){
         for (int i = 0; i < acceptedOrder.getCount(); i++){
             if(acceptedOrder.getEntry(i).getOrderId() == orderid){
-                acceptedOrder.getEntry(i).getBookingInfo().getSizeselect();
+                acceptedOrder.getEntry(i).getBookingInfo().get(1).getSizeselect();
             }
         }
     }
     else{
         for(int i = 0; i < rejectedOrder.getCount(); i++){
             if(rejectedOrder.getEntry(i).getOrderId() == orderid){
-                rejectedOrder.getEntry(i).getBookingInfo().getSizeselect();
+                rejectedOrder.getEntry(i).getBookingInfo().get(1).getSizeselect();
             }
         }
     }
@@ -288,21 +288,21 @@ public static void displayFacilityColor(CircularQueueInterface<Order> orderQueue
     if (check == 1){
         for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
             if((orderQueue.getEntry(i).getOrderId()) == orderid){
-                orderQueue.getEntry(i).getBookingInfo().getColorselect();
+                orderQueue.getEntry(i).getBookingInfo().get(1).getColorselect();
             }
         } 
     }
     else if (check == 2){
         for (int i = 0; i < acceptedOrder.getCount(); i++){
             if(acceptedOrder.getEntry(i).getOrderId() == orderid){
-                acceptedOrder.getEntry(i).getBookingInfo().getColorselect();
+                acceptedOrder.getEntry(i).getBookingInfo().get(1).getColorselect();
             }
         }
     }
     else{
         for(int i = 0; i < rejectedOrder.getCount(); i++){
             if(rejectedOrder.getEntry(i).getOrderId() == orderid){
-                rejectedOrder.getEntry(i).getBookingInfo().getColorselect();
+                rejectedOrder.getEntry(i).getBookingInfo().get(1).getColorselect();
             }
         }
     }
@@ -321,21 +321,21 @@ public static void displayFacilityOccassion(CircularQueueInterface<Order> orderQ
     if (check == 1){
         for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
             if((orderQueue.getEntry(i).getOrderId()) == orderid){
-                orderQueue.getEntry(i).getBookingInfo().getOccasionselect();
+                orderQueue.getEntry(i).getBookingInfo().get(1).getOccasionselect();
             }
         } 
     }
     else if (check == 2){
         for (int i = 0; i < acceptedOrder.getCount(); i++){
             if(acceptedOrder.getEntry(i).getOrderId() == orderid){
-                acceptedOrder.getEntry(i).getBookingInfo().getOccasionselect();
+                acceptedOrder.getEntry(i).getBookingInfo().get(1).getOccasionselect();
             }
         }
     }
     else{
         for(int i = 0; i < rejectedOrder.getCount(); i++){
             if(rejectedOrder.getEntry(i).getOrderId() == orderid){
-                rejectedOrder.getEntry(i).getBookingInfo().getOccasionselect();
+                rejectedOrder.getEntry(i).getBookingInfo().get(1).getOccasionselect();
             }
         }
     }
@@ -354,21 +354,21 @@ public static void displayFacilityAccessories(CircularQueueInterface<Order> orde
     if (check == 1){
         for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
             if((orderQueue.getEntry(i).getOrderId()) == orderid){
-                orderQueue.getEntry(i).getBookingInfo().getFacilityAccessoriesSelect();
+                orderQueue.getEntry(i).getBookingInfo().get(1).getFacilityAccessoriesSelect();
             }
         } 
     }
     else if (check == 2){
         for (int i = 0; i < acceptedOrder.getCount(); i++){
             if(acceptedOrder.getEntry(i).getOrderId() == orderid){
-                acceptedOrder.getEntry(i).getBookingInfo().getFacilityAccessoriesSelect();
+                acceptedOrder.getEntry(i).getBookingInfo().get(1).getFacilityAccessoriesSelect();
             }
         }
     }
     else{
         for(int i = 0; i < rejectedOrder.getCount(); i++){
             if(rejectedOrder.getEntry(i).getOrderId() == orderid){
-                rejectedOrder.getEntry(i).getBookingInfo().getFacilityAccessoriesSelect();
+                rejectedOrder.getEntry(i).getBookingInfo().get(1).getFacilityAccessoriesSelect();
             }
         }
     }

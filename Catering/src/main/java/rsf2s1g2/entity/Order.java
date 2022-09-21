@@ -64,7 +64,7 @@ public class Order implements Comparable<Order> {
         return nextOrderID;
     }
 
-    public BookingInfo getBookingInfo() {
+    public ListInterface<BookingInfo> getBookingInfo() {
         return bookingInfo;
     }
 
@@ -72,7 +72,7 @@ public class Order implements Comparable<Order> {
         return orderId;
     }
 
-    public Customer getcustomer(){
+    public MapInterface<String, Customer> getcustomer(){
         return customer;
     }
     
