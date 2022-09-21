@@ -117,4 +117,10 @@ public class BookingInfo {
         }
     }
 
+    public double getTotalPrice(){
+        double paymentAmount = foodselect.get(1).getFoodFinaltotal() + beverageselect.get(1).getBeverageFinaltotal() 
+        + sizeselect.get(1).getSizeFinaltotal() + colorselect.get(1).getColorFinaltotal() + occasionselect.get(1).getOccasionFinaltotal();
+        return paymentAmount;
+    }
+
 }

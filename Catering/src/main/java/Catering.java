@@ -70,7 +70,7 @@ public class Catering {
                                 } else {
                                     //Payment Start Here
                                     bookinglist.add(new BookingInfo(foodselect, beverageselect, sizeselect, colorselect, occasionselect, fbAccessoriesSelect, facilityAccessoriesSelect));
-                                    payment.pymt(payments, bookinglist, foodselect, beverageselect, sizeselect, colorselect, occasionselect);
+                                    payment.pymt(payments, bookinglist);
                                    System.out.println(payments.getValue(payments.getNumOfEntries()-1).getId());
                                    System.out.println(payments.getValue(payments.getValue(payments.getNumOfEntries()-1).getId()));
                                    

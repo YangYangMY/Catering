@@ -9,9 +9,7 @@ public class payment {
 
     public static Scanner input = new Scanner(System.in);
 
-    public static void pymt(MapInterface<Integer, Payment> payments, ListInterface<BookingInfo> bookinglist, ListInterface<FoodBeverage> foodselect,
-            ListInterface<FoodBeverage> beverageselect, ListInterface<Facility> sizeselect,
-            ListInterface<Facility> colorselect, ListInterface<Facility> occasionselect) {
+    public static void pymt(MapInterface<Integer, Payment> payments, ListInterface<BookingInfo> bookinglist) {
        
         String paymentMethod = "";
 
@@ -34,8 +32,8 @@ public class payment {
                         paymentMethod = "E-wallet";
                        // payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
                 }
-                payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
-                System.out.println( paymentMethod + " " + getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect));
+                payments.add(Payment.getId(),new Payment(bookinglist.get(1).getTotalPrice(),paymentMethod));
+                System.out.println( paymentMethod + " " + bookinglist.get(1).getTotalPrice());
 
             case 2:
                 Screen.clear();
@@ -60,6 +58,7 @@ public class payment {
         bookinglist.get(1).getSizeselect();
         bookinglist.get(1).getColorselect();
         bookinglist.get(1).getOccasionselect();
+        System.out.println(bookinglist.get(1).getTotalPrice());
 
         System.out.println("\n\t\t\t Do you want to proceed?");
         System.out.println("\t\t\t   1. Confirm");
@@ -168,15 +167,6 @@ public class payment {
                 foodandbeverage.continueMessage();
             }
         } while (otpNum.length() != 6);
-    }
-
-    public static double getTotal(ListInterface<FoodBeverage> foodselect, ListInterface<FoodBeverage> beverageselect,
-            ListInterface<Facility> sizeselect, ListInterface<Facility> colorselect,
-            ListInterface<Facility> occasionselect) {
-        double paymentAmount = foodselect.get(1).getFoodFinaltotal() + beverageselect.get(1).getBeverageFinaltotal() 
-        + sizeselect.get(1).getSizeFinaltotal() + colorselect.get(1).getColorFinaltotal() + occasionselect.get(1).getOccasionFinaltotal();
-
-        return paymentAmount;
     }
 
     public static void generateReceipt(){
