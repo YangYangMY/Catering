@@ -2,13 +2,13 @@ package rsf2s1g2.adt;
 
 import java.util.Scanner;
 
-public class Map<K, V> implements MapInterface <K, V> {
-    
-    private MapTable<K, V>[] hashTable;		
+public class Map<K, V> implements MapInterface<K, V> {
+
+    private MapTable<K, V>[] hashTable;
     private int numOfEntries;
     private static final int SIZE = 100;
 
-    public Map(){
+    public Map() {
         this(SIZE);
     }
 
@@ -23,9 +23,8 @@ public class Map<K, V> implements MapInterface <K, V> {
         numOfEntries++;
         Scanner input = new Scanner(System.in);
         System.out.println("YES ADD");
-        System.out.println(numOfEntries-1);
-        System.out.println(hashTable[numOfEntries-1].getValue());
-        System.out.println(hashTable.length);
+        System.out.println(numOfEntries - 1);
+        System.out.println(hashTable[numOfEntries - 1].getValue());
         System.out.println(numOfEntries);
         input.next();
         return true;
@@ -34,10 +33,10 @@ public class Map<K, V> implements MapInterface <K, V> {
     @Override
     public void remove(K key) {
         V valueToRemove = null;
-        
+
         int index = getValueIndex(key);
 
-        if(index != -1){
+        if (index != -1) {
             valueToRemove = hashTable[index].getValue();
             hashTable[index].toRemove();
             numOfEntries--;
@@ -48,12 +47,12 @@ public class Map<K, V> implements MapInterface <K, V> {
     public int getValueIndex(K key) {
         int index = 0;
 
-        if(hashTable == null){
+        if (hashTable == null) {
             System.out.println("Data is Empty");
         }
-        
-        for(int i = 0; i < numOfEntries; i++){
-            if(hashTable[i].getKey().equals(key)){
+
+        for (int i = 0; i < numOfEntries; i++) {
+            if (hashTable[i].getKey().equals(key)) {
                 index = i;
             }
         }
@@ -66,17 +65,11 @@ public class Map<K, V> implements MapInterface <K, V> {
 
         int index = getValueIndex(key);
 
-        if(index != -1){
+        if (index != -1) {
             dataValue = hashTable[index].getValue();
         }
 
         return dataValue;
-    }
-
-    
-    @Override
-    public int size() {
-        return numOfEntries;
     }
 
     @Override
@@ -92,8 +85,8 @@ public class Map<K, V> implements MapInterface <K, V> {
     @Override
     public String toString() {
         String output = " ";
-        for(int i = 0; i < hashTable.length; i++){
-            output += "Key: " + hashTable[i].getKey() + " Value: " + hashTable[i].getValue();
+        for (int i = 0; i < numOfEntries - 1; i++) {
+            output += hashTable[i].getValue();
         }
 
         return output;
@@ -104,37 +97,35 @@ public class Map<K, V> implements MapInterface <K, V> {
         return numOfEntries;
     }
 
-    private class MapTable<K,V>{
+    private class MapTable<K, V> {
         private K key;
         private V value;
         private boolean inTable;
-        
-        private MapTable(K uniqueKey, V dataValue){
+
+        private MapTable(K uniqueKey, V dataValue) {
             key = uniqueKey;
             value = dataValue;
             inTable = true;
         }
 
-        private K getKey(){
+        private K getKey() {
             return key;
         }
 
-        private V getValue(){
+        private V getValue() {
             return value;
         }
 
-        private boolean isExist(){
+        private boolean isExist() {
             return inTable;
         }
 
-        private void toRemove(){
+        private void toRemove() {
             key = null;
             value = null;
             inTable = false;
         }
 
     }
-
-
 
 }

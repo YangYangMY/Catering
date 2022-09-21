@@ -10,8 +10,6 @@ public interface MapInterface<K, V> {
 
     public V getValue(K key);
 
-    public int size();
-
     public boolean isEmpty();
 
     public boolean contains(K key);

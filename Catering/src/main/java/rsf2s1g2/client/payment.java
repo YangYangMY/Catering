@@ -18,7 +18,7 @@ public class payment {
         switch (displayCart(bookinglist)) {
             case 1:
                 Screen.clear();
-                customer.addDetails();
+                String cateringDate = customer.addDetails();
                 switch (getPymt(bookinglist)) {
                     case 1:
                         paymentMethod = "Online Bank Transfer";
@@ -34,8 +34,8 @@ public class payment {
                         paymentMethod = "E-wallet";
                        // payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
                 }
-                payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
-                System.out.println( paymentMethod + " " + getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect));
+
+                payments.add(Payment.getId() ,new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect), paymentMethod));
 
             case 2:
                 Screen.clear();
@@ -179,7 +179,9 @@ public class payment {
         return paymentAmount;
     }
 
-    public static void generateReceipt(){
+    public static void generateReceipt(ListInterface<FoodBeverage> foodselect, ListInterface<FoodBeverage> beverageselect,
+    ListInterface<Facility> sizeselect, ListInterface<Facility> colorselect,
+    ListInterface<Facility> occasionselect){
         Screen.clear();
 
         Font.print(Font.ANSI_YELLOW, "\t ██████╗ ███████╗ ██████╗███████╗██╗██████╗ ████████╗");
@@ -189,6 +191,9 @@ public class payment {
         Font.print(Font.ANSI_YELLOW, "\t ██║  ██║███████╗╚██████╗███████╗██║██║        ██║   ");
         Font.print(Font.ANSI_YELLOW, "\t ╚═╝  ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝╚═╝        ╚═╝   ");
         System.out.println("=============================================================================");
+        System.out.println(foodselect.toString());
+        System.out.println(beverageselect.toString());
+        System.out.println(sizeselect.toString());
         
     }
 }
