@@ -11,7 +11,7 @@ public class customer {
     
     private static Scanner input = new Scanner(System.in);
 
-    public static String addDetails(MapInterface<String, Customer> customers){
+    public static String[] addDetails(MapInterface<String, Customer> customers){
        
         Font.print(Font.ANSI_YELLOW, "\t   ██████╗██╗  ██╗███████╗ ██████╗██╗  ██╗ ██████╗ ██╗   ██╗████████╗");
         Font.print(Font.ANSI_YELLOW, "\t  ██╔════╝██║  ██║██╔════╝██╔════╝██║ ██╔╝██╔═══██╗██║   ██║╚══██╔══╝");
@@ -33,7 +33,11 @@ public class customer {
 
         customers.add(custIcNo, new Customer(custIcNo, custName, custPhoneNum, custAddr));
 
-        return date;
+        String[] temp = new String[3];
+        temp[0] = date;
+        temp[1] = custName;
+        temp[2] = custPhoneNum;
+        return temp;
         
     }
 

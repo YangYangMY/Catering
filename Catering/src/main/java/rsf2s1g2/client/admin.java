@@ -775,22 +775,16 @@ public static void QueueRejectAllConfirmation(CircularQueueInterface<Order> orde
         int choice1 = 0;
         Screen.clear();
         do {
-            try {
                 choice1 = 0;
                 
                 displayQueue(orderQueue);
                 Order.setCount(1);
                 choice1 = input1.nextInt();
                 if (choice1 < 1 || choice1 > 4) {
-                    Screen.clear();
-                    Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
-                }
+                     Screen.clear();
+                     Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
+                 }
 
-            } catch (Exception e) {
-                Screen.clear();
-                Font.print(Font.ANSI_RED, "                            Only (1-4) is allowed, please try again!\n");
-                input1.next();
-                }
 
                 switch(choice1){
                     case 1:
@@ -841,7 +835,7 @@ public static void QueueRejectAllConfirmation(CircularQueueInterface<Order> orde
         System.out.println("-------------------------------------------------------------------------------------------------------");
             System.out.println(acceptedOrder);
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        System.out.println("Total number of orders in queue: " + acceptedOrder.getCount());
+        System.out.println("Total number of orders in List: " + acceptedOrder.getCount());
         System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.println("\t\t\t\t[1] Complete First Order\n\t\t\t\t[2] Complete Specific Order\n\t\t\t\t[3] Back");
         System.out.println("=======================================================================================================");
@@ -1254,7 +1248,7 @@ public static void QueueRejectAllConfirmation(CircularQueueInterface<Order> orde
         System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.println(rejectedOrder);
         System.out.println("-------------------------------------------------------------------------------------------------------");
-        System.out.println("Total number of orders in queue: " + rejectedOrder.getCount());
+        System.out.println("Total number of orders in list: " + rejectedOrder.getCount());
         System.out.println("-------------------------------------------------------------------------------------------------------");
         System.out.println("\t\t\t\t[1] Refunded First Order\n\t\t\t\t[2] Refunded Specific Order\n\t\t\t\t[3] Back");
         System.out.println("=======================================================================================================");

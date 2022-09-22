@@ -98,13 +98,14 @@ public class CircularQueue <T> implements CircularQueueInterface<T>{
     public T getEntry(int position) {
         int current = front;
         int n = 0;
-        
-        while(array[current] != null){
-            if(current == position){
-                return array[position];
+        if(current != -1){
+            while(array[current] != null){
+                if(current == position){
+                    return array[position];
+                }
+                n++;
+                current++;
             }
-            n++;
-            current++;
         }
        return null; 
     }

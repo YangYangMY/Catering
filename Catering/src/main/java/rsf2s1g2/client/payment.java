@@ -17,7 +17,7 @@ public class payment {
         switch (displayCart(bookinglist)) {
             case 1:
                 Screen.clear();
-                String cateringDate = customer.addDetails(customers);
+                String[] temp = customer.addDetails(customers);
                 switch (getPymt(bookinglist)) {
                     case 1:
                         paymentMethod = "Online Bank Transfer";
@@ -34,7 +34,7 @@ public class payment {
                        // payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
                 }
                 payments.add(Payment.getId(),new Payment(bookinglist.get(1).getTotalPrice(),paymentMethod));
-                Order item1 = new Order(cateringDate, bookinglist, customers);
+                Order item1 = new Order(temp[0], temp[1], temp[2], bookinglist, customers);
                 orderQueue.enqueue(item1);
                 //testing
 

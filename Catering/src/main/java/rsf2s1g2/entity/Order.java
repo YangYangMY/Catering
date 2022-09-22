@@ -1,6 +1,6 @@
 package rsf2s1g2.entity;
 import rsf2s1g2.adt.*;
-
+import rsf2s1g2.entity.*;
 /**
  *
  * @author Wee Yan
@@ -24,10 +24,10 @@ public class Order implements Comparable<Order> {
         this.orderAmount = orderAmount;
     }
     
-    public Order(String date, ListInterface<BookingInfo> bookinginfo, MapInterface<String, Customer> customers){
+    public Order(String date, String name, String phonenumber, ListInterface<BookingInfo> bookinginfo, MapInterface<String, Customer> customers){
         this.orderId = nextOrderID++;
-        this.customerName = customers.getNumOfEntries();
-        this.phoneNum = customers.getPhoneNum();
+        this.customerName = name;
+        this.phoneNum = phonenumber;
         this.date = date;
         this.orderAmount = bookinginfo.get(1).getTotalPrice();
         this.bookingInfo = bookinginfo;

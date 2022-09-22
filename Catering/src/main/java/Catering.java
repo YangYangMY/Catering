@@ -40,10 +40,6 @@ public class Catering {
         CircularQueueInterface<Order> orderQueue = new CircularQueue<>();
         SortedListInterface<Order> acceptedOrder = new SortedList<>();
         SortedListInterface<Order> rejectedOrder = new SortedList<>();
-        //Order dummy test
-        dummyScript.DummyOrderData(orderQueue);
-        //String date = "2001-10-2";
-        //orderQueue.enqueue(Order(date, bookinglist, customer));
 
         Scanner input = new Scanner(System.in);
 
