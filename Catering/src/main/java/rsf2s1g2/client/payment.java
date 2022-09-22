@@ -33,8 +33,9 @@ public class payment {
                         paymentMethod = "E-wallet";
                        // payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
                 }
+                int paymentID = Payment.getId();
                 payments.add(Payment.getId(),new Payment(bookinglist.get(1).getTotalPrice(),paymentMethod));
-                Order item1 = new Order(temp[0], temp[1], bookinglist, customers);
+                Order item1 = new Order(temp[0], temp[1], paymentID, bookinglist, customers, payments);
                 orderQueue.enqueue(item1);
                 //testing
 

@@ -130,14 +130,14 @@ public static void displayCustomer(CircularQueueInterface<Order> orderQueue, Sor
     else if (check == 2){
         for (int i = 0; i < acceptedOrder.getCount(); i++){
             if(acceptedOrder.getEntry(i).getOrderId() == orderid){
-                System.out.println(orderQueue.getEntry(i).getcustomer().getValue(orderQueue.getEntry(i).getCustomerIC()).toString());
+                System.out.println(acceptedOrder.getEntry(i).getcustomer().getValue(acceptedOrder.getEntry(i).getCustomerIC()).toString());
             }
         }
     }
     else{
         for(int i = 0; i < rejectedOrder.getCount(); i++){
             if(rejectedOrder.getEntry(i).getOrderId() == orderid){
-                System.out.println(orderQueue.getEntry(i).getcustomer().getValue(orderQueue.getEntry(i).getCustomerIC()).toString());
+                System.out.println(rejectedOrder.getEntry(i).getcustomer().getValue(rejectedOrder.getEntry(i).getCustomerIC()).toString());
             }
         }
     }
@@ -387,21 +387,21 @@ public static void displayPayment(CircularQueueInterface<Order> orderQueue, Sort
     if (check == 1){
         for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
             if((orderQueue.getEntry(i).getOrderId()) == orderid){
-                orderQueue.getEntry(i).getBookingInfo().get(1).getFacilityAccessoriesSelect();
+                System.out.println(orderQueue.getEntry(i).getPayments().getValue(orderQueue.getEntry(i).getPaymentID()).toString());
             }
         } 
     }
     else if (check == 2){
         for (int i = 0; i < acceptedOrder.getCount(); i++){
             if(acceptedOrder.getEntry(i).getOrderId() == orderid){
-                acceptedOrder.getEntry(i).getBookingInfo().get(1).getFacilityAccessoriesSelect();
+                System.out.println(acceptedOrder.getEntry(i).getPayments().getValue(acceptedOrder.getEntry(i).getPaymentID()).toString());
             }
         }
     }
     else{
         for(int i = 0; i < rejectedOrder.getCount(); i++){
             if(rejectedOrder.getEntry(i).getOrderId() == orderid){
-                rejectedOrder.getEntry(i).getBookingInfo().get(1).getFacilityAccessoriesSelect();
+                System.out.println(rejectedOrder.getEntry(i).getPayments().getValue(rejectedOrder.getEntry(i).getPaymentID()).toString());
             }
         }
     }

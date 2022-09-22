@@ -45,9 +45,15 @@ public class Payment {
 
     @Override
     public String toString() {
-        num += 1;
+        num = 1;
+        String output = "";
+        System.out.println("===================================================================================");
+        System.out.println("\tID \t\tPAYMENT METHOD  \tTOTAL(RM)");
+        System.out.println("===================================================================================");
+        System.out.println("\t" +pymtId + "\t\t  " + method + "\t\t  " + df.format(amount));
+        System.out.println("===================================================================================");
 
-        return num + ".\t" + pymtId + "\t\t  " + method + "\t\t  " + df.format(amount);
+        return output;
     }
 
 }
