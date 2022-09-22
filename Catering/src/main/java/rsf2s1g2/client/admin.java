@@ -123,21 +123,21 @@ public static void displayCustomer(CircularQueueInterface<Order> orderQueue, Sor
     if (check == 1){
         for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
             if((orderQueue.getEntry(i).getOrderId()) == orderid){
-                orderQueue.getEntry(i).getBookingInfo().get(1).getFoodselect();
-            }
+                System.out.println(orderQueue.getEntry(i).getcustomer().getValue(orderQueue.getEntry(i).getCustomerIC()).toString());
+            } 
         } 
     }
     else if (check == 2){
         for (int i = 0; i < acceptedOrder.getCount(); i++){
             if(acceptedOrder.getEntry(i).getOrderId() == orderid){
-                acceptedOrder.getEntry(i).getBookingInfo().get(1).getFoodselect();
+                System.out.println(orderQueue.getEntry(i).getcustomer().getValue(orderQueue.getEntry(i).getCustomerIC()).toString());
             }
         }
     }
     else{
         for(int i = 0; i < rejectedOrder.getCount(); i++){
             if(rejectedOrder.getEntry(i).getOrderId() == orderid){
-                rejectedOrder.getEntry(i).getBookingInfo().get(1).getFoodselect();
+                System.out.println(orderQueue.getEntry(i).getcustomer().getValue(orderQueue.getEntry(i).getCustomerIC()).toString());
             }
         }
     }

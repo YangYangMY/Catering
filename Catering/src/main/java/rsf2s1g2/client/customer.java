@@ -65,13 +65,4 @@ public class customer {
         return custIcNo;
     }
 
-    public static void displayCustomer(MapInterface<String, Customer> customers){
-
-        System.out.println("===================================================================================");
-        System.out.println("\tIC NO. \t\tNAME  \tPHONE NO.  \tADDRESS");
-        System.out.println("===================================================================================");
-        System.out.println(customers.toString());
-        System.out.println("===================================================================================");
-
-    }
 }

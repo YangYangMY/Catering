@@ -13,6 +13,7 @@ public class Order implements Comparable<Order> {
     private String phoneNum;
     private String date;
     private double orderAmount;
+    private String customerIC;
     private ListInterface<BookingInfo> bookingInfo;
     private MapInterface<String, Customer> customer;
 
@@ -32,6 +33,7 @@ public class Order implements Comparable<Order> {
         this.orderAmount = bookinginfo.get(1).getTotalPrice();
         this.bookingInfo = bookinginfo;
         this.customer = customers;
+        this.customerIC = icNumber;
     }
     
 
@@ -75,5 +77,11 @@ public class Order implements Comparable<Order> {
     public MapInterface<String, Customer> getcustomer(){
         return customer;
     }
+
+    public String getCustomerIC() {
+        return customerIC;
+    }
+
+
     
 }

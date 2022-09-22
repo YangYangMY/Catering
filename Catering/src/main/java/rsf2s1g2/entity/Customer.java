@@ -47,9 +47,12 @@ public class Customer{
 
     @Override
     public String toString() {
-            return "\nName: " + name + 
-            "\nIC No: " + icNo + 
-            "\nPhone No: " + phoneNum + 
-            "\nAddress: " + address + "\n";
+        String output = "";
+        System.out.println("===================================================================================");
+        System.out.println("\tIC NO. \t\tNAME  \tPHONE NO.  \tADDRESS");
+        System.out.println("===================================================================================");
+        System.out.println(icNo + "\t\t" + name + "\t" + phoneNum + "\t" + address);
+        System.out.println("===================================================================================");
+        return output;
     }
 }
