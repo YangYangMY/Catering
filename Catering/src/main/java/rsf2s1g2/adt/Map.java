@@ -21,12 +21,14 @@ public class Map<K, V> implements MapInterface<K, V> {
     public boolean add(K key, V value) {
         hashTable[numOfEntries] = new MapTable<K, V>(key, value);
         numOfEntries++;
-        Scanner input = new Scanner(System.in);
-        System.out.println("YES ADD");
-        System.out.println(numOfEntries - 1);
-        System.out.println(hashTable[numOfEntries - 1].getValue());
-        System.out.println(numOfEntries);
-        input.next();
+
+        // Scanner input = new Scanner(System.in);
+        // System.out.println("YES ADD");
+        // System.out.println(numOfEntries - 1);
+        // System.out.println(hashTable[numOfEntries - 1].getValue());
+        // System.out.println(numOfEntries);
+        // input.next();
+        
         return true;
     }
 

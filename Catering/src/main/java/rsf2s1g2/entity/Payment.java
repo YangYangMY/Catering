@@ -2,6 +2,7 @@ package rsf2s1g2.entity;
 
 public class Payment {
     private static int id = 1000;
+    private int pymtId = 1000;      
     private double amount;
     private String method;
 
@@ -12,10 +13,15 @@ public class Payment {
         this.amount = paymentAmount;
         this.method = paymentMethod;
         id++;
+        pymtId++;
     }
 
     public static int getId(){
         return id;
+    }
+
+    public int getPymtId(){
+        return pymtId;
     }
 
     public double getAmount() {
@@ -36,7 +42,7 @@ public class Payment {
 
     @Override
     public String toString() {
-            return "\nPayment Id: " + id + 
+            return "\nPayment Id: " + pymtId + 
             "\nPayment Amount: " + amount + 
             "\nPayment Method: " + method + "\n";
     }
