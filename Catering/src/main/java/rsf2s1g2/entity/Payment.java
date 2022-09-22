@@ -1,10 +1,13 @@
 package rsf2s1g2.entity;
+import java.text.DecimalFormat;
 
 public class Payment {
     private static int id = 1000;
     private int pymtId = 1000;      
     private double amount;
     private String method;
+    private int num = 0;
+    DecimalFormat df = new DecimalFormat("0.00");
 
     public Payment(){
     }
@@ -42,9 +45,9 @@ public class Payment {
 
     @Override
     public String toString() {
-            return "\nPayment Id: " + pymtId + 
-            "\nPayment Amount: " + amount + 
-            "\nPayment Method: " + method + "\n";
+        num += 1;
+
+        return num + ".\t" + pymtId + "\t\t  " + method + "\t\t  " + df.format(amount);
     }
 
 }

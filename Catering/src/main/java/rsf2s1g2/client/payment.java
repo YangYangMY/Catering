@@ -61,7 +61,7 @@ public class payment {
         bookinglist.get(1).getSizeselect();
         bookinglist.get(1).getColorselect();
         bookinglist.get(1).getOccasionselect();
-        System.out.println(bookinglist.get(1).getTotalPrice());
+        //System.out.println(bookinglist.get(1).getTotalPrice());
 
         System.out.println("\n\t\t\t Do you want to proceed?");
         System.out.println("\t\t\t   1. Confirm");
@@ -183,5 +183,15 @@ public class payment {
         Font.print(Font.ANSI_YELLOW, "\t ╚═╝  ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝╚═╝        ╚═╝   ");
         System.out.println("=============================================================================");
         
+    }
+
+    public static void displayPayment(MapInterface<Integer, Payment> payments){
+
+        System.out.println("===================================================================================");
+        System.out.println("\tID \t\tPAYMENT METHOD  \tTOTAL(RM)");
+        System.out.println("===================================================================================");
+        System.out.println(payments.toString());
+        System.out.println("===================================================================================");
+
     }
 }
