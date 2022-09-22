@@ -108,10 +108,11 @@ public static void displayOrderMenu(CircularQueueInterface<Order> orderQueue, So
     Font.print(Font.ANSI_CYAN, "Order Id : " + orderid);
     System.out.println("-------------------------------------------------------------------------------------------------------");
     System.out.println("-------------------------------------------------------------------------------------------------------");
-    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+       System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Payment\n\t\t\t\t[10] Back");
     System.out.println("=======================================================================================================");
     System.out.print("\n\t\t\t       Select your Choice: ");
 }
+
 
 public static void displayCustomer(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder, int orderid, int check){
     Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
@@ -122,30 +123,29 @@ public static void displayCustomer(CircularQueueInterface<Order> orderQueue, Sor
     if (check == 1){
         for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
             if((orderQueue.getEntry(i).getOrderId()) == orderid){
-                orderQueue.getEntry(i).getcustomer();
+                orderQueue.getEntry(i).getBookingInfo().get(1).getFoodselect();
             }
         } 
     }
     else if (check == 2){
         for (int i = 0; i < acceptedOrder.getCount(); i++){
             if(acceptedOrder.getEntry(i).getOrderId() == orderid){
-                acceptedOrder.getEntry(i).getcustomer();
+                acceptedOrder.getEntry(i).getBookingInfo().get(1).getFoodselect();
             }
         }
     }
     else{
         for(int i = 0; i < rejectedOrder.getCount(); i++){
             if(rejectedOrder.getEntry(i).getOrderId() == orderid){
-                rejectedOrder.getEntry(i).getcustomer();
+                rejectedOrder.getEntry(i).getBookingInfo().get(1).getFoodselect();
             }
         }
     }
     System.out.println("-------------------------------------------------------------------------------------------------------");
-    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+       System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Payment\n\t\t\t\t[10] Back");
     System.out.println("=======================================================================================================");
     System.out.print("\n\t\t\t       Select your Choice: ");
 }
-
 
 public static void displayFood(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder, int orderid, int check){
     Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
@@ -175,7 +175,7 @@ public static void displayFood(CircularQueueInterface<Order> orderQueue, SortedL
         }
     }
     System.out.println("-------------------------------------------------------------------------------------------------------");
-    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+       System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Payment\n\t\t\t\t[10] Back");
     System.out.println("=======================================================================================================");
     System.out.print("\n\t\t\t       Select your Choice: ");
 }
@@ -208,7 +208,7 @@ public static void displayBeverage(CircularQueueInterface<Order> orderQueue, Sor
         }
     }
     System.out.println("-------------------------------------------------------------------------------------------------------");
-    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+       System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Payment\n\t\t\t\t[10] Back");
     System.out.println("=======================================================================================================");
     System.out.print("\n\t\t\t       Select your Choice: ");
 }
@@ -241,7 +241,7 @@ public static void displayFBaccess(CircularQueueInterface<Order> orderQueue, Sor
         }
     }
     System.out.println("-------------------------------------------------------------------------------------------------------");
-    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+       System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Payment\n\t\t\t\t[10] Back");
     System.out.println("=======================================================================================================");
     System.out.print("\n\t\t\t       Select your Choice: ");
 }
@@ -274,7 +274,7 @@ public static void displayFacilitySize(CircularQueueInterface<Order> orderQueue,
         }
     }
     System.out.println("-------------------------------------------------------------------------------------------------------");
-    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+       System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Payment\n\t\t\t\t[10] Back");
     System.out.println("=======================================================================================================");
     System.out.print("\n\t\t\t       Select your Choice: ");
 }
@@ -307,7 +307,7 @@ public static void displayFacilityColor(CircularQueueInterface<Order> orderQueue
         }
     }
     System.out.println("-------------------------------------------------------------------------------------------------------");
-    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+       System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Payment\n\t\t\t\t[10] Back");
     System.out.println("=======================================================================================================");
     System.out.print("\n\t\t\t       Select your Choice: ");
 }
@@ -340,7 +340,7 @@ public static void displayFacilityOccassion(CircularQueueInterface<Order> orderQ
         }
     }
     System.out.println("-------------------------------------------------------------------------------------------------------");
-    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+       System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Payment\n\t\t\t\t[10] Back");
     System.out.println("=======================================================================================================");
     System.out.print("\n\t\t\t       Select your Choice: ");
 }
@@ -373,11 +373,43 @@ public static void displayFacilityAccessories(CircularQueueInterface<Order> orde
         }
     }
     System.out.println("-------------------------------------------------------------------------------------------------------");
-    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Back");
+    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Payment\n\t\t\t\t[10] Back");
     System.out.println("=======================================================================================================");
     System.out.print("\n\t\t\t       Select your Choice: ");
 }
 
+public static void displayPayment(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder, int orderid, int check){
+    Font.print(Font.ANSI_PURPLE,"\t\t\t\t\tOrder Details");
+    System.out.println("==================================================================================================");
+    Font.print(Font.ANSI_CYAN, "Order Id : " + orderid);
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    
+    if (check == 1){
+        for (int i = orderQueue.getFront(); i <= orderQueue.getRear(); i++){
+            if((orderQueue.getEntry(i).getOrderId()) == orderid){
+                orderQueue.getEntry(i).getBookingInfo().get(1).getFacilityAccessoriesSelect();
+            }
+        } 
+    }
+    else if (check == 2){
+        for (int i = 0; i < acceptedOrder.getCount(); i++){
+            if(acceptedOrder.getEntry(i).getOrderId() == orderid){
+                acceptedOrder.getEntry(i).getBookingInfo().get(1).getFacilityAccessoriesSelect();
+            }
+        }
+    }
+    else{
+        for(int i = 0; i < rejectedOrder.getCount(); i++){
+            if(rejectedOrder.getEntry(i).getOrderId() == orderid){
+                rejectedOrder.getEntry(i).getBookingInfo().get(1).getFacilityAccessoriesSelect();
+            }
+        }
+    }
+    System.out.println("-------------------------------------------------------------------------------------------------------");
+    System.out.println("\n\t\t\t\t[1] Customer\n\t\t\t\t[2] Food Summary\n\t\t\t\t[3] Beverage Summary\n\t\t\t\t[4] Food & Beverage Accessories Summary\n\t\t\t\t[5] Facility Size Summary\n\t\t\t\t[6] Facility Color Summary\n\t\t\t\t[7] Facility Occassion Summary\n\t\t\t\t[8] Facility Accessories Summary\n\t\t\t\t[9] Payment\n\t\t\t\t[10] Back");
+    System.out.println("=======================================================================================================");
+    System.out.print("\n\t\t\t       Select your Choice: ");
+}
 
     public static void orderDetails(CircularQueueInterface<Order> orderQueue, SortedListInterface<Order> acceptedOrder,SortedListInterface<Order> rejectedOrder){
         Scanner input2 = new Scanner(System.in);
@@ -394,7 +426,7 @@ public static void displayFacilityAccessories(CircularQueueInterface<Order> orde
                 System.out.println("==================================================================================================");
                 System.out.print("\n\t\t\t       Enter Order ID (Type 0 to exit): ");
                 orderid = input2.nextInt();
-                check = orderidCheck(orderQueue, rejectedOrder, rejectedOrder, orderid);
+                check = orderidCheck(orderQueue, acceptedOrder, rejectedOrder, orderid);
                 if(orderid == 0 || check == 1 || check == 2 || check == 3){
                     check1 = true;
                 }
@@ -414,20 +446,23 @@ public static void displayFacilityAccessories(CircularQueueInterface<Order> orde
     }
     else{
         Screen.clear();
+        selection = 0;
+                
+        displayOrderMenu(orderQueue, acceptedOrder, rejectedOrder, orderid);
+        selection = input2.nextInt();
         do {
             try {
-                selection = 0;
-                
-                displayOrderMenu(orderQueue, acceptedOrder, rejectedOrder, orderid);;
                 selection = input2.nextInt();
-                if (selection < 1 || selection > 9) {
+                if (selection < 1 || selection > 10) {
                     Screen.clear();
-                    Font.print(Font.ANSI_RED, "                            Only (1-9) is allowed, please try again!\n");
+                    Font.print(Font.ANSI_RED, "                            Only (1-10) is allowed, please try again!\n");
+                    displayOrderMenu(orderQueue, acceptedOrder, rejectedOrder, orderid);
                 }
 
             } catch (Exception e) {
                 Screen.clear();
-                Font.print(Font.ANSI_RED, "                            Only (1-9) is allowed, please try again!\n");
+                Font.print(Font.ANSI_RED, "                            Only (1-10) is allowed, please try again!\n");
+                displayOrderMenu(orderQueue, acceptedOrder, rejectedOrder, orderid);
                 input2.next();
                 }
         
@@ -435,7 +470,7 @@ public static void displayFacilityAccessories(CircularQueueInterface<Order> orde
         switch(selection){
             case 1:
                 Screen.clear();
-                
+                displayCustomer(orderQueue, acceptedOrder, rejectedOrder, orderid, check);
                 break;
             case 2:
                 Screen.clear();
@@ -467,11 +502,15 @@ public static void displayFacilityAccessories(CircularQueueInterface<Order> orde
                 break;
             case 9:
                 Screen.clear();
+                displayPayment(orderQueue, acceptedOrder, rejectedOrder, orderid, check);
+                break;
+            case 10:
+                Screen.clear();
                 break;
             }
 
 
-    }while(selection != 9);
+    }while(selection != 10);
     Screen.clear();
 
 }
