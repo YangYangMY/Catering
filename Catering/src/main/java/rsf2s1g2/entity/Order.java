@@ -24,10 +24,10 @@ public class Order implements Comparable<Order> {
         this.orderAmount = orderAmount;
     }
     
-    public Order(String date, String name, String phonenumber, ListInterface<BookingInfo> bookinginfo, MapInterface<String, Customer> customers){
+    public Order(String date, String icNumber, ListInterface<BookingInfo> bookinginfo, MapInterface<String, Customer> customers){
         this.orderId = nextOrderID++;
-        this.customerName = name;
-        this.phoneNum = phonenumber;
+        this.customerName = customers.getValue(icNumber).getName();
+        this.phoneNum = customers.getValue(icNumber).getPhoneNum();
         this.date = date;
         this.orderAmount = bookinginfo.get(1).getTotalPrice();
         this.bookingInfo = bookinginfo;

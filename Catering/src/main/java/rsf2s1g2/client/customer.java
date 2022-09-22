@@ -33,10 +33,9 @@ public class customer {
 
         customers.add(custIcNo, new Customer(custIcNo, custName, custPhoneNum, custAddr));
 
-        String[] temp = new String[3];
+        String[] temp = new String[2];
         temp[0] = date;
-        temp[1] = custName;
-        temp[2] = custPhoneNum;
+        temp[1] = custIcNo;
         return temp;
         
     }

@@ -34,7 +34,7 @@ public class payment {
                        // payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
                 }
                 payments.add(Payment.getId(),new Payment(bookinglist.get(1).getTotalPrice(),paymentMethod));
-                Order item1 = new Order(temp[0], temp[1], temp[2], bookinglist, customers);
+                Order item1 = new Order(temp[0], temp[1], bookinglist, customers);
                 orderQueue.enqueue(item1);
                 //testing
 
