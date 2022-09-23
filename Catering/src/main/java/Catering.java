@@ -53,7 +53,6 @@ public class Catering {
             switch (choice) {
                 case 1: // Menu (Food & Beverage, Facility, Payment)
                     do {
-                        clearList(foodlist, beveragelist, foodselect, beverageselect, fbAccessoriesList, fbAccessoriesSelect,facilitySizeList, facilityColorList, facilityOccasionList, sizeselect, colorselect, occasionselect, facilityAccessoriesList, facilityAccessoriesSelect);
                         OrderMenu();
                         choice1 = Screen.numInputValid(1, 4, "\t\t\t       Select your Choice: ", "                            Only (1-4) is allowed, please try again!");
                         Screen.clear();
@@ -89,6 +88,9 @@ public class Catering {
                                     choice1 = 0;
                                 }
                                 break;
+                        }
+                        if(choice1 == 4){
+                            clearList(foodlist, beveragelist, foodselect, beverageselect, fbAccessoriesList, fbAccessoriesSelect, facilitySizeList, facilityColorList, facilityOccasionList, sizeselect, colorselect, occasionselect, facilityAccessoriesList, facilityAccessoriesSelect);
                         }
                     } while (choice1 != 4);
                     break;
