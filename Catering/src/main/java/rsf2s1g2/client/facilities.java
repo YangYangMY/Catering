@@ -18,7 +18,7 @@ public class facilities {
 
         do {
             Screen.clear();
-            displayFacilities();
+            displayFacilities(sizeselect, colorselect, occasionselect);
             choice = input.nextInt();
             Screen.clear();
             switch (choice) {
@@ -276,7 +276,17 @@ public class facilities {
         } while (choice != 5);
     }
 
-    public static void displayFacilities() {
+    public static void displayFacilities(ListInterface<Facility> sizeselect, ListInterface<Facility> colorselect, ListInterface<Facility> occasionselect) {
+        String emptySize = "", emptyColor = "", emptyOccasion = "";
+        if (sizeselect.isEmpty()) {
+            emptySize = "(Empty)";
+        }
+        if (colorselect.isEmpty()) {
+            emptyColor = "(Empty)";
+        }
+        if (occasionselect.isEmpty()) {
+            emptyOccasion = "(Empty)";
+        }
         Font.print(Font.ANSI_YELLOW, "\t\t\t\t\t ███████╗ █████╗  ██████╗██╗██╗     ██╗████████╗██╗███████╗███████╗ ");
         Font.print(Font.ANSI_YELLOW, "\t\t\t\t\t ██╔════╝██╔══██╗██╔════╝██║██║     ██║╚══██╔══╝██║██╔════╝██╔════╝ ");
         Font.print(Font.ANSI_YELLOW, "\t\t\t\t\t █████╗  ███████║██║     ██║██║     ██║   ██║   ██║█████╗  ███████╗ ");
@@ -284,7 +294,7 @@ public class facilities {
         Font.print(Font.ANSI_YELLOW, "\t\t\t\t\t ██║     ██║  ██║╚██████╗██║███████╗██║   ██║   ██║███████╗███████║ ");
         Font.print(Font.ANSI_YELLOW, "\t\t\t\t\t ╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝╚══════╝╚═╝   ╚═╝   ╚═╝╚══════╝╚══════╝ ");
         System.out.println("=================================================================================================================================================");
-        System.out.println("\t\t\t\t\t\t\t\t1. Size\n\t\t\t\t\t\t\t\t2. Color\n\t\t\t\t\t\t\t\t3. Occasion\n\t\t\t\t\t\t\t\t4. Accessories\n\t\t\t\t\t\t\t\t5. Exit");
+        System.out.println("\t\t\t\t\t\t\t\t1. Size" + emptySize + "\n\t\t\t\t\t\t\t\t2. Color" + emptyColor + "\n\t\t\t\t\t\t\t\t3. Occasion" + emptyOccasion + "\n\t\t\t\t\t\t\t\t4. Accessories\n\t\t\t\t\t\t\t\t5. Exit");
         System.out.println("=================================================================================================================================================");
         System.out.print("\t\t\t\t\t\t\t       Select your Choice: ");
     }

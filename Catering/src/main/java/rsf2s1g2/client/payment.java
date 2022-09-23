@@ -10,9 +10,10 @@ public class payment {
 
     public static Scanner input = new Scanner(System.in);
 
-    public static void pymt(MapInterface<String, Customer> customers, MapInterface<Integer, Payment> payments, ListInterface<BookingInfo> bookinglist, CircularQueueInterface<Order> orderQueue) {
+    public static int pymt(MapInterface<String, Customer> customers, MapInterface<Integer, Payment> payments, ListInterface<BookingInfo> bookinglist, CircularQueueInterface<Order> orderQueue) {
        
         String paymentMethod = "";
+        int choice = 3;
 
         switch (displayCart(bookinglist)) {
             case 1:
@@ -35,12 +36,19 @@ public class payment {
                 payments.add(Payment.getId(),new Payment(bookinglist.get(1).getTotalPrice(),paymentMethod));
                 Order item1 = new Order(temp[0], temp[1], paymentID, bookinglist, customers, payments);
                 orderQueue.enqueue(item1);
+                BookingInfo.addBookingPosition();
+                Screen.clear();
+                choice = 4;
+                break;
                 //testing
 
             case 2:
                 Screen.clear();
+                choice = 3;
                 break;
         }
+
+        return choice;
     }
 
     public static int displayCart(ListInterface<BookingInfo> bookinglist) {

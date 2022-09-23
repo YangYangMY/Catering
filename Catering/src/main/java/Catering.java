@@ -53,6 +53,7 @@ public class Catering {
             switch (choice) {
                 case 1: // Menu (Food & Beverage, Facility, Payment)
                     do {
+                        clearList(foodlist, beveragelist, foodselect, beverageselect, fbAccessoriesList, fbAccessoriesSelect,facilitySizeList, facilityColorList, facilityOccasionList, sizeselect, colorselect, occasionselect, facilityAccessoriesList, facilityAccessoriesSelect);
                         OrderMenu();
                         choice1 = Screen.numInputValid(1, 4, "\t\t\t       Select your Choice: ", "                            Only (1-4) is allowed, please try again!");
                         Screen.clear();
@@ -67,13 +68,26 @@ public class Catering {
                                 if(foodselect.isEmpty() || beverageselect.isEmpty() || sizeselect.isEmpty() || colorselect.isEmpty() || occasionselect.isEmpty()){
                                     Font.print(Font.RED_BOLD_BRIGHT, "\t\tPlease select all the options before proceed to payment!");
                                     continueMessage();
+                                } else if(bookinglist.isFull()){
+                                    Font.print(Font.RED_BOLD_BRIGHT, "\t\tSorry, the booking list is full!");
+                                    continueMessage();
                                 } else {
                                     //Payment Start Here
-                                    bookinglist.add(new BookingInfo(foodselect, beverageselect, sizeselect, colorselect, occasionselect, fbAccessoriesSelect, facilityAccessoriesSelect));
-                                    payment.pymt(customers, payments, bookinglist, orderQueue);
+                                    if(bookinglist.positionCheck(BookingInfo.bookingPosition)){
+                                        bookinglist.set(BookingInfo.bookingPosition, new BookingInfo(foodselect, beverageselect, sizeselect, colorselect, occasionselect, fbAccessoriesSelect, facilityAccessoriesSelect));
+                                        choice1 = payment.pymt(customers, payments, bookinglist, orderQueue);
+                                    } else {
+                                        bookinglist.add(new BookingInfo(foodselect, beverageselect, sizeselect, colorselect, occasionselect, fbAccessoriesSelect, facilityAccessoriesSelect));
+                                        choice1 = payment.pymt(customers, payments, bookinglist, orderQueue);
+                                    }
                                 }
                                 break;
                             case 4: // Exit to Home Menu
+                                int confirm = Screen.numInputValid(0,1,"\t\tAll cart will be clear. Are you sure? (1 = Yes, 0 = No): ", "\t\tInvalid input. Please try again");
+                                Screen.clear();
+                                if (confirm == 0){
+                                    choice1 = 0;
+                                }
                                 break;
                         }
                     } while (choice1 != 4);
@@ -150,5 +164,23 @@ public class Catering {
         System.out.print("\t\t\t       Enter to continue...");
         input.nextLine();
         Screen.clear();
+    }
+
+    public static void clearList(ListInterface<FoodBeverage> foodlist, ListInterface<FoodBeverage> beveragelist, ListInterface<FoodBeverage> foodselect, ListInterface<FoodBeverage> beverageselect, ListInterface<Accessories> fbAccessoriesList, BagInterface<Accessories> fbAccessoriesSelect, ListInterface<Facility> facilitySizeList, ListInterface<Facility> facilityColorList, ListInterface<Facility> facilityOccasionList,
+    ListInterface<Facility> sizeselect, ListInterface<Facility> colorselect, ListInterface<Facility> occasionselect, ListInterface<Accessories> facilityAccessoriesList, BagInterface<Accessories> facilityAccessoriesSelect){
+        foodlist.clear();
+        beveragelist.clear();
+        foodselect.clear();
+        beverageselect.clear();
+        fbAccessoriesList.clear();
+        fbAccessoriesSelect.clear();
+        facilitySizeList.clear();
+        facilityColorList.clear();
+        facilityOccasionList.clear();
+        sizeselect.clear();
+        colorselect.clear();
+        occasionselect.clear();
+        facilityAccessoriesList.clear();
+        facilityAccessoriesSelect.clear();
     }
 }

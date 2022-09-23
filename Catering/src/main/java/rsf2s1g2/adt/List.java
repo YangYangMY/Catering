@@ -95,6 +95,13 @@ public class List<T> implements ListInterface<T>, Serializable {
     }
   }
 
+  public boolean positionCheck(int posOfObj) {
+    if ((posOfObj >= 1) && (posOfObj <= entryNum)) {
+      return true;
+    }
+    return false;
+  }
+
   @Override
   public String toString() {
     String outputStr = "";

@@ -13,6 +13,7 @@ public class BookingInfo {
     private ListInterface<Facility> occasionselect;
     private BagInterface<Accessories> fbAccessoriesSelect;
     private BagInterface<Accessories> facilityAccessoriesSelect;
+    public static int bookingPosition = 1;
     DecimalFormat df = new DecimalFormat("0.00");
 
     public BookingInfo(ListInterface<FoodBeverage> foodselect, ListInterface<FoodBeverage> beverageselect, ListInterface<Facility> sizeselect, ListInterface<Facility> colorselect, ListInterface<Facility> occasionselect, BagInterface<Accessories> fbAccessoriesSelect, BagInterface<Accessories> facilityAccessoriesSelect) {
@@ -121,6 +122,10 @@ public class BookingInfo {
         double paymentAmount = foodselect.get(1).getFoodFinaltotal() + beverageselect.get(1).getBeverageFinaltotal() 
         + sizeselect.get(1).getSizeFinaltotal() + colorselect.get(1).getColorFinaltotal() + occasionselect.get(1).getOccasionFinaltotal();
         return paymentAmount;
+    }
+
+    public static void addBookingPosition(){
+        bookingPosition++;
     }
 
 }

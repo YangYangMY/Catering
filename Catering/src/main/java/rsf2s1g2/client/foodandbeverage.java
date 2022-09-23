@@ -17,7 +17,7 @@ public class foodandbeverage {
         do {
             // 1 = food, 2 = beverage, 3 = exit
             Screen.clear();
-            displayFAB();
+            displayFAB(foodselect, beverageselect);
             choice = Screen.numInputValid(1,4,"\t\t\t\t\t\t\t       Select your Choice: ", "\t\t\t\t\t\t\t       Invalid input. Please try again");
             Screen.clear();
             switch (choice) {
@@ -185,7 +185,12 @@ public class foodandbeverage {
         } while (choice != 4);
     }
     
-    public static void displayFAB(){
+    public static void displayFAB(ListInterface<FoodBeverage> foodselect, ListInterface<FoodBeverage> beverageselect){
+        String emptyFMessage = "", emptyBMessage = "";
+        if(foodselect.isEmpty())
+            emptyFMessage = "(Empty)";
+        if(beverageselect.isEmpty())
+            emptyBMessage = "(Empty)";
         Font.print(Font.ANSI_YELLOW,"\t ███████╗ ██████╗  ██████╗ ██████╗      █████╗ ███╗   ██╗██████╗     ██████╗ ███████╗██╗   ██╗███████╗██████╗  █████╗  ██████╗ ███████╗ ");
         Font.print(Font.ANSI_YELLOW,"\t ██╔════╝██╔═══██╗██╔═══██╗██╔══██╗    ██╔══██╗████╗  ██║██╔══██╗    ██╔══██╗██╔════╝██║   ██║██╔════╝██╔══██╗██╔══██╗██╔════╝ ██╔════╝ ");
         Font.print(Font.ANSI_YELLOW,"\t █████╗  ██║   ██║██║   ██║██║  ██║    ███████║██╔██╗ ██║██║  ██║    ██████╔╝█████╗  ██║   ██║█████╗  ██████╔╝███████║██║  ███╗█████╗   ");
@@ -193,7 +198,7 @@ public class foodandbeverage {
         Font.print(Font.ANSI_YELLOW,"\t ██║     ╚██████╔╝╚██████╔╝██████╔╝    ██║  ██║██║ ╚████║██████╔╝    ██████╔╝███████╗ ╚████╔╝ ███████╗██║  ██║██║  ██║╚██████╔╝███████╗ ");
         Font.print(Font.ANSI_YELLOW,"\t ╚═╝      ╚═════╝  ╚═════╝ ╚═════╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝     ╚═════╝ ╚══════╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝ ");
         System.out.println("=================================================================================================================================================");
-        System.out.println("\t\t\t\t\t\t\t\t1. Food\n\t\t\t\t\t\t\t\t2. Beverage\n\t\t\t\t\t\t\t\t3. Accessories\n\t\t\t\t\t\t\t\t4. Exit");
+        System.out.println("\t\t\t\t\t\t\t\t1. Food" + emptyFMessage + "\n\t\t\t\t\t\t\t\t2. Beverage" + emptyBMessage + "\n\t\t\t\t\t\t\t\t3. Accessories\n\t\t\t\t\t\t\t\t4. Exit");
         System.out.println("=================================================================================================================================================");
     }
 
