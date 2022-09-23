@@ -41,6 +41,9 @@ public class Catering {
         SortedListInterface<Order> acceptedOrder = new SortedList<>();
         SortedListInterface<Order> rejectedOrder = new SortedList<>();
 
+        //Order dummy test
+        dummyScript.DummyOrderData(orderQueue);
+
         Scanner input = new Scanner(System.in);
 
         // Start Of Program
@@ -53,7 +56,7 @@ public class Catering {
             switch (choice) {
                 case 1: // Menu (Food & Beverage, Facility, Payment)
                     do {
-                        clearList(foodlist, beveragelist, foodselect, beverageselect, fbAccessoriesList, fbAccessoriesSelect,facilitySizeList, facilityColorList, facilityOccasionList, sizeselect, colorselect, occasionselect, facilityAccessoriesList, facilityAccessoriesSelect);
+                        //clearList(foodlist, beveragelist, foodselect, beverageselect, fbAccessoriesList, fbAccessoriesSelect,facilitySizeList, facilityColorList, facilityOccasionList, sizeselect, colorselect, occasionselect, facilityAccessoriesList, facilityAccessoriesSelect);
                         OrderMenu();
                         choice1 = Screen.numInputValid(1, 4, "\t\t\t       Select your Choice: ", "                            Only (1-4) is allowed, please try again!");
                         Screen.clear();

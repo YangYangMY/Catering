@@ -13,11 +13,7 @@ public class Order implements Comparable<Order> {
     private String phoneNum;
     private String date;
     private double orderAmount;
-    private String customerIC;
-    private int paymentID;
-    private ListInterface<BookingInfo> bookingInfo;
-    private MapInterface<String, Customer> customer;
-    private MapInterface<Integer, Payment> payments;
+
 
     public Order(String customerName, String date, String phoneNum, double orderAmount){
         this.orderId = nextOrderID++;
@@ -33,11 +29,6 @@ public class Order implements Comparable<Order> {
         this.phoneNum = customers.getValue(icNumber).getPhoneNum();
         this.date = date;
         this.orderAmount = bookinginfo.get(1).getTotalPrice();
-        this.bookingInfo = bookinginfo;
-        this.customer = customers;
-        this.customerIC = icNumber;
-        this.payments = payments;
-        this.paymentID = paymentID;
     }
     
 
@@ -66,35 +57,6 @@ public class Order implements Comparable<Order> {
         return date;
     }
 
-    public static int getNextOrderID() {
-        return nextOrderID;
-    }
 
-    public ListInterface<BookingInfo> getBookingInfo() {
-        return bookingInfo;
-    }
 
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public MapInterface<String, Customer> getcustomer(){
-        return customer;
-    }
-
-    public String getCustomerIC() {
-        return customerIC;
-    }
-
-    public MapInterface<Integer, Payment> getPayments() {
-        return payments;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public int getPaymentID() {
-        return paymentID;
-    }
 }
