@@ -23,22 +23,22 @@ public class customer {
 
         String custIcNo = validateIcNo();
 
-        if (!customers.contains(custIcNo)) {
-            System.out.print("     Name         : ");
-            custName = input.nextLine();
-            System.out.print("     Phone Number : ");
-            custPhoneNum = input.nextLine();
-            System.out.print("     Address      : ");
-            custAddr = input.nextLine();
-            customers.add(custIcNo, new Customer(custIcNo, custName, custPhoneNum, custAddr));
-        } else {
-            System.out.println("\nThank you for purchasing again! Please insert your catering date.");
+        if (customers.contains(custIcNo)) {
+            System.out.println("\n\tThank you for purchasing again! Please insert your catering date.");
             custName = customers.getValue(custIcNo).getName();
             custPhoneNum = customers.getValue(custIcNo).getPhoneNum();
             custAddr = customers.getValue(custIcNo).getAddress();
+        } else {
+            System.out.print("\t\t     Name         : ");
+            custName = input.nextLine();
+            System.out.print("\t\t     Phone Number : ");
+            custPhoneNum = input.nextLine();
+            System.out.print("\t\t     Address      : ");
+            custAddr = input.nextLine();
+            customers.add(custIcNo, new Customer(custIcNo, custName, custPhoneNum, custAddr));
         }
 
-        System.out.print("     Catering Date: ");
+        System.out.print("\t\t     Catering Date: ");
         String date = input.nextLine();
 
         String[] temp = new String[2];
@@ -54,18 +54,18 @@ public class customer {
 
         do {
             try {
-                System.out.print("     IC Number    : ");
+                System.out.print("\t\t     IC Number    : ");
                 custIcNo = input.nextLine();
                 if (custIcNo.length() < 12 || custIcNo.length() > 12) {
-                    System.out.println("     \nPlease insert correct format IC Number.");
-                    System.out.println("   << 12 Integers With No Dash >>\n");
+                    System.out.println("     \n\t\tPlease insert correct format IC Number.");
+                    System.out.println("   \t\t<< 12 Integers With No Dash >>\n");
                     isValid = false;
                 } else {
                     isValid = true;
                 }
             } catch (Exception e) {
-                System.out.println("     \nPlease insert correct format IC Number.");
-                System.out.println("   << 12 Integers With No Dash >>\n");
+                System.out.println("     \n\t\tPlease insert correct format IC Number.");
+                System.out.println("   \t\t<< 12 Integers With No Dash >>\n");
                 input.nextLine();
             }
         } while (!isValid);

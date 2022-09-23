@@ -71,10 +71,6 @@ public class Catering {
                                     //Payment Start Here
                                     bookinglist.add(new BookingInfo(foodselect, beverageselect, sizeselect, colorselect, occasionselect, fbAccessoriesSelect, facilityAccessoriesSelect));
                                     payment.pymt(customers, payments, bookinglist, orderQueue);
-                                   //System.out.println(payments.getValue(payments.getNumOfEntries()-1).getId());
-                                   //System.out.println(payments.getValue(payments.getValue(payments.getNumOfEntries()-1).getId()));
-                                   
-                                    System.out.println(payments); 
                                 }
                                 break;
                             case 4: // Exit to Home Menu

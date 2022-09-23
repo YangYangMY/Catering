@@ -172,19 +172,6 @@ public class payment {
         } while (otpNum.length() != 6);
     }
 
-    public static void generateReceipt(){
-        Screen.clear();
-
-        Font.print(Font.ANSI_YELLOW, "\t ██████╗ ███████╗ ██████╗███████╗██╗██████╗ ████████╗");
-        Font.print(Font.ANSI_YELLOW, "\t ██╔══██╗██╔════╝██╔════╝██╔════╝██║██╔══██╗╚══██╔══╝");
-        Font.print(Font.ANSI_YELLOW, "\t ██████╔╝█████╗  ██║     █████╗  ██║██████╔╝   ██║   ");
-        Font.print(Font.ANSI_YELLOW, "\t ██╔══██╗██╔══╝  ██║     ██╔══╝  ██║██╔═══╝    ██║   ");
-        Font.print(Font.ANSI_YELLOW, "\t ██║  ██║███████╗╚██████╗███████╗██║██║        ██║   ");
-        Font.print(Font.ANSI_YELLOW, "\t ╚═╝  ╚═╝╚══════╝ ╚═════╝╚══════╝╚═╝╚═╝        ╚═╝   ");
-        System.out.println("=============================================================================");
-        
-    }
-
     public static void displayPayment(MapInterface<Integer, Payment> payments){
 
         System.out.println("===================================================================================");
