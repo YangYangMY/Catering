@@ -23,16 +23,13 @@ public class Order implements Comparable<Order> {
         this.orderAmount = orderAmount;
     }
     
-    public Order(String date, String icNumber, int paymentID, ListInterface<BookingInfo> bookinginfo, MapInterface<String, Customer> customers, MapInterface<Integer, Payment> payments){
+    public Order(String date, String icNumber, int paymentID, ListInterface<BookingInfo> bookinginfo, MapInterface<String, Customer> customers){
         this.orderId = nextOrderID++;
         this.customerName = customers.getValue(icNumber).getName();
         this.phoneNum = customers.getValue(icNumber).getPhoneNum();
         this.date = date;
         this.orderAmount = bookinginfo.get(1).getTotalPrice();
     }
-    
-
-
 
     @Override
     public String toString() {
@@ -56,7 +53,4 @@ public class Order implements Comparable<Order> {
     public String getDate() {
         return date;
     }
-
-
-
 }

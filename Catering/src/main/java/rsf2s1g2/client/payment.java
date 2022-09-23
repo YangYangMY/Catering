@@ -34,7 +34,7 @@ public class payment {
                 }
                 int paymentID = Payment.getId();
                 payments.add(Payment.getId(),new Payment(bookinglist.get(1).getTotalPrice(),paymentMethod));
-                Order item1 = new Order(temp[0], temp[1], paymentID, bookinglist, customers, payments);
+                Order item1 = new Order(temp[0], temp[1], paymentID, bookinglist, customers);
                 orderQueue.enqueue(item1);
                 BookingInfo.addBookingPosition();
                 Screen.clear();

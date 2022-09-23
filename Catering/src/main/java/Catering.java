@@ -44,7 +44,6 @@ public class Catering {
         //Order dummy test
         dummyScript.DummyOrderData(orderQueue);
 
-
         Scanner input = new Scanner(System.in);
 
         // Start Of Program
