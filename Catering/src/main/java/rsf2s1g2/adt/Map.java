@@ -20,15 +20,7 @@ public class Map<K, V> implements MapInterface<K, V> {
     @Override
     public boolean add(K key, V value) {
         hashTable[numOfEntries] = new MapTable<K, V>(key, value);
-        numOfEntries++;
-
-        // Scanner input = new Scanner(System.in);
-        // System.out.println("YES ADD");
-        // System.out.println(numOfEntries - 1);
-        // System.out.println(hashTable[numOfEntries - 1].getValue());
-        // System.out.println(numOfEntries);
-        // input.next();
-        
+        numOfEntries++;        
         return true;
     }
 
@@ -81,7 +73,15 @@ public class Map<K, V> implements MapInterface<K, V> {
 
     @Override
     public boolean contains(K key) {
-        return getValue(key) != null;
+        boolean exist = false;
+
+        for(int i = 0; i < numOfEntries ; i++){
+            if(hashTable[i].getKey().equals(key)){
+                exist =  true;
+            }
+        }
+
+        return exist;
     }
 
     @Override

@@ -21,17 +21,15 @@ public class payment {
                 switch (getPymt(bookinglist)) {
                     case 1:
                         paymentMethod = "Online Bank Transfer";
-                        //payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
                         break;
 
                     case 2:
                         paymentMethod = "Debit / Credit Card";
-                        //payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
                         break;
 
                     case 3:
                         paymentMethod = "E-wallet";
-                       // payments.add(Payment.getId(),new Payment(getTotal(foodselect, beverageselect, sizeselect, colorselect, occasionselect),paymentMethod));
+                        break;
                 }
                 int paymentID = Payment.getId();
                 payments.add(Payment.getId(),new Payment(bookinglist.get(1).getTotalPrice(),paymentMethod));
@@ -62,7 +60,8 @@ public class payment {
         bookinglist.get(1).getSizeselect();
         bookinglist.get(1).getColorselect();
         bookinglist.get(1).getOccasionselect();
-        //System.out.println(bookinglist.get(1).getTotalPrice());
+        bookinglist.get(1).getFbAccessoriesSelect();
+        bookinglist.get(1).getFacilityAccessoriesSelect();
 
         System.out.println("\n\t\t\t Do you want to proceed?");
         System.out.println("\t\t\t   1. Confirm");
