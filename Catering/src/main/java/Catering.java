@@ -27,7 +27,7 @@ public class Catering {
         BagInterface<Accessories> facilityAccessoriesSelect = new Bag<Accessories>(100);
 
         //Booking Initialisation
-        ListInterface<BookingInfo> bookinglist = new List<BookingInfo>(1);
+        ListInterface<BookingInfo> bookinglist = new List<BookingInfo>(100);
 
         //Payment
         MapInterface<Integer, Payment> payments = new Map<Integer, Payment>();
