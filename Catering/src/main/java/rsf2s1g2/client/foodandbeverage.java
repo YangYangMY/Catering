@@ -12,7 +12,6 @@ public class foodandbeverage {
         Scanner input = new Scanner(System.in);
         int choice, action, position = 1, quantity = 0;
         final int num4Bag = 10;
-        initialize(foodlist, beveragelist, fbAccessoriesList);
 
         do {
             // 1 = food, 2 = beverage, 3 = exit
@@ -36,7 +35,7 @@ public class foodandbeverage {
                                     Font.print(Font.RED_BOLD_BRIGHT,"\t\tInvalid choice!");
                                     continueMessage();
                                 } else {
-                                    quantity = Screen.numInputValid(1,5000,"\tHow many do you want to add?: ", "\tPlease enter number within 1-5000");
+                                    quantity = Screen.numInputValid(1,500,"\tHow many do you want to add?: ", "\tPlease enter number within 1-5000");
                                     foodSelectModifications(foodselect, foodlist, action, position, quantity);
                                 }
                                 break;
@@ -72,7 +71,7 @@ public class foodandbeverage {
                                         System.out.println("\t\tInvalid choice!");
                                         continueMessage();
                                     } else {
-                                        quantity = Screen.numInputValid(1,5,"\tEnter the number: ", "\tInvalid input. Please try again");
+                                        quantity = Screen.numInputValid(1,500,"\tEnter the number: ", "\tInvalid input. Please try again");
                                         foodSelectModifications(foodselect, foodlist, action, position, quantity);
                                     }
                                 }
@@ -97,7 +96,7 @@ public class foodandbeverage {
                                     Font.print(Font.RED_BOLD_BRIGHT,"\t\tInvalid choice!");
                                     continueMessage();
                                 } else {
-                                    quantity = Screen.numInputValid(1,5000,"\tHow many do you want to add?: ", "\tPlease enter number within 1-5000");
+                                    quantity = Screen.numInputValid(1,500,"\tHow many do you want to add?: ", "\tPlease enter number within 1-5000");
                                     foodSelectModifications(beverageselect, beveragelist, action, position, quantity);
                                 }
                                 break;
@@ -128,12 +127,12 @@ public class foodandbeverage {
                                     continueMessage();
                                 } else {
                                     displayFoodSelect(beverageselect, df);
-                                    position = Screen.numInputValid(1,5,"\tSelect the item to be modified: ", "\tInvalid input. Please try again");
+                                    position = Screen.numInputValid(1,5,"\tSelect the item to be modified: ", "\tPlease enter number within 1-5000");
                                     if (beverageselect.size() < position || position < 1) {
                                         Font.print(Font.RED_BOLD_BRIGHT,"\t\tInvalid choice!");
                                         continueMessage();
                                     } else {
-                                        quantity = Screen.numInputValid(1,5,"\tEnter the number: ", "\tInvalid input. Please try again");
+                                        quantity = Screen.numInputValid(1,500,"\tEnter the number: ", "\tInvalid input. Please try again");
                                         foodSelectModifications(beverageselect, beveragelist, action, position, quantity);
                                     }
                                 }
@@ -200,26 +199,6 @@ public class foodandbeverage {
         System.out.println("=================================================================================================================================================");
         System.out.println("\t\t\t\t\t\t\t\t1. Food" + emptyFMessage + "\n\t\t\t\t\t\t\t\t2. Beverage" + emptyBMessage + "\n\t\t\t\t\t\t\t\t3. Accessories\n\t\t\t\t\t\t\t\t4. Exit");
         System.out.println("=================================================================================================================================================");
-    }
-
-    public static void initialize(ListInterface<FoodBeverage> foodlist, ListInterface<FoodBeverage> beveragelist, ListInterface<Accessories> fbAccessoriesList){
-        //Food List 
-        foodlist.add(new FoodBeverage("Fried Chicken", 6.0));
-        foodlist.add(new FoodBeverage("Nasi Lemak", 2.0));
-        foodlist.add(new FoodBeverage("Rendang Chicken", 6.5));
-        foodlist.add(new FoodBeverage("Fried Noodle", 2.5));
-        foodlist.add(new FoodBeverage("Chicken Salad", 5.0));
-        //Beverage List
-        beveragelist.add(new FoodBeverage("Coca-Cola", 2.0));
-        beveragelist.add(new FoodBeverage("Lemonade", 1.5));
-        beveragelist.add(new FoodBeverage("Plain Water", 0.5));
-        beveragelist.add(new FoodBeverage("Green Tea", 1.8));
-        beveragelist.add(new FoodBeverage("Honey Lemon", 3.5));
-        //Accessories List
-        fbAccessoriesList.add(new Accessories("Cutlery Set")); 
-        fbAccessoriesList.add(new Accessories("Tissue Box"));
-        fbAccessoriesList.add(new Accessories("Napkin"));
-        fbAccessoriesList.add(new Accessories("Paper Cup & Plate"));
     }
 
     public static void displayFoodList(ListInterface<FoodBeverage> foodlist){
@@ -398,16 +377,4 @@ public class foodandbeverage {
         input.nextLine();
         Screen.clear();
     }
-
-    // count the total number of entries in the bag
-    public static int getNumberOfEntries(BagInterface<FoodBeverage> Bag) {
-        int numberOfEntries = 0;
-        Object[] bagArray = Bag.toArray();
-        for (int index = 0; index < bagArray.length; index++) {
-            numberOfEntries++;
-        } // end for
-        return numberOfEntries;
-    } // end getNumberOfEntries
-    
-
 }

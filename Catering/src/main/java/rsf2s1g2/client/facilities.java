@@ -14,7 +14,6 @@ public class facilities {
         Scanner input = new Scanner(System.in);
         int choice, action, position = 1, quantity = 0;
         final int num4Bag = 10;
-        initialize(facilitySizeList, facilityColorList, facilityOccasionList, facilityAccessoriesList);
 
         do {
             Screen.clear();
@@ -299,43 +298,6 @@ public class facilities {
         System.out.print("\t\t\t\t\t\t\t       Select your Choice: ");
     }
 
-    public static void initialize(ListInterface<Facility> facilitySizeList, ListInterface<Facility> facilityColorList, ListInterface<Facility> facilityOccasionList, ListInterface<Accessories> facilityAccessoriesList) {
-        // Size lol
-        facilitySizeList.add(new Facility("Small", 500.00));
-        facilitySizeList.add(new Facility("Medium", 1000.00));
-        facilitySizeList.add(new Facility("Large", 1500.00));
-        // Color lmao
-        facilityColorList.add(new Facility("Red", 50.00));
-        facilityColorList.add(new Facility("Blue", 50.00));
-        facilityColorList.add(new Facility("Green", 50.00));
-        facilityColorList.add(new Facility("Yellow", 50.00));
-        facilityColorList.add(new Facility("Orange", 50.00));
-        facilityColorList.add(new Facility("Purple", 50.00));
-        facilityColorList.add(new Facility("Pink", 50.00));
-        facilityColorList.add(new Facility("Black", 50.00));
-        facilityColorList.add(new Facility("White", 50.00));
-        facilityColorList.add(new Facility("Brown", 50.00));
-        //Occasion lmfao
-        facilityOccasionList.add(new Facility("Birthday", 100.00));
-        facilityOccasionList.add(new Facility("Wedding", 100.00));
-        facilityOccasionList.add(new Facility("Graduation", 100.00));
-        facilityOccasionList.add(new Facility("Baby Shower", 100.00));
-        facilityOccasionList.add(new Facility("Anniversary", 100.00));
-        facilityOccasionList.add(new Facility("Retirement", 100.00));
-        facilityOccasionList.add(new Facility("Prom", 100.00));
-        facilityOccasionList.add(new Facility("Christmas", 100.00));
-        facilityOccasionList.add(new Facility("Thanksgiving", 100.00));
-        facilityOccasionList.add(new Facility("Halloween", 100.00));
-        facilityOccasionList.add(new Facility("Easter", 100.00));
-        facilityOccasionList.add(new Facility("Valentine's Day", 100.00));
-        facilityOccasionList.add(new Facility("New Year's Eve", 100.00));
-        //Accessories
-        facilityAccessoriesList.add(new Accessories("LED light")); 
-        facilityAccessoriesList.add(new Accessories("Board Game"));
-        facilityAccessoriesList.add(new Accessories("Rubbish Bin"));
-        facilityAccessoriesList.add(new Accessories("Rubbish Bag"));
-    }
-
     public static void displayFacilitiesSize(ListInterface<Facility> facilitySizeList) {
         Facility.resetNumber();
         System.out.println("=================================================================================================================================================");
@@ -559,13 +521,4 @@ public class facilities {
         input.nextLine();
         Screen.clear();
     }
-
-    public static int getNumberOfEntries(BagInterface<FoodBeverage> Bag) {
-        int numberOfEntries = 0;
-        Object[] bagArray = Bag.toArray();
-        for (int index = 0; index < bagArray.length; index++) {
-            numberOfEntries++;
-        } // end for
-        return numberOfEntries;
-    } // end getNumberOfEntries
 }

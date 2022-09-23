@@ -27,9 +27,6 @@ public class FoodBeverage {
         getFoodtotal();
     }
 
-    public FoodBeverage(String remark) {
-    }
-
     //getters and setters
     public String getFoodname() {
         return fbName;

@@ -27,7 +27,7 @@ public class Catering {
         BagInterface<Accessories> facilityAccessoriesSelect = new Bag<Accessories>(100);
 
         //Booking Initialisation
-        ListInterface<BookingInfo> bookinglist = new List<BookingInfo>(100);
+        ListInterface<BookingInfo> bookinglist = new List<BookingInfo>(1);
 
         //Payment
         MapInterface<Integer, Payment> payments = new Map<Integer, Payment>();
@@ -35,7 +35,6 @@ public class Catering {
         //Customer
         MapInterface<String, Customer> customers = new Map<String, Customer>();
 
-        
         //Order Init
         CircularQueueInterface<Order> orderQueue = new CircularQueue<>();
         SortedListInterface<Order> acceptedOrder = new SortedList<>();
@@ -43,6 +42,9 @@ public class Catering {
 
         //Order dummy test
         dummyScript.DummyOrderData(orderQueue);
+
+        //initialise
+        initialize(foodlist, beveragelist, fbAccessoriesList, facilitySizeList, facilityColorList, facilityOccasionList, facilityAccessoriesList);
 
         Scanner input = new Scanner(System.in);
 
@@ -187,5 +189,59 @@ public class Catering {
         occasionselect.clear();
         facilityAccessoriesList.clear();
         facilityAccessoriesSelect.clear();
+    }
+
+    public static void initialize(ListInterface<FoodBeverage> foodlist, ListInterface<FoodBeverage> beveragelist, ListInterface<Accessories> fbAccessoriesList, ListInterface<Facility> facilitySizeList, ListInterface<Facility> facilityColorList, ListInterface<Facility> facilityOccasionList, ListInterface<Accessories> facilityAccessoriesList){
+        //Food List 
+        foodlist.add(new FoodBeverage("Fried Chicken", 6.0));
+        foodlist.add(new FoodBeverage("Nasi Lemak", 2.0));
+        foodlist.add(new FoodBeverage("Rendang Chicken", 6.5));
+        foodlist.add(new FoodBeverage("Fried Noodle", 2.5));
+        foodlist.add(new FoodBeverage("Chicken Salad", 5.0));
+        //Beverage List
+        beveragelist.add(new FoodBeverage("Coca-Cola", 2.0));
+        beveragelist.add(new FoodBeverage("Lemonade", 1.5));
+        beveragelist.add(new FoodBeverage("Plain Water", 0.5));
+        beveragelist.add(new FoodBeverage("Green Tea", 1.8));
+        beveragelist.add(new FoodBeverage("Honey Lemon", 3.5));
+        //Accessories List
+        fbAccessoriesList.add(new Accessories("Cutlery Set")); 
+        fbAccessoriesList.add(new Accessories("Tissue Box"));
+        fbAccessoriesList.add(new Accessories("Napkin"));
+        fbAccessoriesList.add(new Accessories("Paper Cup & Plate"));
+        // Size lol
+        facilitySizeList.add(new Facility("Small", 500.00));
+        facilitySizeList.add(new Facility("Medium", 1000.00));
+        facilitySizeList.add(new Facility("Large", 1500.00));
+        // Color lmao
+        facilityColorList.add(new Facility("Red", 50.00));
+        facilityColorList.add(new Facility("Blue", 50.00));
+        facilityColorList.add(new Facility("Green", 50.00));
+        facilityColorList.add(new Facility("Yellow", 50.00));
+        facilityColorList.add(new Facility("Orange", 50.00));
+        facilityColorList.add(new Facility("Purple", 50.00));
+        facilityColorList.add(new Facility("Pink", 50.00));
+        facilityColorList.add(new Facility("Black", 50.00));
+        facilityColorList.add(new Facility("White", 50.00));
+        facilityColorList.add(new Facility("Brown", 50.00));
+        //Occasion lmfao
+        facilityOccasionList.add(new Facility("Birthday", 100.00));
+        facilityOccasionList.add(new Facility("Wedding", 100.00));
+        facilityOccasionList.add(new Facility("Graduation", 100.00));
+        facilityOccasionList.add(new Facility("Baby Shower", 100.00));
+        facilityOccasionList.add(new Facility("Anniversary", 100.00));
+        facilityOccasionList.add(new Facility("Retirement", 100.00));
+        facilityOccasionList.add(new Facility("Prom", 100.00));
+        facilityOccasionList.add(new Facility("Christmas", 100.00));
+        facilityOccasionList.add(new Facility("Thanksgiving", 100.00));
+        facilityOccasionList.add(new Facility("Halloween", 100.00));
+        facilityOccasionList.add(new Facility("Easter", 100.00));
+        facilityOccasionList.add(new Facility("Valentine's Day", 100.00));
+        facilityOccasionList.add(new Facility("New Year's Eve", 100.00));
+        //Accessories
+        facilityAccessoriesList.add(new Accessories("LED light")); 
+        facilityAccessoriesList.add(new Accessories("Board Game"));
+        facilityAccessoriesList.add(new Accessories("Rubbish Bin"));
+        facilityAccessoriesList.add(new Accessories("Rubbish Bag"));
     }
 }

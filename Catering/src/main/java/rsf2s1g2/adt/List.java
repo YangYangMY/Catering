@@ -19,6 +19,9 @@ public class List<T> implements ListInterface<T>, Serializable {
 
   @Override
   public boolean add(T newObj) {
+    if(listArray.length == entryNum) {
+      return false;
+    }
     listArray[entryNum] = newObj;
     entryNum++;
     return true;
