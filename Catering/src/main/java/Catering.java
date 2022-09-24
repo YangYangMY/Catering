@@ -175,19 +175,12 @@ public class Catering {
 
     public static void clearList(ListInterface<FoodBeverage> foodlist, ListInterface<FoodBeverage> beveragelist, ListInterface<FoodBeverage> foodselect, ListInterface<FoodBeverage> beverageselect, ListInterface<Accessories> fbAccessoriesList, BagInterface<Accessories> fbAccessoriesSelect, ListInterface<Facility> facilitySizeList, ListInterface<Facility> facilityColorList, ListInterface<Facility> facilityOccasionList,
     ListInterface<Facility> sizeselect, ListInterface<Facility> colorselect, ListInterface<Facility> occasionselect, ListInterface<Accessories> facilityAccessoriesList, BagInterface<Accessories> facilityAccessoriesSelect){
-        foodlist.clear();
-        beveragelist.clear();
         foodselect.clear();
         beverageselect.clear();
-        fbAccessoriesList.clear();
         fbAccessoriesSelect.clear();
-        facilitySizeList.clear();
-        facilityColorList.clear();
-        facilityOccasionList.clear();
         sizeselect.clear();
         colorselect.clear();
         occasionselect.clear();
-        facilityAccessoriesList.clear();
         facilityAccessoriesSelect.clear();
     }
 

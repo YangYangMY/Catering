@@ -25,6 +25,9 @@ public class customer {
 
         if (customers.contains(custIcNo)) {
             System.out.println("\n\tThank you for purchasing again! Please insert your catering date.");
+            System.out.println("\t\t     Name         : " + customers.getValue(custIcNo).getName());
+            System.out.println("\t\t     Phone Number : " + customers.getValue(custIcNo).getPhoneNum());
+            System.out.println("\t\t     Address      : " + customers.getValue(custIcNo).getAddress());
             custName = customers.getValue(custIcNo).getName();
             custPhoneNum = customers.getValue(custIcNo).getPhoneNum();
             custAddr = customers.getValue(custIcNo).getAddress();
